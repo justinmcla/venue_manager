@@ -1,4 +1,4 @@
-class CreateVenues < ActiveRecord::Migration
+class CreateVenues < ActiveRecord::Migration[6.0]
   def change
     create_table :venues do |t|
       t.string :name
@@ -7,7 +7,7 @@ class CreateVenues < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.integer :zip
-      t.string :stage
+      t.string :stage_type
       t.integer :seats
     end
   end
