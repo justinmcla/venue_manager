@@ -1,3 +1,20 @@
+.wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+}
+
+nav {
+    background-color: gainsboro;
+}
+
+.content {
+    background-color: steelblue;
+    height: 100%;
+    width: 100%;
+}
+
 h1 {
-    color: blue;
+    color: whitesmoke;
 }
