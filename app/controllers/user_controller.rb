@@ -49,6 +49,22 @@ class UserController < ApplicationController
         redirect '/'
     end
 
+    get '/account' do
+        erb :'user/account'
+    end
+
+    patch '/account' do
+        if !params[:username].empty? 
+            user = current_user(session)
+            user.username = params[:username]
+            user.save
+            redirect to '/account'
+        else
+            flash[:error] = "Invalid username."
+            redirect to '/account'
+        end
+    end
+
 
 
 end
