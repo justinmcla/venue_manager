@@ -1,1 +1,6 @@
-<h1>SUCCESS</h1>
+<% if !is_logged_in?(session) %>
+<% redirect '/'%>
+<% else %>
+<h1>Welcome, <%= current_user(session).username %>!</h1>
+<a href = '/logout'>Logout</a>
+<% end %>
