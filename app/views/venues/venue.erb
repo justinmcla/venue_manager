@@ -6,6 +6,8 @@
 <br>
 <p>Configuration: <%= @venue.stage_type %></p>
 <p>Seats: <%= @venue.seats %></p>
+<br><br>
+<a href = "/venues/<%= @venue.id %>/edit">Edit Venue</a>
 <% else %>
-<% redirect to '/home' %>
+<% redirect '/home' %>
 <% end %>
