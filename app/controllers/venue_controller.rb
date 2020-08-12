@@ -31,4 +31,10 @@ class VenueController < ApplicationController
         redirect to "/venues/#{@venue.id}"
     end
 
+    get '/venues/:id/delete' do
+        @venue = Venue.find(params[:id])
+        @venue.destroy
+        redirect to "/home"
+    end
+
 end
