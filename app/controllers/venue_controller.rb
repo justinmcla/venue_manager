@@ -6,8 +6,13 @@ class VenueController < ApplicationController
 
     post '/venues/new' do
         new_venue = Venue.create(params)
-        new_venue.user_id = current_user(session).id
+        current_user(session).venues << new_venue
         redirect to "/venues/#{new_venue.id}"
+    end
+
+    get '/venues/:id' do
+        @venue = Venue.find(params[:id])
+        erb :'venues/venue'
     end
 
 end
