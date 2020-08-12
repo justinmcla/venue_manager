@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_045911) do
+ActiveRecord::Schema.define(version: 2020_08_12_155547) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "customer"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_045911) do
     t.integer "zip"
     t.string "stage_type"
     t.integer "seats"
+    t.integer "user_id"
   end
 
 end
