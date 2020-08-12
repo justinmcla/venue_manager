@@ -8,6 +8,8 @@
 <p>Seats: <%= @venue.seats %></p>
 <br><br>
 <a href = "/venues/<%= @venue.id %>/edit">Edit Venue</a>
+<br>
+<a href = "/venues/<%= @venue.id %>/delete">Delete Venue</a>
 <% else %>
 <% redirect '/home' %>
 <% end %>
