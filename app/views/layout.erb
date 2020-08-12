@@ -11,6 +11,9 @@
                 <p>Home | Login/Signup</p>
             </nav>
             <section class = "content">
+            <% if flash[:error]%>
+            <%= flash[:error]%>
+            <% end %>
             <%= yield %>
             </section>
         </section>
