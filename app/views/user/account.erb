@@ -1,0 +1,9 @@
+<h1>Account Settings</h1>
+<p>Name: <%= current_user(session).first_name + ' ' + current_user(session).last_name %></p>
+<p>Username: <%= current_user(session).username%></p>
+<br><br>
+<form method = "POST" action = "/account">
+<input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
+<p><label>Change Username:</label><input type = "text" id = "change_username" name = "username"></p>
+<input type = "submit" id = "submit" value = "Update">
+</form>
