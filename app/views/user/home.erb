@@ -2,5 +2,14 @@
 <% redirect '/'%>
 <% else %>
 <h1>Welcome, <%= current_user(session).username %>!</h1>
+<br><br>
+
+<h3>Venues</h3>
+<% current_user(session).venues.each do |venue| %>
+<p><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></p>
+<% end %>
+<br><br>
+<p><a href = "/venues/new">Create New Venue</a></p>
+<br><br>
 <a href = '/logout'>Logout</a>
 <% end %>
