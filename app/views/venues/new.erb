@@ -1,3 +1,5 @@
+<% if is_logged_in?(session)%>
+
 <h1>Create a New Venue</h1>
 
 <form method = "POST" action = "/venues/new">
@@ -17,3 +19,7 @@
 <br>
 <input type = "submit" id = "submit" value = "Create">
 </form>
+
+<% else %>
+<% redirect to '/' %>
+<% end %>
