@@ -1,7 +1,16 @@
+<% if !is_logged_in?(session) %>
 <h1>Venue Manager</h1>
-<p>Welcome to Venue Manager, the simple way to manage performance venues.</p>
-<p>Interesting features here...</p>
+<h3>Welcome to Venue Manager, the simple way to manage performance venues.</h3>
+<p>With Venue Manager, you can...</p>
+<ul>
+<li>Keep track of bookings</li>
+<li>Manage inventories</li>
+<li>Oversee employees</li>
+</ul>
 <br>
 <p>Please log in, or sign up for an account.</p>
-<p>Link to log in</p>
-<p>Link to sign up</p>
+<p><a href = '/login'>Log In</a></p>
+<p><a href = '/signup'>Sign Up</a></p>
+<% else %>
+<% redirect '/home'%>
+<% end %>
