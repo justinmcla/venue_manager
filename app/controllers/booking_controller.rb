@@ -7,6 +7,9 @@ class BookingController < ApplicationController
     post '/bookings/new' do
         new_booking = Booking.create(params)
         new_booking.venue_id = params[:venue_id]
+        if params[:tenant_id] == '0'
+            redirect to "/tenants/new"
+        end
         redirect to "/bookings/#{new_booking.id}"
     end
 
@@ -15,8 +18,9 @@ class BookingController < ApplicationController
         erb :'bookings/booking'
     end
 
-
-
+    get '/bookings' do
+        erb :'bookings/all'
+    end
 
 
 end
