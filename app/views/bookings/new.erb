@@ -1,11 +1,10 @@
 <h1>Create Booking</h1>
 <form method = "POST" action = "/bookings/new">
 <p><label>Tenant:</label></p>
-<select id="tenants" name="tenant_id" size="3">
+<select id="tenants" name="tenant_id" size="1">
     <% current_user(session).tenants.sort.each do |tenant| %>
     <option value = "<%= tenant.id%>"><%= tenant.org_name %></option>
     <% end %>
-    <option value = "0">Create New</option>
 </select>
 <p><label>Venue:</label></p>
 <% current_user(session).venues.each do |venue|%>
