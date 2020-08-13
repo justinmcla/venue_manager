@@ -1,5 +1,17 @@
 <h1>Booking Information</h1>
-<p>Customer: <%= @booking.customer %></p>
+<p>Tenant: <%= @booking.tenant.org_name %></p>
+<p>Venue: <%= @booking.venue.name %></p>
+<p>Type: <%= @booking.type %></p>
 <p>Date: <%= @booking.date %></p>
 <p>Time: <%= @booking.time %></p>
-<p>Venue: <%= @booking.venue.name %></p>
+<p>Description: <%= @booking.description %></p>
+<p>Attendance: <%= @booking.attendance %></p>
+<p>Food: <%= @booking.food ? 'Yes' : 'No' %></p>
+<p>Alcohol: <%= @booking.alcohol ? 'Yes' : 'No' %></p>
+<p>Stage Lighting: <%= @booking.lighting ? 'Yes' : 'No' %></p>
+<p>Amplified Sound: <%= @booking.sound ? 'Yes' : 'No' %></p>
+<p>Microphones: <%= @booking.microphones ? 'Yes' : 'No' %></p>
+<p>Street Closure: <%= @booking.street_closure ? 'Yes' : 'No' %></p>
+<p>Spotlight: <%= @booking.spotlight ? 'Yes' : 'No' %></p>
+<p>Curtain: <%= @booking.curtain ? 'Yes' : 'No' %></p>
+<p>Event Security: <%= @booking.security ? 'Yes' : 'No' %></p>
