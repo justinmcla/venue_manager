@@ -1,0 +1,8 @@
+<% if is_logged_in?(session) %>
+<h1>Tenants</h1>
+<% current_user(session).tenants.each do |tenant| %>
+<p><a href = "/tenants/<%= tenant.id %>"><%= tenant.org_name %></a></p>
+<% end %>
+<% else %>
+<% redirect to '/home' %>
+<% end %>
