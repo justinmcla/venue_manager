@@ -1,11 +1,50 @@
 <h1>Create Booking</h1>
 <form method = "POST" action = "/bookings/new">
-<p><label>Customer:</label><input type = "text" id = "customer" name = "customer"></p>
-<p><label>Date:</label><input type = "date" id = "date" name = "date"></p>
-<p><label>Time:</label><input type = "time" id = "time" name = "time"></p>
+<p><label>Tenant:</label></p>
+<select id="tenants" name="tenant_id" size="3">
+    <% current_user(session).tenants.sort.each do |tenant| %>
+    <option value = "<%= tenant.id%>"><%= tenant.org_name %></option>
+    <% end %>
+    <option value = "0">Create New</option>
+</select>
 <p><label>Venue:</label></p>
 <% current_user(session).venues.each do |venue|%>
 <input type = "radio" id = "venue_<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>"><%= venue.name %>
 <% end %>
+<p><label>Event Name:</label><input type = "text" id = "name" name = "name"></p>
+<p><label>Date:</label><input type = "date" id = "date" name = "date"></p>
+<p><label>Time:</label><input type = "time" id = "time" name = "time"></p>
+<p><label>Description:</label><textarea id = "description" name = "description"></textarea></p>
+<p><label>Estimated Attendance:</label><input type = "number" id = "attendance" name = "attendance"></p>
+<p><label>Catering:</label></p>
+<input type = "radio" id = "food" name = "food" value = "true">Yes<br>
+<input type = "radio" id = "food" name = "food" value = "false">No<br>
+<p><label>Alcohol:</label></p>
+<input type = "radio" id = "alcohol" name = "alcohol" value = "true">Yes<br>
+<input type = "radio" id = "alcohol" name = "alcohol" value = "false">No<br>
+<p><label>Stage Lighting:</label></p>
+<input type = "radio" id = "lighting" name = "lighting" value = "true">Yes<br>
+<input type = "radio" id = "lighting" name = "lighting" value = "false">No<br>
+<p><label>Spotlight:</label></p>
+<input type = "radio" id = "spotlight" name = "spotlight" value = "true">Yes<br>
+<input type = "radio" id = "spotlight" name = "spotlight" value = "false">No<br>
+<p><label>Amplified Sound:</label></p>
+<input type = "radio" id = "sound" name = "sound" value = "true">Yes<br>
+<input type = "radio" id = "sound" name = "sound" value = "false">No<br>
+<p><label>Microphones:</label></p>
+<input type = "radio" id = "microphones" name = "microphones" value = "true">Yes<br>
+<input type = "radio" id = "microphones" name = "microphones" value = "false">No<br>
+<p><label>Curtain:</label></p>
+<input type = "radio" id = "curtain" name = "curtain" value = "true">Yes<br>
+<input type = "radio" id = "curtain" name = "curtain" value = "false">No<br>
+<p><label>Street Closure:</label></p>
+<input type = "radio" id = "street_closure" name = "street_closure" value = "true">Yes<br>
+<input type = "radio" id = "street_closure" name = "street_closure" value = "false">No<br>
+<p><label>Event Security:</label></p>
+<input type = "radio" id = "security" name = "security" value = "true">Yes<br>
+<input type = "radio" id = "security" name = "security" value = "false">No<br>
+<p><label>Contract Signed?</label><input type = "checkbox" id = "contract" name = "contract" value = "true"></p>
+<p><label>Deposit Paid?</label><input type = "checkbox" id = "deposit" name = "deposit" value = "true"></p>
+<p><label>Paid in Full?</label><input type = "checkbox" id = "paid" name = "paid" value = "true"></p>
 <input type = "submit" id = "submit" value = "Create">
 </form>
