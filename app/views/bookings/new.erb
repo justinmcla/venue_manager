@@ -1,0 +1,11 @@
+<h1>Create Booking</h1>
+<form method = "POST" action = "/bookings/new">
+<p><label>Customer:</label><input type = "text" id = "customer" name = "customer"></p>
+<p><label>Date:</label><input type = "date" id = "date" name = "date"></p>
+<p><label>Time:</label><input type = "time" id = "time" name = "time"></p>
+<p><label>Venue:</label></p>
+<% current_user(session).venues.each do |venue|%>
+<input type = "radio" id = "venue_<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>"><%= venue.name %>
+<% end %>
+<input type = "submit" id = "submit" value = "Create">
+</form>
