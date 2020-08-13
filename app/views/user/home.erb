@@ -2,11 +2,14 @@
 <% redirect '/'%>
 <% else %>
 <h1>Welcome, <%= current_user(session).first_name %>!</h1>
-<br><br>
 
-<h3>Venues</h3>
-<% current_user(session).venues.each do |venue| %>
-<p><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></p>
+<h3>Upcoming Bookings</h3>
+<% if current_user(session).bookings.empty? %>
+    <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
+<% else %>
+    <% current_user(session).bookings.each do |booking| %>
+    <p><a href = "/bookings/<%= booking.id %>"><%= booking.date %>, <%= booking.tenant.org_name %></a></p>
+    <% end %>
 <% end %>
 <h3>Tenants</h3>
 <% current_user(session).tenants.each do |tenant| %>
