@@ -1,15 +1,21 @@
 <% if !is_logged_in?(session) %>
 <% redirect '/'%>
 <% else %>
-<h1>Welcome, <%= current_user(session).username %>!</h1>
+<h1>Welcome, <%= current_user(session).first_name %>!</h1>
 <br><br>
 
 <h3>Venues</h3>
 <% current_user(session).venues.each do |venue| %>
 <p><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></p>
 <% end %>
+<h3>Tenants</h3>
+<% current_user(session).tenants.each do |tenant| %>
+<p><a href = "/tenants/<%= tenant.id %>"><%= tenant.org_name %></a></p>
+<% end %>
 <br><br>
 <p><a href = "/venues/new">Create New Venue</a></p>
+<p><a href = "/tenants/new">Create New Tenant</a></p>
+<p><a href = "/bookings/new">Create New Booking</a></p>
 <br><br>
 <a href = '/logout'>Logout</a>
 <% end %>
