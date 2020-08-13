@@ -7,9 +7,6 @@ class TenantController < ApplicationController
     post '/tenants/new' do
         new_tenant = Tenant.new(params)
         current_user(session).tenants << new_tenant
-        if Booking.last.tenant_id == '0'
-            Booking.last.tenant = new_tenant
-        end
         redirect to "/tenants/#{new_tenant.id}"
     end
 
