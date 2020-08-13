@@ -6,15 +6,27 @@
 }
 
 nav {
-    background-color: gainsboro;
+    background-color: white;
 }
 
 .content {
-    background-color: steelblue;
+    background-color: wheat;
     height: 100%;
     width: 100%;
 }
 
 h1 {
-    color: whitesmoke;
+    font-size: larger;
+}
+
+h2 {
+    font-size: large;
+}
+
+h3 {
+    font-size: medium;
+}
+
+p {
+    font-size: small;
 }
