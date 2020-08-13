@@ -1,3 +1,4 @@
+<% if is_logged_in?(session) && current_user(session).bookings.include?(@booking) %>
 <h1>Booking Information</h1>
 <p>Tenant: <%= @booking.tenant.org_name %></p>
 <p>Venue: <%= @booking.venue.name %></p>
@@ -15,3 +16,12 @@
 <p>Spotlight: <%= @booking.spotlight ? 'Yes' : 'No' %></p>
 <p>Curtain: <%= @booking.curtain ? 'Yes' : 'No' %></p>
 <p>Event Security: <%= @booking.security ? 'Yes' : 'No' %></p>
+<p>Contract Signed: <%= @booking.contract ? 'Yes' : 'No' %></p>
+<p>Deposit Paid: <%= @booking.deposit ? 'Yes' : 'No' %></p>
+<p>Paid in Full: <%= @booking.paid ? 'Yes' : 'No' %></p>
+<br><br>
+<a href = "/bookings/<%= @booking.id %>/edit">Edit Booking</a>
+<a href = "/bookings/<%= @booking.id %>/delete">Delete Booking</a>
+<% else %>
+<% redirect to '/home'%>
+<% end %>
