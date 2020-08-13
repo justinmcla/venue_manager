@@ -1,18 +1,27 @@
 <% if is_logged_in?(session) %>
-<% current_user(session).venues.each do |venue| %>
-<h1><%= venue.name %></h1>
-<p><%= venue.address1 %></p>
-<p><%= venue.address2 %></p>
-<p><%= venue.city %>, <%= venue.state %> <% venue.zip %></p>
-<br>
-<p>Configuration: <%= venue.stage_type %></p>
-<p>Seats: <%= venue.seats %></p>
-<br>
-<p>Greenrooms: <%= @venue.greenrooms %></p>
-<p>Dressing Rooms: <%= @venue.dressing_rooms %></p>
-<br><br>
-<% end %>
-<br><br>
+
+    <h1>Managed Venues</h1>
+
+    <% current_user(session).venues.each do |venue| %>
+
+        <h2>
+            <a href = "/venues/<%= venue.id %>"><%= venue.name %></a>
+        </h2>
+        <p>
+            <%= venue.address1 %><br>
+            <%= venue.address2 %><br>
+            <%= venue.city %>, <%= venue.state %> <% venue.zip %><br>
+            <br><br>
+        </p>
+
+    <% end %>
+
+        <p>
+            <a href = "/venues/new">Create New Venue</a>
+        </p>
+
 <% else %>
-<% redirect '/home' %>
+
+    <% redirect '/home' %>
+
 <% end %>
