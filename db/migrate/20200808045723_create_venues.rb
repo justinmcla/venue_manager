@@ -9,6 +9,8 @@ class CreateVenues < ActiveRecord::Migration[6.0]
       t.integer :zip
       t.string :stage_type
       t.integer :seats
+      t.integer :greenrooms
+      t.integer :dressing_rooms
     end
   end
 end

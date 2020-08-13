@@ -10,13 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_155547) do
+ActiveRecord::Schema.define(version: 2020_08_13_015350) do
 
   create_table "bookings", force: :cascade do |t|
-    t.string "customer"
+    t.string "name"
+    t.string "type"
     t.date "date"
-    t.datetime "time"
+    t.string "time"
+    t.text "description"
+    t.integer "attendance"
+    t.boolean "food"
+    t.boolean "alcohol"
+    t.boolean "lighting"
+    t.boolean "sound"
+    t.boolean "microphones"
+    t.boolean "street_closure"
+    t.boolean "spotlight"
+    t.boolean "curtain"
+    t.boolean "security"
+    t.boolean "contract"
+    t.boolean "deposit"
+    t.boolean "paid"
     t.integer "venue_id"
+  end
+
+  create_table "tenants", force: :cascade do |t|
+    t.string "org_type"
+    t.string "org_name"
+    t.string "org_address"
+    t.string "org_city"
+    t.string "org_state"
+    t.string "org_zip"
+    t.string "poc_name"
+    t.string "poc_phone"
+    t.string "poc_email"
   end
 
   create_table "users", force: :cascade do |t|
