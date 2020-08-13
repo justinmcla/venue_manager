@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2020_08_13_015350) do
     t.integer "zip"
     t.string "stage_type"
     t.integer "seats"
+    t.integer "greenrooms"
+    t.integer "dressing_rooms"
     t.integer "user_id"
   end
 
