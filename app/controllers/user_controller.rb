@@ -15,7 +15,7 @@ class UserController < ApplicationController
             flash[:error] = "Username already in use."
             redirect '/signup'
         end
-        user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password_digest: Password.create(params[:password]))
+        user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
         if user.save
             session[:user_id] = user.id
             redirect '/home'
@@ -35,7 +35,7 @@ class UserController < ApplicationController
 
     post '/login' do
         user = User.find_by(username: params[:username])
-        if user && Password.new(user.password_digest) == params[:password]
+        if user && user.authenticate(params[:password])
             session[:user_id] = user.id 
             redirect '/home'
         else
