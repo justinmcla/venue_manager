@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
 
     set :database, {adapter: "sqlite3", database: "db/venue.sqlite3"}
     enable :sessions
-    set :session_secret, "development"
+    set :session_secret, ENV.fetch('SESSION_SECRET')
 
     configure do
         set :views, 'app/views'
@@ -23,6 +23,9 @@ class ApplicationController < Sinatra::Base
         end
         def current_user(session)
             User.find(session[:user_id])
+        end
+        def auth
+            redirect to "/" unless is_logged_in?(session)
         end
     end
 

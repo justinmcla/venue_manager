@@ -1,5 +1,9 @@
 class BookingController < ApplicationController
 
+    before '/bookings*' do
+        auth
+    end
+
     get '/bookings/new' do
         erb :'bookings/new'
     end
@@ -41,7 +45,7 @@ class BookingController < ApplicationController
     end
 
     get '/bookings/:id/delete' do
-        if is_logged_in?(session) && current_user(session).bookings.include?(Booking.find(params[:id]))
+        if current_user(session).bookings.include?(Booking.find(params[:id]))
             @booking = Booking.find(params[:id])
             @booking.destroy
             redirect to "/bookings"

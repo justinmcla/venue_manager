@@ -1,5 +1,9 @@
 class TenantController < ApplicationController
 
+    before '/tenants*' do
+        auth
+    end
+
     get '/tenants/new' do
         erb :'tenants/new'
     end
