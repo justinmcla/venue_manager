@@ -5,7 +5,7 @@ class TenantController < ApplicationController
     end
     
     post '/tenants/new' do
-        new_tenant = Tenant.new(params)
+        new_tenant = Tenant.create(params)
         current_user(session).tenants << new_tenant
         redirect to "/tenants/#{new_tenant.id}"
     end
