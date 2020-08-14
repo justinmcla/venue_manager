@@ -2,3 +2,4 @@
 <% current_user(session).bookings.each do |booking| %>
 <a href = "/bookings/<%= booking.id %>"><%= booking.tenant.org_name %>, <%= booking.date %></a>
 <% end %>
+<p><a href = "/bookings/new">Create New Booking</a></p>

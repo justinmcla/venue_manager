@@ -5,10 +5,12 @@
     <% current_user(session).tenants.sort.each do |tenant| %>
     <option value = "<%= tenant.id%>"><%= tenant.org_name %></option>
     <% end %>
+    <option value = "0">Create New</option>
 </select>
+<p><label>New Tenant Name:</label><input type = "text" id = "new_tenant" name = "new_tenant"></p>
 <p><label>Venue:</label></p>
 <% current_user(session).venues.each do |venue|%>
-<input type = "radio" id = "venue_<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>"><%= venue.name %>
+<input type = "radio" id = "<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>"><%= venue.name %>
 <% end %>
 <p><label>Event Name:</label><input type = "text" id = "name" name = "name"></p>
 <p><label>Date:</label><input type = "date" id = "date" name = "date"></p>

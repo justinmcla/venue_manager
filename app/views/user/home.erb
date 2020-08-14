@@ -1,24 +1,18 @@
 <% if !is_logged_in?(session) %>
-<% redirect '/'%>
+    <% redirect '/'%>
 <% else %>
-<h1>Welcome, <%= current_user(session).first_name %>!</h1>
-
-<h3>Upcoming Bookings</h3>
-<% if current_user(session).bookings.empty? %>
-    <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
-<% else %>
-    <% current_user(session).bookings.each do |booking| %>
-    <p><a href = "/bookings/<%= booking.id %>"><%= booking.date %>, <%= booking.tenant.org_name %></a></p>
+    <h1>Welcome, <%= current_user(session).first_name %>!</h1>
+    <% if !current_user(session).venues.empty? %>
+        <h3>Upcoming Bookings</h3>
+        <% if current_user(session).bookings.empty? %>
+            <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
+        <% else %>
+            <% current_user(session).bookings.each do |booking| %>
+            <p><a href = "/bookings/<%= booking.id %>"><%= booking.date %>, <%= booking.tenant.org_name %></a></p>
+            <% end %>
+        <% end %>
+    <% else %>
+    <h3>Get Started!</h3>
+    <p>Create your first venue by clicking <a href = "/venues/new">here</a>.</p>
     <% end %>
-<% end %>
-<h3>Tenants</h3>
-<% current_user(session).tenants.each do |tenant| %>
-<p><a href = "/tenants/<%= tenant.id %>"><%= tenant.org_name %></a></p>
-<% end %>
-<br><br>
-<p><a href = "/venues/new">Create New Venue</a></p>
-<p><a href = "/tenants/new">Create New Tenant</a></p>
-<p><a href = "/bookings/new">Create New Booking</a></p>
-<br><br>
-<a href = '/logout'>Logout</a>
 <% end %>

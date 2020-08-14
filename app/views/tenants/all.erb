@@ -3,6 +3,7 @@
 <% current_user(session).tenants.each do |tenant| %>
 <p><a href = "/tenants/<%= tenant.id %>"><%= tenant.org_name %></a></p>
 <% end %>
+<p><a href = "/tenants/new" >Create New Tenant</a></p>
 <% else %>
 <% redirect to '/home' %>
 <% end %>
