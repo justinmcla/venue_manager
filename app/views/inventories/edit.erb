@@ -1,0 +1,15 @@
+<h1>Edit Inventory Settings</h1>
+<form method = "POST" action = "/inventories/<%= @inventory.id %>">
+<input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
+<table>
+    <tr>
+        <td><label>Name:</label></td>
+        <td><input type = "text" id = "name" name = "name" value = "<%= @inventory.name %>"></td>
+    </tr>
+    <tr>
+        <td><label>Description:</label></td>
+        <td><textarea id = "description" name = "description" value = "<%= @inventory.description %>"></textarea></td>
+    </tr>
+</table>
+<input type = "submit" id = "submit" value = "Update">
+</form>
