@@ -7,10 +7,22 @@
         <% if current_user(session).bookings.empty? %>
             <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
         <% else %>
-            <% current_user(session).bookings.each do |booking| %>
+            <% current_user(session).bookings.sort_by { |b| b.date }.each do |booking| %>
+            <% if booking.date > Date.today %>
             <p><a href = "/bookings/<%= booking.id %>"><%= booking.date %>, <%= booking.tenant.org_name %></a></p>
             <% end %>
+            <% end %>
         <% end %>
+        <h3>Previous Bookings</h3>
+        <% if current_user(session).bookings.map { |b| b.date < Date.today }.empty? %>
+        <p>No previous bookings.</p>
+        <% else %>
+        <% current_user(session).bookings.sort_by { |b| b.date }.each do |booking| %>
+        <% if booking.date < Date.today %>
+            <p><a href = "/bookings/<%= booking.id %>"><%= booking.date %>, <%= booking.tenant.org_name %></a></p>
+        <% end %>
+        <% end %>
+        <% end%>
     <% else %>
     <h3>Get Started!</h3>
     <p>Create your first venue by clicking <a href = "/venues/new">here</a>.</p>

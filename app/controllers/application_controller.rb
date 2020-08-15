@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
 
     set :database, {adapter: "sqlite3", database: "db/venue.sqlite3"}
     enable :sessions
-    set :session_secret, ENV.fetch('SESSION_SECRET')
+    set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
 
     configure do
         set :views, 'app/views'
