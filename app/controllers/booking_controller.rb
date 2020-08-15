@@ -25,19 +25,23 @@ class BookingController < ApplicationController
 
     get '/bookings/:id' do
         @booking = Booking.find(params[:id])
-        erb :'bookings/booking'
+        current_user(session).bookings.include?(@booking) ? (erb :'bookings/booking') : (redirect to '/bookings')
     end
 
     get '/bookings/:id/edit' do
         @booking = Booking.find(params[:id])
-        erb :'bookings/edit'
+        current_user(session).bookings.include?(@booking) ? (erb :'bookings/edit') : (redirect to '/bookings')
     end
 
     patch '/bookings/:id' do
         @booking = Booking.find(params[:id])
-        params.each { |key, val| @booking.send("#{key}=", val) if @booking.respond_to?("#{key}=") }
-        @booking.save
-        redirect to "/bookings/#{@booking.id}"
+        if current_user(session).bookings.include?(@booking)
+            params.each { |key, val| @booking.send("#{key}=", val) if @booking.respond_to?("#{key}=") }
+            @booking.save
+            redirect to "/bookings/#{@booking.id}"
+        else
+            redirect to "/bookings"
+        end
     end
 
     get '/bookings' do
@@ -45,14 +49,9 @@ class BookingController < ApplicationController
     end
 
     get '/bookings/:id/delete' do
-        if current_user(session).bookings.include?(Booking.find(params[:id]))
-            @booking = Booking.find(params[:id])
-            @booking.destroy
-            redirect to "/bookings"
-        else
-            redirect to "/home"
-        end
+        @booking = Booking.find(params[:id])
+        @booking.destroy if current_user(session).bookings.include?(@booking)
+        redirect to "/bookings"
     end
-
 
 end
