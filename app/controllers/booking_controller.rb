@@ -15,8 +15,7 @@ class BookingController < ApplicationController
         if params[:tenant_id] == '0' && !params[:new_tenant].empty?
             new_tenant = Tenant.create(org_name: params[:new_tenant])
             current_user(session).tenants << new_tenant
-            new_booking.tenant_id = new_tenant.id
-            new_booking.save
+            new_booking.update(tenant_id: new_tenant.id)
             redirect to "/tenants/#{new_tenant.id}/edit"
         else
             redirect to "/bookings/#{new_booking.id}"

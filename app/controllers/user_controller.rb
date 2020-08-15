@@ -15,7 +15,7 @@ class UserController < ApplicationController
             flash[:error] = "Username already in use."
             redirect '/signup'
         end
-        user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], password: params[:password])
+        user = User.new(params)
         if user.save
             session[:user_id] = user.id
             redirect '/home'
@@ -26,6 +26,7 @@ class UserController < ApplicationController
     end
 
     get '/home' do
+        auth
         erb :'user/home'
     end
 
@@ -50,10 +51,12 @@ class UserController < ApplicationController
     end
 
     get '/account' do
+        auth
         erb :'user/account'
     end
 
     patch '/account' do
+        auth
         if !params[:username].empty? 
             user = current_user(session)
             user.username = params[:username]
@@ -64,7 +67,4 @@ class UserController < ApplicationController
             redirect to '/account'
         end
     end
-
-
-
 end

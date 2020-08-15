@@ -16,7 +16,7 @@ class TenantController < ApplicationController
 
     get '/tenants/:id' do
         @tenant = Tenant.find(params[:id])
-        erb :'tenants/tenant'
+        current_user(session).tenants.include?(@tenant) ? (erb :'tenants/tenant') : (redirect to '/tenants')
     end
 
     get '/tenants' do
@@ -25,19 +25,23 @@ class TenantController < ApplicationController
 
     get '/tenants/:id/edit' do
         @tenant = Tenant.find(params[:id])
-        erb :'tenants/edit'
+        current_user(session).tenants.include?(@tenant) ? (erb :'tenants/edit') : (redirect to '/tenants')
     end
 
     patch '/tenants/:id' do
         @tenant = Tenant.find(params[:id])
-        params.each { |key, val| @tenant.send("#{key}=", val) if @tenant.respond_to?("#{key}=") }
-        @tenant.save
-        redirect to "/tenants/#{@tenant.id}"
+        if current_user(session).tenants.include?(@tenant)
+            params.each { |key, val| @tenant.send("#{key}=", val) if @tenant.respond_to?("#{key}=") }
+            @tenant.save
+            redirect to "/tenants/#{@tenant.id}"
+        else
+            redirect to "/tenants"
+        end
     end
 
     get '/tenants/:id/delete' do
         @tenant = Tenant.find(params[:id])
-        @tenant.destroy
+        @tenant.destroy if current_user(session).tenants.include?(@tenant)
         redirect to '/tenants'
     end
 end
