@@ -1,25 +1,52 @@
 <h1>Edit <%= @tenant.org_name %></h1>
-
-<form method = "POST" action = "/tenants/<%= @tenant.id%>">
+<form method = "POST" action = "/tenants/<%= @tenant.id %>">
 <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
 <h3>Organization Information</h3>
-<p><label>Name:</label><input type = "text" id = "org_name" name = "org_name" value = "<%= @tenant.org_name%>"></p>
-<p><label>Type:</label></p>
-<input type = "radio" id = "commercial" name = "org_type" value = "Commercial" <%= 'checked' if @tenant.org_type == 'Commercial'%>>
-<label for = "commercial">Commercial</label><br>
-<p><input type = "radio" id = "non-profit" name = "org_type" value = "Non-Profit" <%= 'checked' if @tenant.org_type == 'Non-Profit'%>>
-<label for = "non-profit">Non-Profit</label><br>
-<p><input type = "radio" id = "internal" name = "org_type" value = "Internal" <%= 'checked' if @tenant.org_type == 'Internal'%>>
-<label for = "internal">Internal</label><br>
-<p><label>Address:</label><input type = "text" id = "org_address" name = "org_address" value = "<%= @tenant.org_address%>"></p>
-<p><label>City:</label><input type = "text" id = "org_city" name = "org_city" value = "<%= @tenant.org_city%>"></p>
-<p><label>State:</label><input type = "text" id = "org_state" name = "org_state" value = "<%= @tenant.org_state%>"></p>
-<p><label>Zip:</label><input type = "text" id = "org_zip" name = "org_zip" value = "<%= @tenant.org_zip%>"></p>
-<br>
+<table>
+    <tr>
+        <td><label>Name:</label></td>
+        <td><input type = "text" id = "org_name" name = "org_name" value = "<%= @tenant.org_name %>"></td>
+    </tr>
+    <tr>
+        <td><label>Type:</label></td>
+        <td><input type = "radio" id = "commercial" name = "org_type" value = "Commercial" <%= 'checked' if @tenant.org_type == 'Commercial'%>>
+            <label for = "commercial">Commercial</label>
+            <input type = "radio" id = "non-profit" name = "org_type" value = "Non-Profit" <%= 'checked' if @tenant.org_type == 'Non-Profit'%>>
+            <label for = "non-profit">Non-Profit</label>
+            <input type = "radio" id = "internal" name = "org_type" value = "Internal" <%= 'checked' if @tenant.org_type == 'Internal'%>>
+            <label for = "internal">Internal</label></td>
+    </tr>
+    <tr>
+        <td><label>Address:</label></td>
+        <td><input type = "text" id = "org_address" name = "org_address" value = "<%= @tenant.org_address %>"></td>
+    </tr>
+    <tr>
+        <td><label>City:</label></td>
+        <td><input type = "text" id = "org_city" name = "org_city" value = "<%= @tenant.org_city %>"></td>
+    </tr>
+    <tr>
+        <td><label>State:</label></td>
+        <td><input type = "text" id = "org_state" name = "org_state" value = "<%= @tenant.org_state %>"></td>
+    </tr>
+    <tr>
+        <td><label>Zip:</label></td>
+        <td><input type = "text" id = "org_zip" name = "org_zip" value = "<%= @tenant.org_zip %>"></td>
+    </tr>
+</table>
 <h3>Point of Contact</h3>
-<p><label>Name:</label><input type = "text" id = "poc_name" name = "poc_name" value = "<%= @tenant.poc_name%>"></p>
-<p><label>Phone:</label><input type = "text" id = "poc_phone" name = "poc_phone" value = "<%= @tenant.poc_phone%>"></p>
-<p><label>Email:</label><input type = "text" id = "poc_email" name = "poc_email" value = "<%= @tenant.poc_email%>"></p>
-<br>
+<table>
+    <tr>
+        <td><label>Name:</label></td>
+        <td><input type = "text" id = "poc_name" name = "poc_name" value = "<%= @tenant.poc_name %>"></td>
+    </tr>
+    <tr>
+        <td><label>Phone:</label></td>
+        <td><input type = "text" id = "poc_phone" name = "poc_phone" value = "<%= @tenant.poc_phone %>"></td>
+    </tr>
+    <tr>
+        <td><label>Email:</label></td>
+        <td><input type = "text" id = "poc_email" name = "poc_email" value = "<%= @tenant.poc_email %>"></td>
+    </tr>
+</table>
 <input type = "submit" id = "submit" value = "Update">
 </form>

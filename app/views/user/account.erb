@@ -1,6 +1,14 @@
 <h1>Account Settings</h1>
-<p>Name: <%= current_user(session).first_name + ' ' + current_user(session).last_name %></p>
-<p>Username: <%= current_user(session).username%></p>
+<table>
+    <tr>
+        <td>Name:</td>
+        <td><%= current_user(session).first_name + ' ' + current_user(session).last_name %></td>
+    </tr>
+    <tr>
+        <td>Username:</td>
+        <td><%= current_user(session).username%></td>
+    </tr>
+</table>
 <br><br>
 <form method = "POST" action = "/account">
 <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">

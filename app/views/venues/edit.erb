@@ -1,29 +1,57 @@
-<% if is_logged_in?(session) && current_user(session).venues.include?(@venue)%>
-
 <h1>Edit <%= @venue.name %></h1>
-
 <form method = "POST" action = "/venues/<%= @venue.id %>">
 <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
 <h3>Venue Name</h3>
-<p><label>Venue Name:</label><input type = "text" id = "venue_name" name = "name" value = "<%= @venue.name %>"></p>
-<br>
+<table>
+    <tr>
+        <td><label>Venue Name:</label></td>
+        <td><input type = "text" id = "venue_name" name = "name" value = "<%= @venue.name %>"></td>
+    </tr>
+</table>
 <h3>Address</h3>
-<p><label>Address Line 1:</label><input type = "text" id = "address_line_1" name = "address1" value = "<%= @venue.address1 %>"></p>
-<p><label>Address Line 2:</label><input type = "text" id = "address_line_2" name = "address2" value = "<%= @venue.address2 %>"></p>
-<p><label>City:</label><input type = "text" id = "city" name = "city" value = "<%= @venue.city %>"></p>
-<p><label>State:</label><input type = "text" id = "state" name = "state" value = "<%= @venue.state %>"></p>
-<p><label>Zip Code:</label><input type = "text" id = "zip_code" name = "zip" value = "<%= @venue.zip %>"></p>
-<br>
+<table>
+    <tr>
+        <td><label>Address Line 1:</label></td>
+        <td><input type = "text" id = "address_line_1" name = "address1" value = "<%= @venue.address1 %>"></td>
+    </tr>
+    <tr>
+        <td><label>Address Line 2:</label></td>
+        <td><input type = "text" id = "address_line_2" name = "address2" value = "<%= @venue.address2 %>"></td>
+    </tr>
+    <tr>
+        <td><label>City:</label></td>
+        <td><input type = "text" id = "city" name = "city" value = "<%= @venue.city %>"></td>
+    </tr>
+    <tr>
+        <td><label>State:</label></td>
+        <td><input type = "text" id = "state" name = "state" value = "<%= @venue.state %>"></td>
+    </tr>
+    <tr>
+        <td><label>Zip Code:</label></td>
+        <td><input type = "text" id = "zip_code" name = "zip" value = "<%= @venue.zip %>"></td>
+    </tr>
+</table>
 <h3>Stage Information</h3>
-<p><label>Configuration:</label><input type = "text" id = "configuration" name = "stage_type" value = "<%= @venue.stage_type %>"></p>
-<p><label>Seat Count:</label><input type = "number" id = "seat_count" name = "seats" value = "<%= @venue.seats %>"></p>
-<br>
+<table>
+    <tr>
+        <td><label>Configuration:</label></td>
+        <td><input type = "text" id = "configuration" name = "stage_type" value = "<%= @venue.stage_type %>"></td>
+    </tr>
+    <tr>
+        <td><label>Seat Count:</label></td>
+        <td><input type = "number" id = "seat_count" name = "seats" value = "<%= @venue.seats %>"></td>
+    </tr>
+</table>
 <h3>Room Count</h3>
-<p><label>Greenrooms:</label><input type = "number" id = "greenrooms" name = "greenrooms" value = "<%= @venue.greenrooms%>"></p>
-<p><label>Dressing Rooms:</label><input type = "number" id = "dressing_rooms" name = "dressing_rooms" value = "<%= @venue.dressing_rooms%>"></p>
-<input type = "submit" id = "update" value = "Update">
+<table>
+    <tr>
+        <td><label>Greenrooms:</label></td>
+        <td><input type = "number" id = "greenrooms" name = "greenrooms" value = "<%= @venue.greenrooms %>"></td>
+    </tr>
+    <tr>
+        <td><label>Dressing Rooms:</label></td>
+        <td><input type = "number" id = "dressing_rooms" name = "dressing_rooms" value = "<%= @venue.dressing_rooms %>"></td>
+    </tr>
+</table>
+<input type = "submit" id = "submit" value = "Update">
 </form>
-
-<% else %>
-<% redirect '/' %>
-<% end %>

@@ -1,17 +1,21 @@
-<% if is_logged_in?(session) && current_user(session).tenants.include?(@tenant) %>
 <h1>Tenant Information</h1>
 <h3><%= @tenant.org_name %></h3>
-<%= @tenant.org_address %><br>
-<%= @tenant.org_city %>, <%= @tenant.org_state %> <%= @tenant.org_zip %>
-<br>
-Type: <%= @tenant.org_type %>
-<br>
-Point of Contact: <%= @tenant.poc_name %><br>
-Phone: <%= @tenant.poc_phone %><br>
-Email: <%= @tenant.poc_email %><br>
-<br><br>
-<a href = "/tenants/<%= @tenant.id %>/edit">Edit Tenant</a>
-<a href = "/tenants/<%= @tenant.id %>/delete">Delete Tenant</a>
-<% else %>
-<% redirect to '/home'%>
-<% end %>
+<p><%= @tenant.org_address %><br>
+<%= @tenant.org_city %>, <%= @tenant.org_state %> <%= @tenant.org_zip %><br><br>
+Type: <%= @tenant.org_type %></p>
+<table>
+    <tr>
+        <td>Point of Contact:</td>
+        <td><%= @tenant.poc_name %></td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td><%= @tenant.poc_phone %></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td><%= @tenant.poc_email %></td>
+    </tr>
+</table>
+<p><a href = "/tenants/<%= @tenant.id %>/edit">Edit Tenant</a></p>
+<p><a href = "/tenants/<%= @tenant.id %>/delete">Delete Tenant</a></p>

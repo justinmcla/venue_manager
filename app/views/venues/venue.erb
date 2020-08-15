@@ -1,18 +1,10 @@
-<% if is_logged_in?(session) && current_user(session).venues.include?(@venue) %>
 <h1><%= @venue.name %></h1>
-<p><%= @venue.address1 %></p>
-<p><%= @venue.address2 %></p>
-<p><%= @venue.city %>, <%= @venue.state %> <% @venue.zip %></p>
-<br>
-<p>Configuration: <%= @venue.stage_type %></p>
-<p>Seats: <%= @venue.seats %></p>
-<br>
-<p>Greenrooms: <%= @venue.greenrooms %></p>
-<p>Dressing Rooms: <%= @venue.dressing_rooms %></p>
-<br><br>
-<a href = "/venues/<%= @venue.id %>/edit">Edit Venue</a>
-<br>
-<a href = "/venues/<%= @venue.id %>/delete">Delete Venue</a>
-<% else %>
-<% redirect '/home' %>
-<% end %>
+<p><%= @venue.address1 %><br>
+<%= @venue.address2 %><br>
+<%= @venue.city %>, <%= @venue.state %> <% @venue.zip %></p>
+<p>Configuration: <%= @venue.stage_type %><br>
+Seats: <%= @venue.seats %></p>
+<p>Greenrooms: <%= @venue.greenrooms %><br>
+Dressing Rooms: <%= @venue.dressing_rooms %></p>
+<p><a href = "/venues/<%= @venue.id %>/edit">Edit Venue</a></p>
+<p><a href = "/venues/<%= @venue.id %>/delete">Delete Venue</a></p>

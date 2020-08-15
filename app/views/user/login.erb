@@ -1,11 +1,14 @@
 <h3>Enter your username and password below to log in to Venue Manager.</h3>
-<br>
 <form method = "POST" action = '/login'>
-<label for = "username">Username: </label>
-<input type = "text" id = "username" name = "username">
-<br>
-<label for = "password">Password: </label>
-<input type = "password" id = "password" name = "password">
-<br>
+<table id = "login">
+    <tr>
+        <td><label>Username:</label></td>
+        <td><input type = "text" id = "username" name = "username"></td>
+    </tr>
+    <tr>
+        <td><label>Password:</label></td>
+        <td><input type = "password" id = "password" name = "password"></td>
+    </tr>
+</table>
 <input type = "submit" id = "submit" value = "Log In">
 </form>

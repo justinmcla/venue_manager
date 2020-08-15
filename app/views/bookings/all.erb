@@ -1,5 +1,9 @@
 <h1>Bookings</h1>
-    <% current_user(session).bookings.sort_by {|b| b.date }.each do |booking| %>
-        <a href = "/bookings/<%= booking.id %>"><%= booking.date %>, <%= booking.tenant.org_name %></a><br>
-    <% end %>
 <p><a href = "/bookings/new">Create New Booking</a></p>
+<table>
+    <% current_user(session).bookings.sort_by {|b| b.date }.each do |booking| %>
+        <tr>
+            <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td>
+        </tr>
+    <% end %>
+</table>
