@@ -1,7 +1,8 @@
-class InventoryController < VenueController
+class InventoryController < ApplicationController
 
     get '/venues/:id/inventories/new' do
-        erb :'inventories/new'
+        @venue = Venue.find(params[:id])
+        current_user(session).venues.include?(@venue) ? (erb :'inventories/new') : (redirect to "/venues")
     end
 
     post '/venues/:id/inventories/new' do
@@ -18,7 +19,7 @@ class InventoryController < VenueController
     end
 
     get '/venues/:id/inventories' do
-        @venue = venue.find(params[:id])
+        @venue = Venue.find(params[:id])
         current_user(session).venues.include?(@venue) ? (erb :'inventories/all') : (redirect to '/venues')
     end
 
@@ -71,6 +72,7 @@ class InventoryController < VenueController
         @inv = Inventory.find(params[:inv_id])
         if current_user(session).venues.include?(@venue)
             if @venue.inventories.include?(@inv)
+                @inv.items.each { |i| i.destroy }
                 @inv.destroy
             end
             redirect to "/venues/#{@venue.id}/inventories"
