@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_032808) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "event_type"
     t.date "date"
     t.string "time"
     t.text "description"
