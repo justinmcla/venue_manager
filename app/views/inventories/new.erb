@@ -1,0 +1,14 @@
+<h1>Create New Inventory</h1>
+<form method = "POST" action = "/venues/<%= @venue.id %>/inventories/new">
+<table>
+    <tr>
+        <td><label>Name:</label></td>
+        <td><input type = "text" id = "name" name = "name"></td>
+    </tr>
+    <tr>
+        <td><label>Description:</label></td>
+        <td><textarea id = "description" name = "description"></textarea></td>
+    </tr>
+</table>
+<input type = "submit" id = "submit" value = "Create Inventory">
+</form>

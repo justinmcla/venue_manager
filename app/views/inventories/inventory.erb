@@ -1,0 +1,25 @@
+<h1><%= @inv.name %></h1>
+<p><%= @inv.description %></p>
+<p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/edit">Edit Settings</a><br>
+<a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/delete">Delete Inventory</a></p>
+<% if @inv.items.empty? %>
+    <p>No items in inventory. Create new items <a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/new">here</a>.</p>
+<% else %>
+    <p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/new">Add Item</a></p>
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Description</th>
+        </tr>
+        <% @inv.items.each do |item| %>
+            <tr>
+                <td><%= item.name %></td>
+                <td><%= item.category %></td>
+                <td><%= item.quantity %></td>
+                <td><%= item.description %></td>
+            </tr>
+        <% end %>
+    </table>
+<% end %>

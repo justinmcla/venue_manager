@@ -5,5 +5,7 @@ use UserController
 use VenueController
 use BookingController
 use TenantController
+use InventoryController
+use ItemController
 run ApplicationController
 
