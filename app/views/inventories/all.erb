@@ -1,0 +1,8 @@
+<h1>Managed Inventories</h1>
+<p><a href = "/inventories/new">Create New Inventory</a></p>
+    <% current_user(session).inventories.each do |inventory| %>
+        <h2><a href = "/inventories/<%= inventory.id %>"><%= inventory.name %></a></h2>
+        <p>
+            <%= inventory.description %>
+        </p>
+    <% end %>
