@@ -1,50 +1,111 @@
-<h1>Create Booking</h1>
+<h1>Edit Booking</h1>
 <form method = "POST" action = "/bookings/<%=@booking.id%>">
 <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
-<p><label>Tenant:</label></p>
-<select id="tenants" name="tenant_id" size="1">
-    <% current_user(session).tenants.sort.each do |tenant| %>
-    <option value = "<%= tenant.id%>"><%= tenant.org_name %></option>
-    <% end %>
-</select>
-<p><label>Venue:</label></p>
-<% current_user(session).venues.each do |venue|%>
-<input type = "radio" id = "venue_<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>" <%= 'checked' if @booking.venue == venue %>><%= venue.name %>
-<% end %>
-<p><label>Event Name:</label><input type = "text" id = "name" name = "name" value = "<%= @booking.name %>"></p>
-<p><label>Date:</label><input type = "date" id = "date" name = "date" value = "<%= @booking.date %>"></p>
-<p><label>Time:</label><input type = "time" id = "time" name = "time" value = "<%= @booking.time %>"></p>
-<p><label>Description:</label><textarea id = "description" name = "description"><%= @booking.description %></textarea></p>
-<p><label>Estimated Attendance:</label><input type = "number" id = "attendance" name = "attendance" value = "<%= @booking.attendance %>"></p>
-<p><label>Catering:</label></p>
-<input type = "radio" id = "food" name = "food" value = "true" <%= 'checked' if @booking.food == 'true' %>>Yes<br>
-<input type = "radio" id = "food" name = "food" value = "false" <%= 'checked' if @booking.food == 'false' %>>No<br>
-<p><label>Alcohol:</label></p>
-<input type = "radio" id = "alcohol" name = "alcohol" value = "true" <%= 'checked' if @booking.alcohol == 'true' %>>Yes<br>
-<input type = "radio" id = "alcohol" name = "alcohol" value = "false" <%= 'checked' if @booking.alcohol == 'false' %>>No<br>
-<p><label>Stage Lighting:</label></p>
-<input type = "radio" id = "lighting" name = "lighting" value = "true" <%= 'checked' if @booking.lighting == 'true' %>>Yes<br>
-<input type = "radio" id = "lighting" name = "lighting" value = "false" <%= 'checked' if @booking.lighting == 'false' %>>No<br>
-<p><label>Spotlight:</label></p>
-<input type = "radio" id = "spotlight" name = "spotlight" value = "true" <%= 'checked' if @booking.spotlight == 'true' %>>Yes<br>
-<input type = "radio" id = "spotlight" name = "spotlight" value = "false" <%= 'checked' if @booking.spotlight == 'false' %>>No<br>
-<p><label>Amplified Sound:</label></p>
-<input type = "radio" id = "sound" name = "sound" value = "true" <%= 'checked' if @booking.sound == 'true' %>>Yes<br>
-<input type = "radio" id = "sound" name = "sound" value = "false" <%= 'checked' if @booking.sound == 'false' %>>No<br>
-<p><label>Microphones:</label></p>
-<input type = "radio" id = "microphones" name = "microphones" value = "true" <%= 'checked' if @booking.microphones == 'true' %>>Yes<br>
-<input type = "radio" id = "microphones" name = "microphones" value = "false" <%= 'checked' if @booking.microphones == 'false' %>>No<br>
-<p><label>Curtain:</label></p>
-<input type = "radio" id = "curtain" name = "curtain" value = "true" <%= 'checked' if @booking.curtain == 'true' %>>Yes<br>
-<input type = "radio" id = "curtain" name = "curtain" value = "false" <%= 'checked' if @booking.curtain == 'false' %>>No<br>
-<p><label>Street Closure:</label></p>
-<input type = "radio" id = "street_closure" name = "street_closure" value = "true" <%= 'checked' if @booking.street_closure == 'true' %>>Yes<br>
-<input type = "radio" id = "street_closure" name = "street_closure" value = "false" <%= 'checked' if @booking.street_closure == 'false' %>>No<br>
-<p><label>Event Security:</label></p>
-<input type = "radio" id = "security" name = "security" value = "true" <%= 'checked' if @booking.security == 'true' %>>Yes<br>
-<input type = "radio" id = "security" name = "security" value = "false" <%= 'checked' if @booking.security == 'false' %>>No<br>
-<p><label>Contract Signed?</label><input type = "checkbox" id = "contract" name = "contract" value = "true" <%= 'checked' if @booking.contract == 'true' %>></p>
-<p><label>Deposit Paid?</label><input type = "checkbox" id = "deposit" name = "deposit" value = "true" <%= 'checked' if @booking.deposit == 'true' %>></p>
-<p><label>Paid in Full?</label><input type = "checkbox" id = "paid" name = "paid" value = "true" <%= 'checked' if @booking.paid == 'true' %>></p>
+<table>
+    <tr>
+        <td><label>Tenant:</label></td>
+        <td><select id="tenants" name="tenant_id" size="1">
+            <% current_user(session).tenants.sort_by { |t| t.org_name }.each do |tenant| %>
+                <option value = "<%= tenant.id%>" <%= 'selected' if @booking.tenant == tenant %> ><%= tenant.org_name %></option>
+            <% end %>
+            <option value = "0">Create New</option>
+            </select></td>
+    </tr>
+    <tr>
+        <td><label>New Tenant Name:</label></td>
+        <td><input type = "text" id = "new_tenant" name = "new_tenant"></td>
+    </tr>
+    <tr>
+        <td><label>Venue:</label></td>
+        <td><% current_user(session).venues.each do |venue|%>
+                <input type = "radio" id = "<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>"  <%= 'checked' if @booking.venue == venue %>><%= venue.name %><br>
+            <% end %></td>
+    </tr>
+    <tr>
+        <td><label>Event Name:</label></td>
+        <td><input type = "text" id = "name" name = "name" value = "<%= @booking.name %>"></td>
+    </tr>
+    <tr>
+        <td><label>Event Type:</label></td>
+        <td><input type = "radio" id = "event_type" name = "event_type" value = "Performance" <%= 'checked' if @booking.event_type == 'Performance'%>>Performance<br>
+            <input type = "radio" id = "event_type" name = "event_type" value = "Lecture/Workshop" <%= 'checked' if @booking.event_type == 'Lecture/Workshop'%>>Lecture/Workshop<br>
+            <input type = "radio" id = "event_type" name = "event_type" value = "Concert" <%= 'checked' if @booking.event_type == 'Concert'%>>Concert<br>
+            <input type = "radio" id = "event_type" name = "event_type" value = "Reception/Fundraiser" <%= 'checked' if @booking.event_type == 'Reception/Fundraiser'%>>Reception/Fundraiser<br>
+            <input type = "radio" id = "event_type" name = "event_type" value = "Other" <%= 'checked' if @booking.event_type == 'Other'%>>Other (describe below)<br></td>
+    </tr>
+    <tr>
+        <td><label>Date:</label></td>
+        <td><input type = "date" id = "date" name = "date" value = "<%= @booking.date %>"></td>
+    </tr>
+    <tr>
+        <td><label>Time:</label></td>
+        <td><input type = "time" id = "time" name = "time" value = "<%= @booking.time %>"></td>
+    </tr>
+    <tr>
+        <td><label>Description:</label></td>
+        <td><textarea id = "description" name = "description"><%= @booking.date %></textarea></td>
+    </tr>
+    <tr>
+        <td><label>Attendance:</label></td>
+        <td><input type = "number" id = "attendance" name = "attendance" value = "<%= @booking.attendance %>"></td>
+    </tr>
+    <tr>
+        <td><label>Catering:</label></td>
+        <td><input type = "radio" id = "food" name = "food" value = "true" <%= 'checked' if @booking.food == true %>>Yes<br>
+            <input type = "radio" id = "food" name = "food" value = "false" <%= 'checked' if @booking.food == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Alcohol:</label></td>
+        <td><input type = "radio" id = "alcohol" name = "alcohol" value = "true" <%= 'checked' if @booking.alcohol == true %>>Yes<br>
+            <input type = "radio" id = "alcohol" name = "alcohol" value = "false" <%= 'checked' if @booking.alcohol == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Stage Lighting:</label></td>
+        <td><input type = "radio" id = "lighting" name = "lighting" value = "true" <%= 'checked' if @booking.lighting == true %>>Yes<br>
+            <input type = "radio" id = "lighting" name = "lighting" value = "false" <%= 'checked' if @booking.lighting == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Spotlight:</label></td>
+        <td><input type = "radio" id = "spotlight" name = "spotlight" value = "true" <%= 'checked' if @booking.spotlight == true %>>Yes<br>
+            <input type = "radio" id = "spotlight" name = "spotlight" value = "false" <%= 'checked' if @booking.spotlight == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Amplified Sound:</label></td>
+        <td><input type = "radio" id = "sound" name = "sound" value = "true" <%= 'checked' if @booking.sound == true %>>Yes<br>
+            <input type = "radio" id = "sound" name = "sound" value = "false" <%= 'checked' if @booking.sound == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Microphones:</label></td>
+        <td><input type = "radio" id = "microphones" name = "microphones" value = "true" <%= 'checked' if @booking.microphones == true %>>Yes<br>
+            <input type = "radio" id = "microphones" name = "microphones" value = "false" <%= 'checked' if @booking.microphones == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Curtain:</label></td>
+        <td><input type = "radio" id = "curtain" name = "curtain" value = "true" <%= 'checked' if @booking.curtain == true %>>Yes<br>
+            <input type = "radio" id = "curtain" name = "curtain" value = "false" <%= 'checked' if @booking.curtain == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Street Closure:</label></td>
+        <td><input type = "radio" id = "street_closure" name = "street_closure" value = "true" <%= 'checked' if @booking.street_closure == true %>>Yes<br>
+            <input type = "radio" id = "street_closure" name = "street_closure" value = "false" <%= 'checked' if @booking.street_closure == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Event Security:</label></td>
+        <td><input type = "radio" id = "security" name = "security" value = "true" <%= 'checked' if @booking.security == true %>>Yes<br>
+            <input type = "radio" id = "security" name = "security" value = "false" <%= 'checked' if @booking.security == false %>>No<br></td>
+    </tr>
+    <tr>
+        <td><label>Contract Signed?</label></td>
+        <td><input type = "checkbox" id = "contract" name = "contract" value = "true" <%= 'checked' if @booking.contract == true %>></td>
+    </tr>
+    <tr>
+        <td><label>Deposit Paid?</label></td>
+        <td><input type = "checkbox" id = "deposit" name = "deposit" value = "true" <%= 'checked' if @booking.deposit == true %>></td>
+    </tr>
+    <tr>
+        <td><label>Paid in Full?</label></td>
+        <td><input type = "checkbox" id = "paid" name = "paid" value = "true" <%= 'checked' if @booking.paid == true %>></td>
+    </tr>
+</table>
 <input type = "submit" id = "submit" value = "Edit">
 </form>

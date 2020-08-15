@@ -1,27 +1,82 @@
-<% if is_logged_in?(session) && current_user(session).bookings.include?(@booking) %>
 <h1>Booking Information</h1>
-<p>Tenant: <%= @booking.tenant.org_name %></p>
-<p>Venue: <%= @booking.venue.name %></p>
-<p>Type: <%= @booking.type %></p>
-<p>Date: <%= @booking.date %></p>
-<p>Time: <%= @booking.time %></p>
-<p>Description: <%= @booking.description %></p>
-<p>Attendance: <%= @booking.attendance %></p>
-<p>Food: <%= @booking.food ? 'Yes' : 'No' %></p>
-<p>Alcohol: <%= @booking.alcohol ? 'Yes' : 'No' %></p>
-<p>Stage Lighting: <%= @booking.lighting ? 'Yes' : 'No' %></p>
-<p>Amplified Sound: <%= @booking.sound ? 'Yes' : 'No' %></p>
-<p>Microphones: <%= @booking.microphones ? 'Yes' : 'No' %></p>
-<p>Street Closure: <%= @booking.street_closure ? 'Yes' : 'No' %></p>
-<p>Spotlight: <%= @booking.spotlight ? 'Yes' : 'No' %></p>
-<p>Curtain: <%= @booking.curtain ? 'Yes' : 'No' %></p>
-<p>Event Security: <%= @booking.security ? 'Yes' : 'No' %></p>
-<p>Contract Signed: <%= @booking.contract ? 'Yes' : 'No' %></p>
-<p>Deposit Paid: <%= @booking.deposit ? 'Yes' : 'No' %></p>
-<p>Paid in Full: <%= @booking.paid ? 'Yes' : 'No' %></p>
-<br><br>
-<a href = "/bookings/<%= @booking.id %>/edit">Edit Booking</a>
-<a href = "/bookings/<%= @booking.id %>/delete">Delete Booking</a>
-<% else %>
-<% redirect to '/home'%>
-<% end %>
+<table id = "booking_table">
+    <tr>
+        <td>Tenant:</td>
+        <td><%= @booking.tenant.org_name %></td>
+    </tr>
+    <tr>
+        <td>Venue:</td>
+        <td><%= @booking.venue.name %></td>
+    </tr>
+    <tr>
+        <td>Type:</td>
+        <td><%= @booking.event_type %></td>
+    </tr>
+    <tr>
+        <td>Date:</td>
+        <td><%= @booking.date %></td>
+    </tr>
+    <tr>
+        <td>Time:</td>
+        <td><%= @booking.time %></td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td><%= @booking.description %></td>
+    </tr>
+    <tr>
+        <td>Attendance:</td>
+        <td><%= @booking.attendance %></td>
+    </tr>
+    <tr>
+        <td>Food:</td>
+        <td><%= @booking.food ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Alcohol:</td>
+        <td><%= @booking.alcohol ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Stage Lighting:</td>
+        <td><%= @booking.lighting ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Spotlight:</td>
+        <td><%= @booking.spotlight ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Amplified Sound:</td>
+        <td><%= @booking.sound ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Microphones:</td>
+        <td><%= @booking.microphones ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Curtain:</td>
+        <td><%= @booking.curtain ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Street Closure:</td>
+        <td><%= @booking.street_closure ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Event Security:</td>
+        <td><%= @booking.security ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Contract Signed:</td>
+        <td><%= @booking.contract ? 'Yes' : 'No' %></td>
+    <tr>
+        <td>Deposit Paid:</td>
+        <td><%= @booking.deposit ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+        <td>Paid in Full:</td>
+        <td><%= @booking.paid ? 'Yes' : 'No' %></td>
+    </tr>
+</table>
+<br>
+<br>
+<p><a href = "/bookings/<%= @booking.id %>/edit">Edit Booking</a></p>
+<p><a href = "/bookings/<%= @booking.id %>/delete">Delete Booking</a></p>
