@@ -8,9 +8,7 @@ class InventoryController < ApplicationController
     post '/venues/:id/inventories/new' do
         venue = Venue.find(params[:id])
         if current_user(session).venues.include?(venue)
-            new_inv = Inventory.create(name: params[:name])
-            params.each { |key, val| new_inv.send("#{key}=", val) if new_inv.respond_to?("#{key}=") }
-            new_inv.save
+            new_inv = Inventory.create(name: params[:name], description: params[:description])
             venue.inventories << new_inv
             redirect to "/venues/#{venue.id}/inventories/#{new_inv.id}"
         else
