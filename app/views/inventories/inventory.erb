@@ -1,7 +1,7 @@
+<h3><a href = "/venues/<%= @inv.venue.id %>"><%= @inv.venue.name %></a></h2>
 <h1><%= @inv.name %></h1>
 <p><%= @inv.description %></p>
-<p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/edit">Edit Settings</a><br>
-<a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/delete">Delete Inventory</a></p>
+<p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/edit">Edit Settings</a> <a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/delete">Delete Inventory</a></p>
 <% if @inv.items.empty? %>
     <p>No items in inventory. Create new items <a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/new">here</a>.</p>
 <% else %>
@@ -17,8 +17,10 @@
             <tr>
                 <td><%= item.name %></td>
                 <td><%= item.category %></td>
-                <td><%= item.quantity %></td>
+                <td id = "center"><%= item.quantity %></td>
                 <td><%= item.description %></td>
+                <td><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/<%= item.id %>/edit">Edit</a> 
+                    <a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/<%= item.id %>/delete">Delete</a></td>
             </tr>
         <% end %>
     </table>

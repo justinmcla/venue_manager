@@ -55,3 +55,19 @@ h3 {
 p, li {
     font-size: small;
 }
+
+#center {
+    text-align: center;
+}
+
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: 3px;
+}
+
+td {
+    font-size: small;
+}

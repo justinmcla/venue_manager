@@ -2,11 +2,11 @@
 <table id = "booking_table">
     <tr>
         <td>Tenant:</td>
-        <td><%= @booking.tenant.org_name %></td>
+        <td><a href = "/tenants/<%= @booking.tenant.id %>"><%= @booking.tenant.org_name %></a></td>
     </tr>
     <tr>
         <td>Venue:</td>
-        <td><%= @booking.venue.name %></td>
+        <td><a href = "/venues/<%= @booking.venue.id %>"><%= @booking.venue.name %></td>
     </tr>
     <tr>
         <td>Type:</td>
@@ -76,7 +76,4 @@
         <td><%= @booking.paid ? 'Yes' : 'No' %></td>
     </tr>
 </table>
-<br>
-<br>
-<p><a href = "/bookings/<%= @booking.id %>/edit">Edit Booking</a></p>
-<p><a href = "/bookings/<%= @booking.id %>/delete">Delete Booking</a></p>
+<p><a href = "/bookings/<%= @booking.id %>/edit">Edit Booking</a> <a href = "/bookings/<%= @booking.id %>/delete">Delete Booking</a></p>

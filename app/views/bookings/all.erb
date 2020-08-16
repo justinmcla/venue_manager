@@ -1,9 +1,12 @@
 <h1>Bookings</h1>
 <p><a href = "/bookings/new">Create New Booking</a></p>
-<table>
-    <% current_user(session).bookings.sort_by {|b| b.date }.each do |booking| %>
-        <tr>
-            <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td>
-        </tr>
-    <% end %>
-</table>
+<% current_user(session).venues.each do |venue| %>
+    <h2><%= venue.name %></h2>
+    <table>
+        <% venue.bookings.sort_by {|b| b.date }.each do |booking| %>
+            <tr>
+                <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td>
+            </tr>
+        <% end %>
+    </table>
+<% end %>

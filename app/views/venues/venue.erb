@@ -6,14 +6,20 @@
 Seats: <%= @venue.seats %></p>
 <p>Greenrooms: <%= @venue.greenrooms %><br>
 Dressing Rooms: <%= @venue.dressing_rooms %></p>
+<p><a href = "/venues/<%= @venue.id %>/edit">Edit Venue</a> <a href = "/venues/<%= @venue.id %>/delete">Delete Venue</a></p>
+
+<h2>Bookings</h2>
+<p>
+<% @venue.bookings.sort_by { |b| b.date }.each do |booking| %>
+    <a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a><br>
+<% end %>
+</p>
+<p><a href = "/bookings/new">Create New Booking</a></p>
 
 <h2>Inventories</h2>
-<p><a href = "/venues/<%= @venue.id %>/inventories/new">Create New Inventory</a></p>
 <p>
 <% @venue.inventories.each do |inventory| %>
     <a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a><br>
 <% end %>
 </p>
-
-<p><a href = "/venues/<%= @venue.id %>/edit">Edit Venue</a></p>
-<p><a href = "/venues/<%= @venue.id %>/delete">Delete Venue</a></p>
+<p><a href = "/venues/<%= @venue.id %>/inventories/new">Create New Inventory</a></p>

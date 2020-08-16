@@ -5,7 +5,7 @@
 Type: <%= @tenant.org_type %></p>
 <table>
     <tr>
-        <td>Point of Contact:</td>
+        <td>POC:</td>
         <td><%= @tenant.poc_name %></td>
     </tr>
     <tr>
@@ -17,5 +17,12 @@ Type: <%= @tenant.org_type %></p>
         <td><%= @tenant.poc_email %></td>
     </tr>
 </table>
-<p><a href = "/tenants/<%= @tenant.id %>/edit">Edit Tenant</a></p>
-<p><a href = "/tenants/<%= @tenant.id %>/delete">Delete Tenant</a></p>
+<p><a href = "/tenants/<%= @tenant.id %>/edit">Edit Tenant</a> <a href = "/tenants/<%= @tenant.id %>/delete">Delete Tenant</a></p>
+
+<h2>Bookings</h2>
+<p>
+<% @tenant.bookings.sort_by { |b| b.date }.each do |booking| %>
+    <a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.venue.name %></a><br>
+<% end %>
+</p>
+<p><a href = "/bookings/new">Create New Booking</a></p>
