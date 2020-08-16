@@ -54,8 +54,7 @@ class InventoryController < ApplicationController
         @inv = Inventory.find(params[:inv_id])
         if current_user(session).venues.include?(@venue)
             if @venue.inventories.include?(@inv)
-                params.each { |key, val| @inv.send("#{key}=", val) if @inv.respond_to?("#{key}=") }
-                @inv.save
+                @inv.update(name: params[:name], description: params[:description])
                 redirect to "/venues/#{@venue.id}/inventories/#{@inv.id}"
             else
                 redirect to "/venues/#{@venue.id}/inventories"
