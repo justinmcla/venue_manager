@@ -17,6 +17,8 @@ class ApplicationController < Sinatra::Base
         erb :index
     end
 
+
+
     helpers do
         def is_logged_in?(session)
             !!session[:user_id]

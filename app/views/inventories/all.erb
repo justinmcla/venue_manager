@@ -1,9 +1,7 @@
 <h1><a href = "/venues/<%= @venue.id %>"><%= @venue.name %></a></h1>
 <h2>Inventories</h2>
 <p><a href = "/venues/<%= @venue.id %>/inventories/new">Create New Inventory</a></p>
-    <% current_user(session).inventories.each do |inventory| %>
-        <h3><a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a></h3>
-        <p>
-            <%= inventory.description %>
-        </p>
-    <% end %>
+<% current_user(session).inventories.each do |inventory| %>
+    <h3><a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a></h3>
+    <p><%= inventory.description %></p>
+<% end %>

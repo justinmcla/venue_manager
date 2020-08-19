@@ -3,7 +3,7 @@ class ItemController < ApplicationController
     before '/venues/:venue_id/inventories/:inventory_id*' do
         @venue = Venue.find(params[:venue_id])
         @inventory = Inventory.find(params[:inventory_id])
-        redirect to "/venues" unless current_user(session).venues.include?(@venue)
+        redirect to "/venues/#{@venue.id}" unless current_user(session).venues.include?(@venue)
         redirect to "/venues/#{@venue.id}" unless @venue.inventories.include?(@inventory)
     end
 
