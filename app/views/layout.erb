@@ -11,7 +11,7 @@
                 <% if is_logged_in?(session)%>
                     <a href = '/home'>Home</a> |
                     <% if !current_user(session).venues.empty? %> 
-                        <a href = '/venues'>Manage Venues</a> | <a href = '/bookings'>Bookings</a> | <a href = '/tenants'>Tenants</a> | 
+                        <a href = '/venues'>Manage Venues</a> | <a href = '/bookings'>Bookings</a> | <a href = '/tenants'>Tenants</a> | <a href = '/employees'>Employees</a>
                     <% end %>
                     <a href = '/logout'>Logout</a>
                 <% else %>
