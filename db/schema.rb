@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_173745) do
+ActiveRecord::Schema.define(version: 2020_08_19_002546) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 2020_08_15_173745) do
     t.integer "tenant_id"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "start_date"
+    t.date "end_date"
+    t.boolean "active"
+    t.float "rate"
+    t.integer "user_id"
+  end
+
   create_table "inventories", force: :cascade do |t|
     t.string "name"
     t.integer "venue_id"
@@ -47,6 +57,11 @@ ActiveRecord::Schema.define(version: 2020_08_15_173745) do
     t.integer "quantity"
     t.text "description"
     t.integer "inventory_id"
+  end
+
+  create_table "shift_hours", force: :cascade do |t|
+    t.integer "booking_id"
+    t.integer "employee_id"
   end
 
   create_table "tenants", force: :cascade do |t|
