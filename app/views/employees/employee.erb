@@ -1,0 +1,22 @@
+<h1>Employee Information</h1>
+<table id = "employee_table">
+    <tr>
+        <td>Name:</td>
+        <td><%= @employee.first_name %> <%= @employee.last_name %></td>
+    </tr>
+    <tr>
+        <td>Start Date:</td>
+        <td><%= @employee.start_date %></td>
+    </tr>
+    <% if @employee.active == false %>
+    <tr>
+        <td>End Date:</td>
+        <td><%= @employee.end_date %></td>
+    </tr>
+    <% end %>
+    <tr>
+        <td>Rate of Pay:</td>
+        <td><%= '%.2f' % @employee.rate %></td>
+    </tr>
+</table>
+<p><a href = "/employees/<%= @employee.id %>/edit">Edit Employee</a> <a href = "/employees/<%= @employee.id %>/delete">Delete Employee</a></p>

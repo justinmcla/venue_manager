@@ -1,0 +1,18 @@
+<h1>Employees</h1>
+<% if current_user(session).employees.empty? %>
+    <p>You have no employees. Create one <a href = "/employees/new">here</a>.</p>
+<% else %>
+    <p><a href = "/employees/new">Create New Employee</a></p>
+    <h3>Active Employees</h3>
+    <% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>
+        <% if employee.active == true %>
+                <p><a href = "/employees/<%= employee.id %>"><%= employee.last_name %>, <%= employee.first_name %></a></p>
+        <% end %>
+    <% end %>
+    <h3>Inactive Employees</h3>
+    <% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>
+        <% if employee.active == false %>
+                <p><a href = "/employees/<%= employee.id %>"><%= employee.last_name %>, <%= employee.first_name %></a></p>
+        <% end %>
+    <% end %>
+<% end %>
