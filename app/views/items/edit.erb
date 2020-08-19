@@ -1,5 +1,5 @@
 <h1>Edit Item</h1>
-<form method = "POST" action = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/<%= @item.id %>">
+<form method = "POST" action = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= @item.id %>">
 <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
 <table>
     <tr>
@@ -19,5 +19,5 @@
         <td><textarea id = "description" name = "description"><%= @item.description %></textarea></td>
     </tr>
 </table>
-<input type = "submit" id = "submit" value = "Update Item">
+<input type = "submit" id = "submit" value = "Update">
 </form>

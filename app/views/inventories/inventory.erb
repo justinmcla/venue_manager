@@ -1,11 +1,11 @@
-<h3><a href = "/venues/<%= @inv.venue.id %>"><%= @inv.venue.name %></a></h2>
-<h1><%= @inv.name %></h1>
-<p><%= @inv.description %></p>
-<p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/edit">Edit Settings</a> <a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/delete">Delete Inventory</a></p>
-<% if @inv.items.empty? %>
-    <p>No items in inventory. Create new items <a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/new">here</a>.</p>
+<h3><a href = "/venues/<%= @inventory.venue.id %>"><%= @inventory.venue.name %></a></h2>
+<h1><%= @inventory.name %></h1>
+<p><%= @inventory.description %></p>
+<p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit">Edit Settings</a> <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete">Delete Inventory</a></p>
+<% if @inventory.items.empty? %>
+    <p>No items in inventory. Create new items <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">here</a>.</p>
 <% else %>
-    <p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/new">Add Item</a></p>
+    <p><a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a></p>
     <table>
         <tr>
             <th>Item Name</th>
@@ -13,14 +13,14 @@
             <th>Quantity</th>
             <th>Description</th>
         </tr>
-        <% @inv.items.each do |item| %>
+        <% @inventory.items.each do |item| %>
             <tr>
                 <td><%= item.name %></td>
                 <td><%= item.category %></td>
                 <td id = "center"><%= item.quantity %></td>
                 <td><%= item.description %></td>
-                <td><a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/<%= item.id %>/edit">Edit</a> 
-                    <a href = "/venues/<%= @venue.id %>/inventories/<%= @inv.id %>/items/<%= item.id %>/delete">Delete</a></td>
+                <td><a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Edit</a> 
+                    <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/delete">Delete</a></td>
             </tr>
         <% end %>
     </table>

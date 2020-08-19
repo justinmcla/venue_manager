@@ -1,82 +1,40 @@
 class ItemController < ApplicationController
 
-    get '/venues/:id/inventories/:inv_id/items/new' do
-        @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
-        if current_user(session).venues.include?(@venue)
-            @venue.inventories.include?(@inv) ? (erb :'items/new') : (redirect to "/venues")
-        end
+    before '/venues/:venue_id/inventories/:inventory_id*' do
+        @venue = Venue.find(params[:venue_id])
+        @inventory = Inventory.find(params[:inventory_id])
+        redirect to "/venues" unless current_user(session).venues.include?(@venue)
+        redirect to "/venues/#{@venue.id}" unless @venue.inventories.include?(@inventory)
     end
 
-    post '/venues/:id/inventories/:inv_id/items/new' do
-        venue = Venue.find(params[:id])
-        inv = Inventory.find(params[:inv_id])
-        if current_user(session).venues.include?(venue)
-            if venue.inventories.include?(inv)
-                new_item = Item.create(name: params[:name], category: params[:category], quantity: params[:quantity], description: params[:description])
-                inv.items << new_item
-                redirect to "/venues/#{venue.id}/inventories/#{inv.id}"
-            else
-                redirect to "/venues/#{venue.id}"
-            end
-        else
-            redirect to "/venues"
-        end
-    end
-
-    get '/venues/:id/inventories/:inv_id/items/:item_id/edit' do
-        @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
+    before '/venues/:venue_id/inventories/:inventory_id/items/:item_id*' do
+        pass if params[:item_id] == 'new'
         @item = Item.find(params[:item_id])
-        if current_user(session).venues.include?(@venue)
-            if @venue.inventories.include?(@inv)
-                @inv.items.include?(@item) ? (erb :'items/edit') : (redirect to "/venues/#{@venue.id}/inventories/#{@inv.id}")
-            else
-                redirect to "/venues/#{@venue.id}"
-            end
-        else
-            redirect to "/venues"
-        end
+        redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}" unless @inventory.items.include?(@item)
     end
 
-    patch '/venues/:id/inventories/:inv_id/items/:item_id' do
-        @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
-        @item = Item.find(params[:item_id])
-        if current_user(session).venues.include?(@venue)
-            if @venue.inventories.include?(@inv)
-                if @inv.items.include?(@item)
-                    params.each { |key, val| @item.send("#{key}=", val) if @item.respond_to?("#{key}=") }
-                    @item.save
-                    redirect to "/venues/#{@venue.id}/inventories/#{@inv.id}"
-                else
-                    redirect to "/venues/#{@venue.id}/inventories"
-                end
-            else
-                redirect to "/venues/#{@venue.id}"
-            end
-        else
-            redirect to "/venues"
-        end
+    get '/venues/:venue_id/inventories/:inventory_id/items/new' do
+        erb :'items/new'
     end
 
-    get '/venues/:id/inventories/:inv_id/items/:item_id/delete' do
-        @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
-        @item = Item.find(params[:item_id])
-        if current_user(session).venues.include?(@venue)
-            if @venue.inventories.include?(@inv)
-                if @inv.items.include?(@item)
-                    @item.destroy
-                    redirect to "/venues/#{@venue.id}/inventories/#{@inv.id}"
-                else
-                    redirect to "/venues/#{@venue.id}/inventories"
-                end
-            else
-                redirect to "/venues/#{@venue.id}"
-            end
-        else
-            redirect to "/venues"
-        end
+    post '/venues/:venue_id/inventories/:inventory_id/items' do
+        params.delete(:venue_id)
+        @inventory.items << Item.create(params)
+        redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}"
+    end
+
+    get '/venues/:venue_id/inventories/:inventory_id/items/:id/edit' do
+        erb :'items/edit'
+    end
+
+    patch '/venues/:venue_id/inventories/:inventory_id/items/:item_id' do
+        params.each { |key, val| @item.send("#{key}=", val) if @item.respond_to?("#{key}=") }
+        @item.save
+        redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}"
+    end
+
+    get '/venues/:venue_id/inventories/:inventory_id/items/:item_id/delete' do
+        @item.destroy
+        redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}"
     end
 end

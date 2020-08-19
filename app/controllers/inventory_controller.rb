@@ -21,11 +21,11 @@ class InventoryController < ApplicationController
         current_user(session).venues.include?(@venue) ? (erb :'inventories/all') : (redirect to '/venues')
     end
 
-    get '/venues/:id/inventories/:inv_id' do
+    get '/venues/:id/inventories/:inventory_id' do
         @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
+        @inventory = Inventory.find(params[:inventory_id])
         if current_user(session).venues.include?(@venue)
-            if @venue.inventories.include?(@inv)
+            if @venue.inventories.include?(@inventory)
                 erb :'inventories/inventory'
             else
                 redirect to "/venues/#{@venue.id}/inventories"
@@ -35,11 +35,11 @@ class InventoryController < ApplicationController
         end
     end
 
-    get '/venues/:id/inventories/:inv_id/edit' do
+    get '/venues/:id/inventories/:inventory_id/edit' do
         @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
+        @inventory = Inventory.find(params[:inventory_id])
         if current_user(session).venues.include?(@venue)
-            if @venue.inventories.include?(@inv)
+            if @venue.inventories.include?(@inventory)
                 erb :'inventories/edit'
             else
                 redirect to "/venues/#{@venue.id}/inventories"
@@ -49,13 +49,13 @@ class InventoryController < ApplicationController
         end
     end
 
-    patch '/venues/:id/inventories/:inv_id' do
+    patch '/venues/:id/inventories/:inventory_id' do
         @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
+        @inventory = Inventory.find(params[:inventory_id])
         if current_user(session).venues.include?(@venue)
-            if @venue.inventories.include?(@inv)
-                @inv.update(name: params[:name], description: params[:description])
-                redirect to "/venues/#{@venue.id}/inventories/#{@inv.id}"
+            if @venue.inventories.include?(@inventory)
+                @inventory.update(name: params[:name], description: params[:description])
+                redirect to "/venues/#{@venue.id}/inventories/#{@inventory}"
             else
                 redirect to "/venues/#{@venue.id}/inventories"
             end
@@ -64,13 +64,13 @@ class InventoryController < ApplicationController
         end
     end
 
-    get '/venues/:id/inventories/:inv_id/delete' do
+    get '/venues/:id/inventories/:inventory_id/delete' do
         @venue = Venue.find(params[:id])
-        @inv = Inventory.find(params[:inv_id])
+        @inventory = Inventory.find(params[:inventory_id])
         if current_user(session).venues.include?(@venue)
-            if @venue.inventories.include?(@inv)
-                @inv.items.each { |i| i.destroy }
-                @inv.destroy
+            if @venue.inventories.include?(@inventory)
+                @inventory.items.each { |i| i.destroy }
+                @inventory.destroy
             end
             redirect to "/venues/#{@venue.id}/inventories"
         else
