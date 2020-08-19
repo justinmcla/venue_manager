@@ -1,7 +1,5 @@
 class UserController < ApplicationController
 
-    include BCrypt
-
     get "/signup" do
         erb :'user/signup'
       end
