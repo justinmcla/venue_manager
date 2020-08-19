@@ -5,6 +5,9 @@
         <td><a href = "/tenants/<%= @booking.tenant.id %>"><%= @booking.tenant.org_name %></a></td>
     </tr>
     <tr>
+        <td>Event Name:</td>
+        <td><%= @booking.name %></td>
+    <tr>
         <td>Venue:</td>
         <td><a href = "/venues/<%= @booking.venue.id %>"><%= @booking.venue.name %></td>
     </tr>
@@ -23,6 +26,12 @@
     <tr>
         <td>Description:</td>
         <td><%= @booking.description %></td>
+    </tr>
+    <tr>
+        <td>Employees:</td>
+        <td><% @booking.employees.each do |employee| %>
+                <a href = "/employees/<%= employee.id %>"><%= employee.first_name + ' ' + employee.last_name %></a><br>
+            <% end %></td>
     </tr>
     <tr>
         <td>Attendance:</td>

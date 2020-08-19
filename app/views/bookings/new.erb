@@ -45,6 +45,14 @@
         <td><textarea id = "description" name = "description"></textarea></td>
     </tr>
     <tr>
+        <td>Employees:</td>
+        <td><% Employee.all.each do |employee| %>
+                <% if employee.active == true %>
+                    <input type = "checkbox" id = "employee" name = "booking[employees][]" value = "<%= employee.id %>"><%= employee.first_name + ' ' + employee.last_name %><br>
+                <% end %>
+            <% end %></td>
+    </tr>
+    <tr>
         <td><label>Attendance:</label></td>
         <td><input type = "number" id = "attendance" name = "attendance"></td>
     </tr>

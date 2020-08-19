@@ -20,3 +20,9 @@
     </tr>
 </table>
 <p><a href = "/employees/<%= @employee.id %>/edit">Edit Employee</a> <a href = "/employees/<%= @employee.id %>/delete">Delete Employee</a></p>
+<h3>Shift History</h3>
+<p>
+<% @employee.bookings.each do |booking| %>
+    <a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a><br>
+<% end %>
+</p>
