@@ -1,5 +1,19 @@
 <h1>Welcome, <%= current_user(session).first_name %>!</h1>
     <% if !current_user(session).venues.empty? %>
+        <h3>Tasks</h3>
+            <% if current_user(session).tasks.empty? %>
+                <p>No tasks. Create tasks <a href = "/tasks/new">here</a>.</p>
+            <% else %>
+                <table>
+                <% current_user(session).tasks.each do |task| %>
+                    <tr>
+                        <td><%= task.name %> - <%= task.content %></td>
+                        <td><a href = "/tasks/<%= task.id %>/edit">Edit</a></td>
+                        <td><a href = "/tasks/<%= task.id %>/delete">Complete</a></td>
+                    </tr>
+                <% end %>
+                </table>
+            <% end %>
         <h3>Upcoming Bookings</h3>
             <% if current_user(session).bookings.empty? %>
                 <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_002546) do
+ActiveRecord::Schema.define(version: 2020_08_19_130408) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
@@ -62,6 +62,12 @@ ActiveRecord::Schema.define(version: 2020_08_19_002546) do
   create_table "shift_hours", force: :cascade do |t|
     t.integer "booking_id"
     t.integer "employee_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.integer "user_id"
   end
 
   create_table "tenants", force: :cascade do |t|
