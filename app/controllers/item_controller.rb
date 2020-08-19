@@ -66,7 +66,7 @@ class ItemController < ApplicationController
         @item = Item.find(params[:item_id])
         if current_user(session).venues.include?(@venue)
             if @venue.inventories.include?(@inv)
-                if @inv.inventories.include?(@item)
+                if @inv.items.include?(@item)
                     @item.destroy
                     redirect to "/venues/#{@venue.id}/inventories/#{@inv.id}"
                 else
