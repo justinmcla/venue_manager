@@ -8,10 +8,12 @@ class BookingController < ApplicationController
         erb :'bookings/new'
     end
 
-    post '/bookings/new' do
+    post '/bookings' do
         new_booking = Booking.create(name: params[:name])
         params.each { |key, val| new_booking.send("#{key}=", val) if new_booking.respond_to?("#{key}=") }
-        params[:booking][:employees].each { |employee| new_booking.employees << Employee.find(employee) }
+        if !params[:booking].nil?
+            params[:booking][:employees].each { |employee| new_booking.employees << Employee.find(employee) }
+        end
         new_booking.save
         if params[:tenant_id] == '0' && !params[:new_tenant].empty?
             new_tenant = Tenant.create(org_name: params[:new_tenant])
@@ -37,7 +39,10 @@ class BookingController < ApplicationController
         @booking = Booking.find(params[:id])
         if current_user(session).bookings.include?(@booking)
             params.each { |key, val| @booking.send("#{key}=", val) if @booking.respond_to?("#{key}=") }
-            params[:booking][:employees].each { |employee| @booking.employees << Employee.find(employee) unless @booking.employees.include?(Employee.find(employee)) }
+            @booking.employees.clear
+            if !params[:booking].nil?
+                params[:booking][:employees].each { |employee| @booking.employees << Employee.find(employee) unless @booking.employees.include?(Employee.find(employee)) }
+            end
             @booking.save
             redirect to "/bookings/#{@booking.id}"
         else
