@@ -4,15 +4,19 @@ gem 'sinatra'
 gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'sinatra-flash'
+gem 'pg', '0.20'
 gem 'rake'
 gem 'require_all'
-gem 'sqlite3'
 gem 'thin'
-gem 'shotgun'
-gem 'pry'
 gem 'bcrypt'
-gem 'tux'
 gem 'sysrandom'
+
+group :development do
+  gem 'sqlite3'
+  gem 'shotgun'
+  gem 'pry'
+  gem 'tux'
+end
 
 group :test do
   gem 'rspec'
