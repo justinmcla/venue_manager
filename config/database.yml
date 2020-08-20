@@ -1,0 +1,11 @@
+development:
+  adapter: sqlite3
+  encoding: unicode
+  database: db/venue.sqlite3
+  pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
