@@ -5,22 +5,13 @@ class UserController < ApplicationController
       end
     
     post "/signup" do
-        if params[:username].empty?
-            flash[:error] = "You must enter a username."
-            redirect '/signup'
-        end
         if User.all.any? { |u| u.username == params[:username] }
             flash[:error] = "Username already in use."
             redirect '/signup'
         end
-        user = User.new(params)
-        if user.save
-            session[:user_id] = user.id
-            redirect '/home'
-        else
-            flash[:error] = "You must fill out all fields."
-            redirect '/signup'
-        end
+        user = User.create(params)
+        session[:user_id] = user.id
+        redirect '/home'
     end
 
     get '/home' do
@@ -55,14 +46,11 @@ class UserController < ApplicationController
 
     patch '/account' do
         auth
-        if !params[:username].empty? 
-            user = current_user(session)
-            user.username = params[:username]
-            user.save
-            redirect to '/account'
-        else
-            flash[:error] = "Invalid username."
-            redirect to '/account'
+        if User.all.any? { |u| u.username == params[:username] }
+            flash[:error] = "Username already in use."
+            redirect '/account'
         end
+        current_user(session).update(username: params[:username])
+        redirect to '/account'
     end
 end
