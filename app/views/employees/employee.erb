@@ -16,7 +16,7 @@
     <% end %>
     <tr>
         <td>Rate of Pay:</td>
-        <td><%= '%.2f' % @employee.rate %></td>
+        <td>$<%= '%.2f' % @employee.rate %></td>
     </tr>
 </table>
 <p><a href = "/employees/<%= @employee.id %>/edit">Edit Employee</a> <a href = "/employees/<%= @employee.id %>/delete">Delete Employee</a></p>
