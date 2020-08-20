@@ -1,5 +1,5 @@
 <h1>Create Booking</h1>
-<form method = "POST" action = "/bookings/new">
+<form method = "POST" action = "/bookings">
 <table>
     <tr>
         <td><label>Tenant:</label></td>
@@ -17,12 +17,12 @@
     <tr>
         <td><label>Venue:</label></td>
         <td><% current_user(session).venues.each do |venue|%>
-                <input type = "radio" id = "<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>" ><%= venue.name %><br>
+                <input type = "radio" id = "<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>" required = "required"><%= venue.name %><br>
             <% end %></td>
     </tr>
     <tr>
         <td><label>Event Name:</label></td>
-        <td><input type = "text" id = "name" name = "name"></td>
+        <td><input type = "text" id = "name" name = "name" required = "required"></td>
     </tr>
     <tr>
         <td><label>Event Type:</label></td>
@@ -34,24 +34,26 @@
     </tr>
     <tr>
         <td><label>Date:</label></td>
-        <td><input type = "date" id = "date" name = "date"></td>
+        <td><input type = "date" id = "date" name = "date" required = "required"></td>
     </tr>
     <tr>
         <td><label>Time:</label></td>
-        <td><input type = "time" id = "time" name = "time"></td>
+        <td><input type = "time" id = "time" name = "time" required = "required"></td>
     </tr>
     <tr>
         <td><label>Description:</label></td>
         <td><textarea id = "description" name = "description"></textarea></td>
     </tr>
+    <% if !current_user(session).employees.empty? %>
     <tr>
         <td>Employees:</td>
-        <td><% Employee.all.each do |employee| %>
+        <td><% current_user(session).employees.all.each do |employee| %>
                 <% if employee.active == true %>
                     <input type = "checkbox" id = "employee" name = "booking[employees][]" value = "<%= employee.id %>"><%= employee.first_name + ' ' + employee.last_name %><br>
                 <% end %>
             <% end %></td>
     </tr>
+    <% end %>
     <tr>
         <td><label>Attendance:</label></td>
         <td><input type = "number" id = "attendance" name = "attendance"></td>
