@@ -5,7 +5,7 @@
 <table>
     <tr>
         <td><label>Venue Name:</label></td>
-        <td><input type = "text" id = "venue_name" name = "name" value = "<%= @venue.name %>"></td>
+        <td><input type = "text" id = "venue_name" name = "name" value = "<%= @venue.name %>" required = "required"></td>
     </tr>
 </table>
 <h3>Address</h3>
@@ -35,11 +35,11 @@
 <table>
     <tr>
         <td><label>Configuration:</label></td>
-        <td><input type = "text" id = "configuration" name = "stage_type" value = "<%= @venue.stage_type %>"></td>
+        <td><input type = "text" id = "configuration" name = "stage_type" value = "<%= @venue.stage_type %>" required = "required"></td>
     </tr>
     <tr>
         <td><label>Seat Count:</label></td>
-        <td><input type = "number" id = "seat_count" name = "seats" value = "<%= @venue.seats %>"></td>
+        <td><input type = "number" id = "seat_count" name = "seats" value = "<%= @venue.seats %>" required = "required"></td>
     </tr>
 </table>
 <h3>Room Count</h3>
