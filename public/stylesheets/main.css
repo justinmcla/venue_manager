@@ -35,9 +35,11 @@ a:hover, a:active {
 .content {
     color: gainsboro;   
     background-color: black;
-    height: 100%;
-    width: 100%;
     padding: 10px;
+}
+
+input, textarea {
+    font-family: sans-serif;
 }
 
 h1 {
