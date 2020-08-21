@@ -43,16 +43,18 @@
     </tr>
     <tr>
         <td><label>Description:</label></td>
-        <td><textarea id = "description" name = "description"><%= @booking.date %></textarea></td>
+        <td><textarea id = "description" name = "description"></textarea></td>
     </tr>
+    <% if !current_user(session).employees.empty? %>
     <tr>
         <td>Employees:</td>
-        <td><% Employee.all.each do |employee| %>
+        <td><% current_user(session).employees.all.each do |employee| %>
                 <% if employee.active == true %>
-                    <input type = "checkbox" id = "employee" name = "booking[employees][]" value = "<%= employee.id %>" <%= 'checked' if @booking.employees.include?(employee)%>> <%= employee.first_name + ' ' + employee.last_name %><br>
+                    <input type = "checkbox" id = "employee" name = "booking[employees][]" value = "<%= employee.id %>" <%= 'checked' if @booking.employees.include?(employee)%> > <%= employee.first_name + ' ' + employee.last_name %><br>
                 <% end %>
             <% end %></td>
     </tr>
+    <% end %>
     <tr>
         <td><label>Attendance:</label></td>
         <td><input type = "number" id = "attendance" name = "attendance" value = "<%= @booking.attendance %>"></td>
