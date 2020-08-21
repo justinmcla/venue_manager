@@ -13,3 +13,4 @@ and then
 
     $ shotgun
 
+Or, just visit and set up an account at https://venuemanager.herokuapp.com
