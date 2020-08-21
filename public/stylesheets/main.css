@@ -1,9 +1,14 @@
+body {
+    background-color: #b2c4d4;
+    font-family: Roboto, sans-serif;
+}
+
 nav {
     text-align: center;
 }
 
-nav a {
-    font-size: x-large;
+nav, h1, h2, h3 {
+    font-family: Raleway, sans-serif;
 }
 
 a {
@@ -14,17 +19,32 @@ nav a:link, a:visited, a:hover, a:active {
     text-decoration: none;
 }
 
+.navbar-light .navbar-nav .nav-link {
+    color: #b2c4d4;
+}
+
 .wrapper {
     text-align: center;
     justify-content: center;
-    background-color: #b2c4d4;;
-    height: 100vh;
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 table {
     margin: auto;
 }
 
-td {
+td, th {
     padding: 5px;
+}
+
+td {
+    text-align: left;
+}
+
+td .center {
+    text-align: center;
 }

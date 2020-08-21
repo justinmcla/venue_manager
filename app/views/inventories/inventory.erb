@@ -17,7 +17,7 @@
             <tr>
                 <td><%= item.name %></td>
                 <td><%= item.category %></td>
-                <td id = "center"><%= item.quantity %></td>
+                <td class = "center"><%= item.quantity %></td>
                 <td><%= item.description %></td>
                 <td><a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Edit</a> 
                     <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/delete">Delete</a></td>
