@@ -19,13 +19,14 @@
                 <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a href="/home" class="nav-link">Home</a></li>
                             <% if is_logged_in?(session)%>
-                            <% if !current_user(session).venues.empty?%>
-                        <li class="nav-item"><a href="/venues" class="nav-link">Venues</a></li>
-                        <li class="nav-item"><a href="/bookings" class="nav-link">Bookings</a></li>
-                        <li class="nav-item"><a href="/tenants" class="nav-link">Tenants</a></li>
-                        <li class="nav-item"><a href="/employees" class="nav-link">Employees</a></li>
-                            <% end %>
-                        <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                                <% if !current_user(session).venues.empty?%>
+                                    <li class="nav-item"><a href="/venues" class="nav-link">Venues</a></li>
+                                    <li class="nav-item"><a href="/bookings" class="nav-link">Bookings</a></li>
+                                    <li class="nav-item"><a href="/tenants" class="nav-link">Tenants</a></li>
+                                    <li class="nav-item"><a href="/employees" class="nav-link">Employees</a></li>
+                                <% end %>
+                                <li class="nav-item"><a href="/account" class ="nav-link">Account</a></li>
+                                <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
                         <% end %>   
                 </ul>
                 </div>
