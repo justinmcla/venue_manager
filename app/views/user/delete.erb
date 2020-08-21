@@ -1,0 +1,17 @@
+<h3>Delete Account</h3>
+<form method = "POST" action = '/account/delete'>
+<table id = "password">
+    <tr>
+        <td><label>Password:</label></td>
+        <td><input type = "password" id = "password_1" name = "password_1" required = "required">
+    <tr>
+        <td><label>Confirm Password:</label></td>
+        <td><input type = "password" id = "password_2" name = "password_2" required = "required"></td>
+    </tr>
+</table>
+<p>By checking the boxes below, you understand that deleting your account with Venue Manager will result in all of your data being erased.<br> 
+This is an irreversible process. Your data can not be restored.</p>
+<input type = "checkbox" id = "validate1" name = "validate1" required = "required"> I understand <br>
+<input type = "checkbox" id = "validate2" name = "validate2" required = "required"> Delete my account and all of my data <br>
+<input type = "submit" id = "submit" value = "Delete Account">
+</form>
