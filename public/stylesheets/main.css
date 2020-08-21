@@ -1,75 +1,28 @@
-body {
-    display: flex;
-    height: max-content;
-    width: max-content;
-    margin: 0;
-}
-
-.wrapper {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    flex-direction: column;
-    font-family: Arial, Helvetica, san-serif;
-}
-
 nav {
-    background-color: black;
-}
-
-nav a {
-    font-variant-caps: all-small-caps;
-    font-weight: bold;
-    font-size: large;
-    padding: 10px;
-}
-
-a:link, a:visited {
-    color: gainsboro;
-}
-
-a:hover, a:active {
-    color: cadetblue;
-}
-
-.content {
-    color: gainsboro;   
-    background-color: black;
-    padding: 10px;
-}
-
-input, textarea {
-    font-family: sans-serif;
-}
-
-h1 {
-    font-size: larger;
-}
-
-h2 {
-    font-size: large;
-}
-
-h3 {
-    font-size: medium;
-}
-
-p, li {
-    font-size: small;
-}
-
-#center {
     text-align: center;
 }
 
-th {
-    text-align: left;
+nav a {
+    font-size: x-large;
 }
 
-th, td {
-    padding: 3px;
+a {
+    color: #427bf5;
+}
+
+nav a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+.wrapper {
+    text-align: center;
+    justify-content: center;
+}
+
+table {
+    margin: auto;
 }
 
 td {
-    font-size: small;
+    padding: 5px;
 }

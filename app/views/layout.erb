@@ -4,23 +4,27 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel = "stylesheet" type = "text/css" href = "/stylesheets/main.css">
         <title>Venue Manager</title>
     </head>
     <body>
         <section class = "wrapper">
-            <nav>
+            <nav class = "container">
+                <table class = "nav"><tr>
+                <td><a href = "/home">Home</a></td>
                 <% if is_logged_in?(session)%>
-                    <a href = '/home'>Home</a> |
                     <% if !current_user(session).venues.empty? %> 
-                        <a href = '/venues'>Manage Venues</a> | <a href = '/bookings'>Bookings</a> | <a href = '/tenants'>Tenants</a> | <a href = '/employees'>Employees</a>
+                        <td><a href = '/venues'>Manage Venues</a></td>
+                        <td><a href = '/bookings'>Bookings</a></td>
+                        <td><a href = '/tenants'>Tenants</a></td>
+                        <td><a href = '/employees'>Employees</a></td>
                     <% end %>
-                    <a href = '/logout'>Logout</a>
-                <% else %>
-                    <a href = '/home'>Home</a>
-                <% end %>
+                        <td><a href = '/logout'>Logout</a></td>
+                    <% end %>
+                </tr></table>
             </nav>
-            <section class = "content">
+            <section class = "container">
             <% if flash[:error]%>
                 <%= flash[:error]%>
             <% end %>
