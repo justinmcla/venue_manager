@@ -11,18 +11,17 @@
     <body>
         <section class = "wrapper">
             <nav class = "container">
-                <table class = "nav"><tr>
-                <td><a href = "/home">Home</a></td>
+                <ul>
+                <li><a href = "/home">Home</a></li>
                 <% if is_logged_in?(session)%>
                     <% if !current_user(session).venues.empty? %> 
-                        <td><a href = '/venues'>Manage Venues</a></td>
-                        <td><a href = '/bookings'>Bookings</a></td>
-                        <td><a href = '/tenants'>Tenants</a></td>
-                        <td><a href = '/employees'>Employees</a></td>
+                    <li><a href = '/venues'>Manage Venues</a></li>
+                    <li><a href = '/bookings'>Bookings</a></li>
+                    <li><a href = '/tenants'>Tenants</a></li>
+                    <li><a href = '/employees'>Employees</a></li>
                     <% end %>
-                        <td><a href = '/logout'>Logout</a></td>
+                    <li><a href = '/logout'>Logout</a></li>
                     <% end %>
-                </tr></table>
             </nav>
             <section class = "container">
             <% if flash[:error]%>

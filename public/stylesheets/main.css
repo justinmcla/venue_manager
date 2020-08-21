@@ -7,7 +7,7 @@ nav a {
 }
 
 a {
-    color: #427bf5;
+    color: #31526e;
 }
 
 nav a:link, a:visited, a:hover, a:active {
@@ -17,6 +17,8 @@ nav a:link, a:visited, a:hover, a:active {
 .wrapper {
     text-align: center;
     justify-content: center;
+    background-color: #b2c4d4;;
+    height: 100vh;
 }
 
 table {
