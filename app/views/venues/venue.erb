@@ -1,12 +1,12 @@
 <h1><%= @venue.name %></h1>
 <p><%= @venue.address1 %><br>
 <%= @venue.address2 %><br>
-<%= @venue.city %>, <%= @venue.state %> <% @venue.zip %></p>
+<%= @venue.city %>, <%= @venue.state %> <%= @venue.zip %></p>
 <p>Configuration: <%= @venue.stage_type %><br>
 Seats: <%= @venue.seats %></p>
 <p>Greenrooms: <%= @venue.greenrooms %><br>
 Dressing Rooms: <%= @venue.dressing_rooms %></p>
-<p><a href = "/venues/<%= @venue.id %>/edit">Edit Venue</a> <a href = "/venues/<%= @venue.id %>/delete">Delete Venue</a></p>
+<p><a href = "/venues/<%= @venue.id %>/edit">Edit</a> <a href = "/venues/<%= @venue.id %>/delete">Delete</a></p>
 
 <h2>Bookings</h2>
 <p>
