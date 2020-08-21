@@ -53,4 +53,26 @@ class UserController < ApplicationController
         current_user(session).update(username: params[:username])
         redirect to '/account'
     end
+
+    get '/account/password_change' do
+        auth
+        erb :'user/password'
+    end
+
+    patch '/account/password_change' do
+        auth
+        if current_user(session) && current_user(session).authenticate(params[:old_password])
+            if params[:new_password_1] == params[:new_password_2]
+                current_user(session).update(password: params[:new_password_1])
+                flash[:error] = "Password successfully updated."
+                redirect to '/account'
+            else
+                flash[:error] = "New password does not match confirmation. Password not updated. Please try again."
+                redirect to '/account/password_change'
+            end
+        else
+            flash[:error] = "Invalid password. Password not updated. Please try again."
+            redirect to '/account/password_change'
+        end
+    end
 end
