@@ -75,4 +75,40 @@ class UserController < ApplicationController
             redirect to '/account/password_change'
         end
     end
+
+    get '/account/delete' do
+        auth
+        erb :'user/delete'
+    end
+
+    post '/account/delete' do
+        auth
+        if params[:password_1] == params[:password_2]
+            if current_user(session) && current_user(session).authenticate(params[:password_1])
+                current_user(session).tasks.destroy
+                current_user(session).inventories.each do |i|
+                    i.items.each do |item|
+                        item.destroy
+                    end
+                    i.destroy
+                end
+                current_user(session).employees.destroy
+                current_user(session).tenants.destroy
+                current_user(session).bookings.destroy
+                current_user(session).venues.destroy
+                deleted_userid = current_user(session).id
+                session.clear
+                User.find(deleted_userid).destroy
+                redirect to '/'
+            else
+                flash[:error] = "Invalid password."
+                redirect to 'account/delete'
+            end
+        else
+            flash[:error] = "Passwords do not match."
+            redirect to 'account/delete'
+        end
+    end
+
+
 end
