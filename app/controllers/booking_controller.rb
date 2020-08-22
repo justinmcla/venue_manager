@@ -4,6 +4,12 @@ class BookingController < ApplicationController
         auth
     end
 
+    before '/bookings/:id*' do
+        pass if params[:id] == 'new'
+        @booking = Booking.find(params[:id])
+        redirect to '/venues' unless current_user(session).venues.include?(@booking)
+    end
+
     get '/bookings/new' do
         erb :'bookings/new'
     end
@@ -26,28 +32,21 @@ class BookingController < ApplicationController
     end
 
     get '/bookings/:id' do
-        @booking = Booking.find(params[:id])
-        current_user(session).bookings.include?(@booking) ? (erb :'bookings/booking') : (redirect to '/bookings')
+        erb :'bookings/booking'
     end
 
     get '/bookings/:id/edit' do
-        @booking = Booking.find(params[:id])
-        current_user(session).bookings.include?(@booking) ? (erb :'bookings/edit') : (redirect to '/bookings')
+        erb :'bookings/edit'
     end
 
     patch '/bookings/:id' do
-        @booking = Booking.find(params[:id])
-        if current_user(session).bookings.include?(@booking)
-            params.each { |key, val| @booking.send("#{key}=", val) if @booking.respond_to?("#{key}=") }
-            @booking.employees.clear
-            if !params[:booking].nil?
-                params[:booking][:employees].each { |employee| @booking.employees << Employee.find(employee) unless @booking.employees.include?(Employee.find(employee)) }
-            end
-            @booking.save
-            redirect to "/bookings/#{@booking.id}"
-        else
-            redirect to "/bookings"
+        params.each { |key, val| @booking.send("#{key}=", val) if @booking.respond_to?("#{key}=") }
+        @booking.employees.clear
+        if !params[:booking].nil?
+            params[:booking][:employees].each { |employee| @booking.employees << Employee.find(employee) unless @booking.employees.include?(Employee.find(employee)) }
         end
+        @booking.save
+        redirect to "/bookings/#{@booking.id}"
     end
 
     get '/bookings' do
@@ -55,8 +54,7 @@ class BookingController < ApplicationController
     end
 
     get '/bookings/:id/delete' do
-        @booking = Booking.find(params[:id])
-        @booking.destroy if current_user(session).bookings.include?(@booking)
+        @booking.destroy
         redirect to "/bookings"
     end
 
