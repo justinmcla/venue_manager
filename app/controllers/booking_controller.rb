@@ -41,7 +41,6 @@ class BookingController < ApplicationController
 
     patch '/bookings/:id' do
         params.each { |key, val| @booking.send("#{key}=", val) if @booking.respond_to?("#{key}=") }
-        @booking.employees.clear
         if !params[:booking].nil?
             params[:booking][:employees].each { |employee| @booking.employees << Employee.find(employee) unless @booking.employees.include?(Employee.find(employee)) }
         end
