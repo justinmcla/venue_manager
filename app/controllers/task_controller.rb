@@ -24,8 +24,7 @@ class TaskController < ApplicationController
     end
 
     patch '/tasks/:id' do
-        params.delete(:_method)
-        @task.update(params)
+        update_safe(@task)
         redirect to '/home'
     end
 

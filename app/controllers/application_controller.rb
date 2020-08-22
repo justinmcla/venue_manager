@@ -16,8 +16,6 @@ class ApplicationController < Sinatra::Base
         erb :index
     end
 
-
-
     helpers do
         def is_logged_in?(session)
             !!session[:user_id]
@@ -27,6 +25,10 @@ class ApplicationController < Sinatra::Base
         end
         def auth
             redirect to "/" unless is_logged_in?(session)
+        end
+        def update_safe(var)
+            params.each { |key, val| var.send("#{key}=", val) if var.respond_to?("#{key}=") }
+            var.save
         end
     end
 
