@@ -7,7 +7,7 @@ class BookingController < ApplicationController
     before '/bookings/:id*' do
         pass if params[:id] == 'new'
         @booking = Booking.find(params[:id])
-        redirect to '/venues' unless current_user(session).venues.include?(@booking)
+        redirect to '/bookings' unless current_user(session).bookings.include?(@booking)
     end
 
     get '/bookings/new' do

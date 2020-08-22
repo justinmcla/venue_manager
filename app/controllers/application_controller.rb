@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
         def auth
             redirect to "/" unless is_logged_in?(session)
         end
+        def update_safe(var)
+            params.each { |key, val| var.send("#{key}=", val) if var.respond_to?("#{key}=") }
+            var.save
+        end
     end
 
 end

@@ -32,8 +32,7 @@ class VenueController < ApplicationController
     end
 
     patch '/venues/:id' do
-        params.each { |key, val| @venue.send("#{key}=", val) if @venue.respond_to?("#{key}=") }
-        @venue.save
+        update_safe(@venue)
         redirect to "/venues/#{@venue.id}"
     end
 

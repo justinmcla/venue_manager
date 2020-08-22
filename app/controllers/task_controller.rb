@@ -24,8 +24,7 @@ class TaskController < ApplicationController
     end
 
     patch '/tasks/:id' do
-        params.each { |key, val| @task.send("#{key}=", val) if @task.respond_to?("#{key}=") }
-        @task.save
+        update_safe(@task)
         redirect to '/home'
     end
 

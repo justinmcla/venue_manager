@@ -34,8 +34,7 @@ class InventoryController < ApplicationController
     end
 
     patch '/venues/:venue_id/inventories/:inventory_id' do
-        params.each { |key, val| @inventory.send("#{key}=", val) if @inventory.respond_to?("#{key}=") }
-        @inventory.save
+        update_safe(@inventory)
         redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}"
     end
 

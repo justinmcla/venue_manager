@@ -32,8 +32,7 @@ class TenantController < ApplicationController
     end
 
     patch '/tenants/:id' do
-        params.each { |key, val| @tenant.send("#{key}=", val) if @tenant.respond_to?("#{key}=") }
-        @tenant.save
+        update_safe(@tenant)
         redirect to "/tenants/#{@tenant.id}"
     end
 
