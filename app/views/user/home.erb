@@ -15,21 +15,21 @@
                 </table>
             <% end %>
         <h3>Upcoming Bookings</h3>
-            <% if current_user(session).bookings.empty? %>
+            <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
                 <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
             <% else %>
                 <table>
-                <% current_user(session).bookings.map { |b| b.date > Date.today }.sort_by { |b| b.date }.each do |booking| %>
+                <% current_user(session).bookings.select { |b| b.date > Date.today}.sort_by { |b| b.date }.each do |booking| %>
                         <tr><td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td></tr>
                 <% end %>
                 </table>
             <% end %>
         <h3>Previous Bookings</h3>
-            <% if current_user(session).bookings.map { |b| b.date < Date.today }.empty? %>
+            <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
                 <p>No previous bookings.</p>
             <% else %>
                 <table>
-                <% current_user(session).bookings.map { |b| b.date < Date.today }.sort_by { |b| b.date }.each do |booking| %>
+                <% current_user(session).bookings.select { |b| b.date < Date.today}.sort_by { |b| b.date }.each do |booking| %>
                         <tr><td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td></tr>
                 <% end %>
                 </table>
