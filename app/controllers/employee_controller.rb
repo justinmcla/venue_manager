@@ -32,8 +32,8 @@ class EmployeeController < ApplicationController
 
     patch '/employees/:id' do
         params[:end_date].empty? ? @employee.update(active: true) : @employee.update(active: false)
-        params.delete(:_method)
-        @employee.update(params)
+        params.each { |key, val| @employee.send("#{key}=", val) if @employee.respond_to?("#{key}=") }
+        @employee.save
         redirect to "/employees/#{@employee.id}"
     end
 
