@@ -20,32 +20,28 @@ Type: <%= @tenant.org_type %></p>
 <p><a href = "/tenants/<%= @tenant.id %>/edit">Edit</a> <a href = "/tenants/<%= @tenant.id %>/delete">Delete</a></p>
 
 <h3>Upcoming Bookings</h3>
-            <% if @tenant.bookings.empty? %>
-                <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
-            <% else %>
-                <table>
-                <% @tenant.bookings.sort_by { |b| b.date }.each do |booking| %>
-                    <% if booking.date > Date.today %>
-                        <tr>
-                            <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.venue.name %></a></td>
-                        </tr>
-                    <% end %>
-                <% end %>
-                </table>
-            <% end %>
-        <h3>Previous Bookings</h3>
-            <% if @tenant.bookings.map { |b| b.date < Date.today }.empty? %>
-                <p>No previous bookings.</p>
-            <% else %>
-                <table>
-                <% @tenant.bookings.sort_by { |b| b.date }.each do |booking| %>
-                    <% if booking.date < Date.today %>
-                        <tr>
-                            <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.venue.name %></a></td>
-                        </tr>
-                    <% end %>
-                <% end %>
-                </table>
-            <% end%>
+    <% if @tenant.bookings.map { |b| b.date > Date.today }.empty? %>
+        <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
+    <% else %>
+        <table>
+        <% @tenant.bookings.map { |b| b.date > Date.today }.sort_by { |b| b.date }.each do |booking| %>
+                <tr>
+                    <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.venue.name %></a></td>
+                </tr>
+        <% end %>
+        </table>
+    <% end %>
+<h3>Previous Bookings</h3>
+    <% if @tenant.bookings.map { |b| b.date < Date.today }.empty? %>
+        <p>No previous bookings.</p>
+    <% else %>
+        <table>
+        <% @tenant.bookings.map { |b| b.date < Date.today }.sort_by { |b| b.date }.each do |booking| %>
+                <tr>
+                    <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.venue.name %></a></td>
+                </tr>
+        <% end %>
+        </table>
+    <% end%>
 
 <p><a href = "/bookings/new">Create New Booking</a></p>
