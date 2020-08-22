@@ -9,8 +9,7 @@ class UserController < ApplicationController
             flash[:error] = "Username already in use."
             redirect '/signup'
         end
-        user = User.create(params)
-        session[:user_id] = user.id
+        session[:user_id] = User.create(params).id
         redirect '/home'
     end
 
@@ -85,20 +84,8 @@ class UserController < ApplicationController
         auth
         if params[:password_1] == params[:password_2]
             if current_user(session) && current_user(session).authenticate(params[:password_1])
-                current_user(session).tasks.destroy
-                current_user(session).inventories.each do |i|
-                    i.items.each do |item|
-                        item.destroy
-                    end
-                    i.destroy
-                end
-                current_user(session).employees.destroy
-                current_user(session).tenants.destroy
-                current_user(session).bookings.destroy
-                current_user(session).venues.destroy
-                deleted_userid = current_user(session).id
+                User.find(current_user(session).id).destroy
                 session.clear
-                User.find(deleted_userid).destroy
                 redirect to '/'
             else
                 flash[:error] = "Invalid password."
