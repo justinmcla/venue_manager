@@ -84,7 +84,7 @@ class UserController < ApplicationController
         auth
         if params[:password_1] == params[:password_2]
             if current_user(session) && current_user(session).authenticate(params[:password_1])
-                User.find(current_user(session).id).destroy
+                current_user(session).destroy
                 session.clear
                 redirect to '/'
             else
