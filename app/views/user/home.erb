@@ -13,6 +13,7 @@
                     </tr>
                 <% end %>
                 </table>
+                <p><a href="/tasks/new">Create New Task</a></p>
             <% end %>
         <h3>Upcoming Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
