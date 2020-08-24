@@ -1,7 +1,7 @@
 <h1>Bookings</h1>
 <p><a href = "/bookings/new">Create New Booking</a></p>
 <% current_user(session).venues.each do |venue| %>
-    <h2><%= venue.name %></h2>
+<h2><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></h2>
     <p><%= 'No current bookings.' if venue.bookings.empty? %></p>
     <table>
         <% venue.bookings.sort_by {|b| b.date }.each do |booking| %>
