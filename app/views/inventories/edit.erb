@@ -3,11 +3,11 @@
 <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
 <table>
     <tr>
-        <td><label>Name:</label></td>
+        <td><label for = "name">Name:</label></td>
         <td><input type = "text" id = "name" name = "name" value = "<%= @inventory.name %>"></td>
     </tr>
     <tr>
-        <td><label>Notes:</label></td>
+        <td><label for = "description">Notes:</label></td>
         <td><textarea id = "description" name = "description"><%= @inventory.description %></textarea></td>
     </tr>
 </table>
