@@ -4,12 +4,6 @@ class BookingController < ApplicationController
         auth
     end
 
-    before '/bookings/:id*' do
-        pass if params[:id] == 'new'
-        @booking = Booking.find(params[:id])
-        redirect to '/bookings' unless current_user(session).bookings.include?(@booking)
-    end
-
     get '/bookings/new' do
         erb :'bookings/new'
     end

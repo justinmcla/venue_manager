@@ -4,12 +4,6 @@ class TaskController < ApplicationController
         auth
     end
 
-    before '/tasks/:id*' do
-        pass if params[:id] == 'new'
-        @task = Task.find(params[:id])
-        redirect to '/home' unless current_user(session).tasks.include?(@task)
-    end
-
     get '/tasks/new' do
         erb :'tasks/new'
     end

@@ -1,5 +1,9 @@
 class UserController < ApplicationController
 
+    before '/account*' do
+        auth
+    end
+
     get "/signup" do
         erb :'user/signup'
       end
@@ -39,12 +43,10 @@ class UserController < ApplicationController
     end
 
     get '/account' do
-        auth
         erb :'user/account'
     end
 
     patch '/account' do
-        auth
         if User.all.any? { |u| u.username == params[:username] }
             flash[:error] = "Username already in use."
             redirect '/account'
@@ -54,12 +56,10 @@ class UserController < ApplicationController
     end
 
     get '/account/password_change' do
-        auth
         erb :'user/password'
     end
 
     patch '/account/password_change' do
-        auth
         if current_user(session) && current_user(session).authenticate(params[:old_password])
             if params[:new_password_1] == params[:new_password_2]
                 current_user(session).update(password: params[:new_password_1])
@@ -76,12 +76,10 @@ class UserController < ApplicationController
     end
 
     get '/account/delete' do
-        auth
         erb :'user/delete'
     end
 
     post '/account/delete' do
-        auth
         if params[:password_1] == params[:password_2]
             if current_user(session) && current_user(session).authenticate(params[:password_1])
                 current_user(session).destroy

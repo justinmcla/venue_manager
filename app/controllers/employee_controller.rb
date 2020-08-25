@@ -3,12 +3,6 @@ class EmployeeController < ApplicationController
         auth
     end
 
-    before '/employees/:id*' do
-        pass if params[:id] == 'new'
-        @employee = Employee.find(params[:id])
-        redirect to '/employees' unless current_user(session).employees.include?(@employee)
-    end
-
     get '/employees/new' do
         erb :'employees/new'
     end
