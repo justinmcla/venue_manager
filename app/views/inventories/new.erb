@@ -2,11 +2,11 @@
 <form method = "POST" action = "/venues/<%= @venue.id %>/inventories">
 <table>
     <tr>
-        <td><label>Name:</label></td>
+        <td><label for = "name">Name:</label></td>
         <td><input type = "text" id = "name" name = "name"></td>
     </tr>
     <tr>
-        <td><label>Notes:</label></td>
+        <td><label for = "description">Notes:</label></td>
         <td><textarea id = "description" name = "description"></textarea></td>
     </tr>
 </table>
