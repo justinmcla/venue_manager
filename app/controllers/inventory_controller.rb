@@ -2,7 +2,7 @@ class InventoryController < ApplicationController
 
     before '/venues/:venue_id/inventories*' do
         @venue = Venue.find(params[:venue_id])
-        redirect to "/venues/#{@venue.id}" unless current_user(session).venues.include?(@venue)
+        redirect to "/venues" unless current_user(session).venues.include?(@venue)
     end
 
     before '/venues/:venue_id/inventories/:inventory_id*' do
@@ -39,7 +39,6 @@ class InventoryController < ApplicationController
     end
 
     get '/venues/:venue_id/inventories/:inventory_id/delete' do
-        @inventory.items.each { |i| i.destroy }
         @inventory.destroy
         redirect to "/venues/#{@venue.id}"
     end
