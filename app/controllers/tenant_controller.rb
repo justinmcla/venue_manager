@@ -4,12 +4,6 @@ class TenantController < ApplicationController
         auth
     end
 
-    before '/tenants/:id*' do
-        pass if params[:id] == 'new'
-        @tenant = Tenant.find(params[:id])
-        redirect to '/tenants' unless current_user(session).tenants.include?(@tenant)
-    end
-
     get '/tenants/new' do
         erb :'tenants/new'
     end

@@ -4,12 +4,6 @@ class VenueController < ApplicationController
         auth
     end
 
-    before '/venues/:id*' do
-        pass if params[:id] == 'new'
-        @venue = Venue.find(params[:id])
-        redirect to '/venues' unless current_user(session).venues.include?(@venue)
-    end
-
     get '/venues/new' do
         erb :'venues/new'
     end

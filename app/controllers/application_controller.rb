@@ -37,4 +37,25 @@ class ApplicationController < Sinatra::Base
         end
     end
 
+    before '/:route/:id*' do
+        pass if params[:id] == 'new'
+        case params[:route]
+        when 'bookings'
+            @booking = Booking.find(params[:id])
+            redirect to '/bookings' unless current_user(session).bookings.include?(@booking)
+        when 'employees'
+            @employee = Employee.find(params[:id])
+            redirect to '/employees' unless current_user(session).employees.include?(@employee)
+        when 'tasks'
+            @task = Task.find(params[:id])
+            redirect to '/home' unless current_user(session).tasks.include?(@task)
+        when 'tenants'
+            @tenant = Tenant.find(params[:id])
+            redirect to '/tenants' unless current_user(session).tenants.include?(@tenant)
+        when 'venues'
+            @venue = Venue.find(params[:id])
+            redirect to '/venues' unless current_user(session).venues.include?(@venue)
+        end
+    end
+
 end
