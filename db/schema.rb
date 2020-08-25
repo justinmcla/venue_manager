@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_130408) do
+ActiveRecord::Schema.define(version: 2020_08_25_193820) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2020_08_19_130408) do
     t.boolean "active"
     t.float "rate"
     t.integer "user_id"
+    t.string "email"
+    t.string "phone"
   end
 
   create_table "inventories", force: :cascade do |t|
