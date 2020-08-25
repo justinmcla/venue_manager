@@ -2,7 +2,7 @@
 <form method = "POST" action = "/bookings">
 <table>
     <tr>
-        <td><label>Tenant:</label></td>
+        <td><label for = "tenants">Tenant:</label></td>
         <td><select id="tenants" name="tenant_id" size="1">
             <% current_user(session).tenants.sort_by { |t| t.org_name }.each do |tenant| %>
                 <option value = "<%= tenant.id%>" ><%= tenant.org_name %></option>
@@ -11,21 +11,21 @@
             </select></td>
     </tr>
     <tr>
-        <td><label>New Tenant Name:</label></td>
+        <td><label for = "new_tenant">New Tenant Name:</label></td>
         <td><input type = "text" id = "new_tenant" name = "new_tenant"></td>
     </tr>
     <tr>
-        <td><label>Venue:</label></td>
+        <td><label for = "venue_id">Venue:</label></td>
         <td><% current_user(session).venues.each do |venue|%>
-                <input type = "radio" id = "<%= venue.id%>" name = "venue_id" value = "<%= venue.id%>" required = "required"> <%= venue.name %><br>
+                <input type = "radio" id = "venue_id" name = "venue_id" value = "<%= venue.id%>" required = "required"> <%= venue.name %><br>
             <% end %></td>
     </tr>
     <tr>
-        <td><label>Event Name:</label></td>
+        <td><label for = "name">Event Name:</label></td>
         <td><input type = "text" id = "name" name = "name" required = "required"></td>
     </tr>
     <tr>
-        <td><label>Event Type:</label></td>
+        <td><label for = "event_type">Event Type:</label></td>
         <td><input type = "radio" id = "event_type" name = "event_type" value = "Performance"> Performance<br>
             <input type = "radio" id = "event_type" name = "event_type" value = "Lecture/Workshop"> Lecture/Workshop<br>
             <input type = "radio" id = "event_type" name = "event_type" value = "Concert"> Concert<br>
@@ -33,20 +33,20 @@
             <input type = "radio" id = "event_type" name = "event_type" value = "Other"> Other (describe below)<br></td>
     </tr>
     <tr>
-        <td><label>Date:</label></td>
+        <td><label for = "date">Date:</label></td>
         <td><input type = "date" id = "date" name = "date" required = "required" placeholder = "YYYY-MM-DD"></td>
     </tr>
     <tr>
-        <td><label>Time:</label></td>
+        <td><label for = "time">Time:</label></td>
         <td><input type = "time" id = "time" name = "time" required = "required" placeholder = "HH:MM:SS (24 hr)"></td>
     </tr>
     <tr>
-        <td><label>Description:</label></td>
+        <td><label for = "description">Description:</label></td>
         <td><textarea id = "description" name = "description"></textarea></td>
     </tr>
     <% if !current_user(session).employees.empty? %>
     <tr>
-        <td>Employees:</td>
+        <td><label for = "employee">Employees:</label></td>
         <td><% current_user(session).employees.all.each do |employee| %>
                 <% if employee.active == true %>
                     <input type = "checkbox" id = "employee" name = "booking[employees][]" value = "<%= employee.id %>"> <%= employee.first_name + ' ' + employee.last_name %><br>
@@ -55,64 +55,64 @@
     </tr>
     <% end %>
     <tr>
-        <td><label>Attendance:</label></td>
+        <td><label for = "attendance">Attendance:</label></td>
         <td><input type = "number" id = "attendance" name = "attendance"></td>
     </tr>
     <tr>
-        <td><label>Catering:</label></td>
+        <td><label for = "food">Catering:</label></td>
         <td><input type = "radio" id = "food" name = "food" value = "true">Yes<br>
             <input type = "radio" id = "food" name = "food" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Alcohol:</label></td>
+        <td><label for = "alcohol">Alcohol:</label></td>
         <td><input type = "radio" id = "alcohol" name = "alcohol" value = "true">Yes<br>
             <input type = "radio" id = "alcohol" name = "alcohol" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Stage Lighting:</label></td>
+        <td><label for = "lighting">Stage Lighting:</label></td>
         <td><input type = "radio" id = "lighting" name = "lighting" value = "true">Yes<br>
             <input type = "radio" id = "lighting" name = "lighting" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Spotlight:</label></td>
+        <td><label for = "spotlight">Spotlight:</label></td>
         <td><input type = "radio" id = "spotlight" name = "spotlight" value = "true">Yes<br>
             <input type = "radio" id = "spotlight" name = "spotlight" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Amplified Sound:</label></td>
+        <td><label for = "sound">Amplified Sound:</label></td>
         <td><input type = "radio" id = "sound" name = "sound" value = "true">Yes<br>
             <input type = "radio" id = "sound" name = "sound" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Microphones:</label></td>
+        <td><label for = "microphones">Microphones:</label></td>
         <td><input type = "radio" id = "microphones" name = "microphones" value = "true">Yes<br>
             <input type = "radio" id = "microphones" name = "microphones" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Curtain:</label></td>
+        <td><label for = "curtain">Curtain:</label></td>
         <td><input type = "radio" id = "curtain" name = "curtain" value = "true">Yes<br>
             <input type = "radio" id = "curtain" name = "curtain" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Street Closure:</label></td>
+        <td><label for = "street_closure">Street Closure:</label></td>
         <td><input type = "radio" id = "street_closure" name = "street_closure" value = "true">Yes<br>
             <input type = "radio" id = "street_closure" name = "street_closure" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Event Security:</label></td>
+        <td><label for = "security">Event Security:</label></td>
         <td><input type = "radio" id = "security" name = "security" value = "true">Yes<br>
             <input type = "radio" id = "security" name = "security" value = "false">No<br></td>
     </tr>
     <tr>
-        <td><label>Contract Signed?</label></td>
+        <td><label for = "contract">Contract Signed?</label></td>
         <td><input type = "checkbox" id = "contract" name = "contract" value = "true"></td>
     </tr>
     <tr>
-        <td><label>Deposit Paid?</label></td>
+        <td><label for = "deposit">Deposit Paid?</label></td>
         <td><input type = "checkbox" id = "deposit" name = "deposit" value = "true"></td>
     </tr>
     <tr>
-        <td><label>Paid in Full?</label></td>
+        <td><label for = "paid">Paid in Full?</label></td>
         <td><input type = "checkbox" id = "paid" name = "paid" value = "true"></td>
     </tr>
 </table>
