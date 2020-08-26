@@ -26,11 +26,11 @@
     </tr>
     <tr>
         <td><label for = "org_state">State:</label></td>
-        <td><input type = "text" id = "org_state" name = "org_state" value = "<%= @tenant.org_state %>"></td>
+        <td><input type = "text" id = "org_state" name = "org_state" value = "<%= @tenant.org_state %>" pattern = "\b[A-Z][A-Z]\b" placeholder = "e.g. DC, TX, NY"></td>
     </tr>
     <tr>
         <td><label for = "org_zip">Zip:</label></td>
-        <td><input type = "text" id = "org_zip" name = "org_zip" value = "<%= @tenant.org_zip %>"></td>
+        <td><input type = "text" id = "org_zip" name = "org_zip" value = "<%= @tenant.org_zip %>" pattern = "\d\d\d\d\d(-\d\d\d\d)?" placeholder = "e.g. 00000 or 00000-0000"></td>
     </tr>
 </table>
 <h3>Point of Contact</h3>
@@ -41,11 +41,11 @@
     </tr>
     <tr>
         <td><label for = "poc_phone">Phone:</label></td>
-        <td><input type = "text" id = "poc_phone" name = "poc_phone" value = "<%= @tenant.poc_phone %>"></td>
+        <td><input type = "text" id = "poc_phone" name = "poc_phone" value = "<%= @tenant.poc_phone %>" pattern = "\(?\d\d\d\)?(\s?|-?)\d\d\d-?\d\d\d\d" placeholder = "e.g. 555-555-5555"></td>
     </tr>
     <tr>
         <td><label for = "poc_email">Email:</label></td>
-        <td><input type = "text" id = "poc_email" name = "poc_email" value = "<%= @tenant.poc_email %>"></td>
+        <td><input type = "text" id = "poc_email" name = "poc_email" value = "<%= @tenant.poc_email %>" pattern = ".+@.+\..+" placeholder = "e.g. mail@mail.com"></td>
     </tr>
 </table>
 <input type = "submit" id = "submit" value = "Update">

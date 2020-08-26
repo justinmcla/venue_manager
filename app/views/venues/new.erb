@@ -23,11 +23,11 @@
     </tr>
     <tr>
         <td><label for = "state">State:</label></td>
-        <td><input type = "text" id = "state" name = "state"></td>
+        <td><input type = "text" id = "state" name = "state" pattern = "\b[A-Z][A-Z]\b" placeholder = "e.g. DC, TX, NY"></td>
     </tr>
     <tr>
         <td><label for = "zip_code">Zip Code:</label></td>
-        <td><input type = "text" id = "zip_code" name = "zip"></td>
+        <td><input type = "text" id = "zip_code" name = "zip" pattern = "\d\d\d\d\d(-\d\d\d\d)?" placeholder = "e.g. 00000 or 00000-0000"></td>
     </tr>
 </table>
 <h3>Stage Information</h3>
