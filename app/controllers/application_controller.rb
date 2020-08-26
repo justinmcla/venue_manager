@@ -18,6 +18,7 @@ class ApplicationController < Sinatra::Base
     end
 
     get '/' do
+        redirect to '/home' if is_logged_in?(session)
         erb :index
     end
 
