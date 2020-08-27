@@ -1,7 +1,6 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-    register Sinatra::ActiveRecordExtension
     register Sinatra::Flash
 
     enable :sessions
