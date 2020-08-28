@@ -1,9 +1,5 @@
 class TaskController < ApplicationController
 
-    before '/tasks*' do
-        auth
-    end
-
     get '/tasks/new' do
         erb :'tasks/new'
     end

@@ -1,9 +1,5 @@
 class UserController < ApplicationController
 
-    before '/account*' do
-        auth
-    end
-
     get "/signup" do
         erb :'user/signup'
       end
@@ -18,7 +14,6 @@ class UserController < ApplicationController
     end
 
     get '/home' do
-        auth
         erb :'user/home'
     end
 

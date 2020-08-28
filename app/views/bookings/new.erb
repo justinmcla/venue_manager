@@ -49,7 +49,7 @@
         <td><label for = "employee">Employees:</label></td>
         <td><% current_user(session).employees.all.each do |employee| %>
                 <% if employee.active == true %>
-                    <input type = "checkbox" id = "employee" name = "booking[employees][]" value = "<%= employee.id %>"> <%= employee.first_name + ' ' + employee.last_name %><br>
+                    <input type = "checkbox" id = "employee" name = "employee_list[]" value = "<%= employee.id %>"> <%= employee.first_name + ' ' + employee.last_name %><br>
                 <% end %>
             <% end %></td>
     </tr>

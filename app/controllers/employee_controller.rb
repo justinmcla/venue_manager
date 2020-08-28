@@ -1,7 +1,4 @@
 class EmployeeController < ApplicationController
-    before '/employees*' do
-        auth
-    end
 
     get '/employees/new' do
         erb :'employees/new'

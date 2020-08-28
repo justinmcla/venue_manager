@@ -1,9 +1,5 @@
 class VenueController < ApplicationController
 
-    before '/venues*' do
-        auth
-    end
-
     get '/venues/new' do
         erb :'venues/new'
     end
