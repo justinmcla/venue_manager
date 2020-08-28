@@ -1,9 +1,5 @@
 class BookingController < ApplicationController
 
-    before '/bookings*' do
-        auth
-    end
-
     get '/bookings/new' do
         erb :'bookings/new'
     end

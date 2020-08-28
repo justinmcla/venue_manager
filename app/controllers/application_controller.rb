@@ -37,6 +37,11 @@ class ApplicationController < Sinatra::Base
         end
     end
 
+    before '/:route*' do
+        pass if params[:route] == '' || params[:route] == 'signup' || params[:route] == 'login'
+        auth
+    end
+
     before '/:route/:id*' do
         pass if params[:id] == 'new'
         case params[:route]
