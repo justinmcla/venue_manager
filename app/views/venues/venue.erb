@@ -16,7 +16,7 @@ Dressing Rooms: <%= @venue.dressing_rooms %></p>
             </form></td>
     </tr>
 </table>
-
+<br>
 <h2>Bookings</h2>
 <p>
 <% @venue.bookings.sort_by { |b| b.date }.each do |booking| %>
@@ -26,7 +26,7 @@ Dressing Rooms: <%= @venue.dressing_rooms %></p>
 <form method = "GET" action = "/bookings/new">
 <button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
 </form>
-
+<br>
 <h2>Inventories</h2>
 <p>
 <% @venue.inventories.each do |inventory| %>
