@@ -17,7 +17,16 @@ Type: <%= @tenant.org_type %></p>
         <td><%= @tenant.poc_email %></td>
     </tr>
 </table>
-<p><a href = "/tenants/<%= @tenant.id %>/edit">Edit</a> <a href = "/tenants/<%= @tenant.id %>/delete">Delete</a></p>
+<table>
+    <tr>
+        <td><form method = "GET" action = "/tenants/<%= @tenant.id %>/edit">
+            <button type = "submit" class = "btn btn-light btn-sm">
+            </form></td>
+        <td><form method = "GET" action = "/tenants/<%= @tenant.id %>/delete">
+            <button type = "submit" class = "btn btn-light btn-sm">
+            </form></td>
+    </tr>
+</table>
 
 <h3>Upcoming Bookings</h3>
     <% if @tenant.bookings.select { |b| b.date > Date.today }.empty? %>
@@ -40,4 +49,6 @@ Type: <%= @tenant.org_type %></p>
         </table>
     <% end%>
 
-<p><a href = "/bookings/new">Create New Booking</a></p>
+<form method = "GET" action = "/bookings/new">
+<button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
+</form>
