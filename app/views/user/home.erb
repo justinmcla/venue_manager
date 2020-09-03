@@ -17,7 +17,7 @@
             <form method = "GET" action = "/tasks/new">
             <button type = "submit" class = "btn btn-light btn-sm">Create New Task</button>
             </form>
-            <% end %>
+            <br>
         <h3>Upcoming Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
                 <p>No upcoming bookings.</p>
@@ -31,6 +31,7 @@
                 <form method = "GET" action = "/bookings/new">
                 <button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
                 </form>
+                <br>
         <h3>Previous Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
                 <p>No previous bookings.</p>
@@ -40,7 +41,7 @@
                         <tr><td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td></tr>
                 <% end %>
                 </table>
-            <% end%>
+            <% end %>
     <% else %>
         <h3>Get Started!</h3>
         <p>Create your first venue by clicking below.</p>
