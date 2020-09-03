@@ -6,7 +6,16 @@
 Seats: <%= @venue.seats %></p>
 <p>Greenrooms: <%= @venue.greenrooms %><br>
 Dressing Rooms: <%= @venue.dressing_rooms %></p>
-<p><a href = "/venues/<%= @venue.id %>/edit">Edit</a> <a href = "/venues/<%= @venue.id %>/delete">Delete</a></p>
+<table>
+    <tr>
+        <td><form method = "GET" action = "/venues/<%= @venue.id %>/edit">
+            <button type = "submit" class = "btn btn-light btn-sm">Edit</button>
+            </form></td>
+        <td><form method = "GET" action = "/venues/<%= @venue.id %>/delete">
+            <button type = "submit" class = "btn btn-light btn-sm">Delete</button>
+            </form></td>
+    </tr>
+</table>
 
 <h2>Bookings</h2>
 <p>
@@ -14,7 +23,9 @@ Dressing Rooms: <%= @venue.dressing_rooms %></p>
     <a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a><br>
 <% end %>
 </p>
-<p><a href = "/bookings/new">Create New Booking</a></p>
+<form method = "GET" action = "/bookings/new">
+<button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
+</form>
 
 <h2>Inventories</h2>
 <p>
@@ -22,4 +33,6 @@ Dressing Rooms: <%= @venue.dressing_rooms %></p>
     <a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a><br>
 <% end %>
 </p>
-<p><a href = "/venues/<%= @venue.id %>/inventories/new">Create New Inventory</a></p>
+<form method = "GET" action = "/venues/<%= @venue.id %>/inventories/new">
+<button type = "submit" class = "btn btn-light btn-sm">Create New Inventory</button>
+</form>
