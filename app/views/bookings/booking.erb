@@ -86,5 +86,12 @@
         <td>Paid in Full:</td>
         <td><%= @booking.paid ? 'Yes' : 'No' %></td>
     </tr>
+    <tr>
+        <td class = "center"><form method = "GET" action = "/bookings/<%= @booking.id %>/edit">
+            <button type = "submit" class = "btn btn-light btn-sm">Edit</button>
+            </form></td>
+        <td class = "center"><form method = "GET" action = "/bookings/<%= @booking.id %>/delete">
+            <button type = "submit" class = "btn btn-light btn-sm">Delete</button>
+            </form></td>
+    </tr>
 </table>
-<p><a href = "/bookings/<%= @booking.id %>/edit">Edit</a> <a href = "/bookings/<%= @booking.id %>/delete">Delete</a></p>
