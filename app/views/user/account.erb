@@ -13,8 +13,16 @@
 <form method = "POST" action = "/account">
 <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
 <p><label for = "change_username">Change Username:</label><input type = "text" id = "change_username" name = "username" required = "required"></p>
-<input type = "submit" id = "submit" value = "Update">
+<button type = "submit" id = "submit" class = "btn btn-light btn-sm">Update</button>
 </form>
 <br>
-<br>
-<a href = "/account/password_change">Change Password</a> | <a href = "/account/delete">Delete Account</a>
+<table>
+    <tr>
+        <td><form method = "GET" action = "/account/password_change">
+            <button type = "submit" class = "btn btn-light btn-sm">Change Password</button>
+            </form></td>
+        <td><form method = "GET" action = "/account/delete">
+            <button type = "submit" class = "btn btn-light btn-sm">Delete Account</button>
+            </form></td>
+    </tr>
+</table>
