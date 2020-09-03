@@ -26,6 +26,14 @@
         <td>Rate of Pay:</td>
         <td>$<%= '%.2f' % @employee.rate %></td>
     </tr>
+    <tr>
+        <td class = "center"><form method = "GET" action = "/employees/<%= @employee.id %>/edit">
+            <button type = "submit" class = "btn btn-light btn-sm">Edit</button>
+            </form></td>
+        <td class = "center"><form method = "GET" action = "/employees/<%= @employee.id %>/delete">
+            <button type = "submit" class = "btn btn-light btn-sm">Delete</button>
+            </form></td>
+    </tr>
 </table>
 <p><a href = "/employees/<%= @employee.id %>/edit">Edit</a> <a href = "/employees/<%= @employee.id %>/delete">Delete</a></p>
 <h3>Shift History</h3>
