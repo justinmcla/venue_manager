@@ -1,8 +1,13 @@
 <h1>Employees</h1>
 <% if current_user(session).employees.empty? %>
-    <p>You have no employees. Create one <a href = "/employees/new">here</a>.</p>
+    <p>You have no employees.</p>
+    <form method = "GET" action = "/employees/new">
+    <button type = "submit"  class = "btn btn-light btn-sm">Create New Employee</button>
+    </form>
 <% else %>
-    <p><a href = "/employees/new">Create New Employee</a></p>
+    <form method = "GET" action = "/employees/new">
+    <button type = "submit"  class = "btn btn-light btn-sm">Create New Employee</button>
+    </form>
     <h3>Active Employees</h3>
     <p>
     <% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>
