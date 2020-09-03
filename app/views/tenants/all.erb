@@ -1,5 +1,7 @@
 <h1>Tenants</h1>
-<p><a href = "/tenants/new" >Create New Tenant</a></p>
+<form method = "GET" action = "/tenants/new">
+<button type = "submit" class = "btn btn-light btn-sm">Create New Tenant</button>
+</form>
 <table>
     <% current_user(session).tenants.each do |tenant| %>
         <tr>
