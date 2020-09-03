@@ -11,6 +11,14 @@ nav, h1, h2, h3 {
     font-family: Raleway, sans-serif;
 }
 
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+p {
+    font-weight: 400;
+}
+
 a {
     color: #31526e;
 }
@@ -47,4 +55,9 @@ td {
 
 td .center {
     text-align: center;
+}
+
+.btn-light {
+    display: block;
+    margin: auto;
 }
