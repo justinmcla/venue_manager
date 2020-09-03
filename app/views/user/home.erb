@@ -1,23 +1,26 @@
 <h1>Welcome, <%= current_user(session).first_name %>!</h1>
     <% if !current_user(session).venues.empty? %>
         <h3>Tasks</h3>
-            <% if current_user(session).tasks.empty? %>
-                <p>No tasks. Create tasks <a href = "/tasks/new">here</a>.</p>
-            <% else %>
-                <table>
+            <table>
                 <% current_user(session).tasks.each do |task| %>
                     <tr>
                         <td><%= task.name %> - <%= task.content %></td>
-                        <td><a href = "/tasks/<%= task.id %>/edit">Edit</a></td>
-                        <td><a href = "/tasks/<%= task.id %>/delete">Complete</a></td>
+                        <td><form method = "GET" action = "/tasks/<%= task.id %>/edit">
+                            <button type = "submit" class = "btn btn-light btn-sm">Edit</button>
+                            </form></td>
+                        <td><form method = "GET" action = "/tasks/<%= task.id %>/delete">
+                            <button type = "submit" class = "btn btn-light btn-sm">Delete</button>
+                            </form></td>
                     </tr>
                 <% end %>
-                </table>
-                <p><a href="/tasks/new">Create New Task</a></p>
+            </table>
+            <form method = "GET" action = "/tasks/new">
+            <button type = "submit" class = "btn btn-light btn-sm">Create New Task</button>
+            </form>
             <% end %>
         <h3>Upcoming Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
-                <p>No upcoming bookings. Create bookings <a href = "/bookings/new">here</a>.</p>
+                <p>No upcoming bookings.</p>
             <% else %>
                 <table>
                 <% current_user(session).bookings.select { |b| b.date > Date.today}.sort_by { |b| b.date }.each do |booking| %>
@@ -25,6 +28,9 @@
                 <% end %>
                 </table>
             <% end %>
+                <form method = "GET" action = "/bookings/new">
+                <button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
+                </form>
         <h3>Previous Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
                 <p>No previous bookings.</p>
@@ -37,8 +43,8 @@
             <% end%>
     <% else %>
         <h3>Get Started!</h3>
-        <p>Create your first venue by clicking <a href = "/venues/new">here</a>.</p>
-        <br>
-        <br>
-        <button type = "button" class = "btn btn-light btn-sm">Create</button>
+        <p>Create your first venue by clicking below.</p>
+        <form method = "GET" action = "/venues/new">
+        <button type = "submit" class = "btn btn-light btn-sm">Create New Venue</button>
+        </form>
     <% end %>
