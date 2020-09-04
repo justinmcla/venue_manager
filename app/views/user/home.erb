@@ -11,7 +11,7 @@
                 <% end %>
             </table>
             <a href = "/tasks/new" class = "btn btn-light btn-sm" role = "button">Create New Task</a>
-            <br>
+            <br><br>
         <h3>Upcoming Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
                 <p>No upcoming bookings.</p>
@@ -23,7 +23,7 @@
                 </table>
             <% end %>
                 <a href = "/bookings/new" class = "btn btn-light btn-sm" role ="button">Create New Booking</a>
-                <br>
+                <br><br>
         <h3>Previous Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
                 <p>No previous bookings.</p>

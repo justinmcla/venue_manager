@@ -1,5 +1,6 @@
 <h1>Tenants</h1>
 <a href = "/tenants/new" class = "btn btn-light btn-sm" role = "button">Create New Tenant</a>
+<br><br>
 <table>
     <% current_user(session).tenants.each do |tenant| %>
         <tr>

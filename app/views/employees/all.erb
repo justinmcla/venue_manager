@@ -3,7 +3,7 @@
     <p>You have no employees.</p>
     <a href = "/employees/new" role="button" class = "btn btn-light btn-sm">Create New Employee</a>
 <% else %>
-    <a href = "/employees/new" role ="button" class = "btn btn-light btn-sm">Create New Employee</a>
+    <a href = "/employees/new" role ="button" class = "btn btn-light btn-sm">Create New Employee</a><br><br>
     <h3>Active Employees</h3>
     <p>
     <% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>

@@ -1,6 +1,6 @@
 <h1>Managed Venues</h1>
 <a href = "/venues/new" role = "button" class = "btn btn-light btn-sm">Create New Venue</a>
-<br>
+<br><br>
 <% current_user(session).venues.each do |venue| %>
     <h2><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></h2>
     <p><%= venue.address1 %><br>
