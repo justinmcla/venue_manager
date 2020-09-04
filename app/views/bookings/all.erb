@@ -1,6 +1,5 @@
 <h1>Bookings</h1>
-<form method = "GET" action = "/bookings/new">
-<button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
+<a href ="/bookings/new" role ="button" class = "btn btn-light btn-sm">Create New Booking</button>
 </form>
 <% current_user(session).venues.each do |venue| %>
 <h2><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></h2>
