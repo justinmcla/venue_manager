@@ -4,11 +4,13 @@
         <table>
             <tr>
                 <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit" role="button">Edit Settings</a></td>
-                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete">Delete Inventory</a></td>
+                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete" role="button">Delete Inventory</a></td>
             </tr>
         </table>
+        <br>
 <% if @inventory.items.empty? %>
-    <p>No items in inventory. Create new items <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">here</a>.</p>
+    <p>No items in inventory. <br><br>
+    <a class="btn btn-light btn-sm" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a></p>
 <% else %>
     <table>
         <tr>
@@ -16,6 +18,7 @@
             <th>Category</th>
             <th>Quantity</th>
             <th>Description</th>
+            <th></th>
         </tr>
         <% @inventory.items.each do |item| %>
             <tr>
