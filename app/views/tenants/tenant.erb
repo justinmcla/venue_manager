@@ -19,12 +19,8 @@ Type: <%= @tenant.org_type %></p>
 </table>
 <table>
     <tr>
-        <td><form method = "GET" action = "/tenants/<%= @tenant.id %>/edit">
-            <button type = "submit" class = "btn btn-light btn-sm">
-            </form></td>
-        <td><form method = "GET" action = "/tenants/<%= @tenant.id %>/delete">
-            <button type = "submit" class = "btn btn-light btn-sm">
-            </form></td>
+        <td><a href = "/tenants/<%= @tenant.id %>/edit" class = "btn btn-light btn-sm" role = "button"></td>
+        <td><a href = "/tenants/<%= @tenant.id %>/delete" class ="btn btn-light btn-sm" role = "button"></td>
     </tr>
 </table>
 
@@ -49,6 +45,4 @@ Type: <%= @tenant.org_type %></p>
         </table>
     <% end%>
 
-<form method = "GET" action = "/bookings/new">
-<button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
-</form>
+<a href = "/bookings/new" class = "btn btn-light btn-sm" role = "button">Create New Booking</a>
