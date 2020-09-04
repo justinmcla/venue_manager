@@ -1,8 +1,6 @@
 <h1><a href = "/venues/<%= @venue.id %>"><%= @venue.name %></a></h1>
 <h2>Inventories</h2>
-<form method = "GET" action = "/venues/<%= @venue.id %>/inventories/new">
-<button type = "submit" class = "btn btn-light btn-sm">Create New Inventory</button>
-</form>
+<a href="/venues/<%= @venue.id %>/inventories/new" role = "button" class = "btn btn-light btn-sm">Create New Inventory</a>
 <% current_user(session).inventories.each do |inventory| %>
     <h3><a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a></h3>
     <p><%= inventory.description %></p>
