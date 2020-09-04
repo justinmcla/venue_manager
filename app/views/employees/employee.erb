@@ -26,16 +26,13 @@
         <td>Rate of Pay:</td>
         <td>$<%= '%.2f' % @employee.rate %></td>
     </tr>
+    </table>
+    <table>
     <tr>
-        <td class = "center"><form method = "GET" action = "/employees/<%= @employee.id %>/edit">
-            <button type = "submit" class = "btn btn-light btn-sm">Edit</button>
-            </form></td>
-        <td class = "center"><form method = "GET" action = "/employees/<%= @employee.id %>/delete">
-            <button type = "submit" class = "btn btn-light btn-sm">Delete</button>
-            </form></td>
+        <td class = "center"><a href = "/employees/<%= @employee.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
+        <td class = "center"><a href = "/employees/<%= @employee.id %>/delete" class = "btn btn-light btn-sm" role = "button">Delete</a></td>
     </tr>
-</table>
-<p><a href = "/employees/<%= @employee.id %>/edit">Edit</a> <a href = "/employees/<%= @employee.id %>/delete">Delete</a></p>
+    </table>
 <h3>Shift History</h3>
 <p>
 <% @employee.bookings.each do |booking| %>
