@@ -5,18 +5,12 @@
                 <% current_user(session).tasks.each do |task| %>
                     <tr>
                         <td><%= task.name %> - <%= task.content %></td>
-                        <td><form method = "GET" action = "/tasks/<%= task.id %>/edit">
-                            <button type = "submit" class = "btn btn-light btn-sm">Edit</button>
-                            </form></td>
-                        <td><form method = "GET" action = "/tasks/<%= task.id %>/delete">
-                            <button type = "submit" class = "btn btn-light btn-sm">Delete</button>
-                            </form></td>
+                        <td><a href = "/tasks/<%= task.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
+                        <td><a href = "/tasks/<%= task.id %>/delete" class = "btn btn-light btn-sm" role = "button">Delete</a></td>
                     </tr>
                 <% end %>
             </table>
-            <form method = "GET" action = "/tasks/new">
-            <button type = "submit" class = "btn btn-light btn-sm">Create New Task</button>
-            </form>
+            <a href = "/tasks/new" class = "btn btn-light btn-sm" role = "button">Create New Task</a>
             <br>
         <h3>Upcoming Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
@@ -28,9 +22,7 @@
                 <% end %>
                 </table>
             <% end %>
-                <form method = "GET" action = "/bookings/new">
-                <button type = "submit" class = "btn btn-light btn-sm">Create New Booking</button>
-                </form>
+                <a href = "/bookings/new" class = "btn btn-light btn-sm" role ="button">Create New Booking</a>
                 <br>
         <h3>Previous Bookings</h3>
             <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
@@ -45,7 +37,5 @@
     <% else %>
         <h3>Get Started!</h3>
         <p>Create your first venue by clicking below.</p>
-        <form method = "GET" action = "/venues/new">
-        <button type = "submit" class = "btn btn-light btn-sm">Create New Venue</button>
-        </form>
+        <a href = "/venues/new" class = "btn btn-light btn-sm" role = "button">Create New Venue</a>
     <% end %>
