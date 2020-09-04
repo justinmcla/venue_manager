@@ -3,12 +3,8 @@
 <p><%= @inventory.description %></p>
         <table>
             <tr>
-                <td><form method = "GET" action = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit">
-                    <button type = "submit" class = "btn btn-light btn-sm">Edit Settings</button>
-                    </form></td>
-                <td><form method = "GET" action = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete">
-                    <button type = "submit" class = "btn btn-light btn-sm">Delete Inventory</button>
-                    </form></td>
+                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit" role="button">Edit Settings</a></td>
+                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete">Delete Inventory</a></td>
             </tr>
         </table>
 <% if @inventory.items.empty? %>
@@ -27,13 +23,11 @@
                 <td><%= item.category %></td>
                 <td class = "center"><%= item.quantity %></td>
                 <td><%= item.description %></td>
-                <td><a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Edit Item</a> 
-                    <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/delete">Delete Item</a></td>
+                <td><a class="btn btn-light btn-sm" role="button" href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Edit Item</a> 
+                    <a class="btn btn-light btn-sm" role="button" href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/delete">Delete Item</a></td>
             </tr>
         <% end %>
         </table>
         <br>
-            <form method = "GET" action = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">
-                    <button type = "submit" class = "btn btn-light btn-sm">Add Item</button>
-                    </form>
+            <a class="btn btn-light btn-sm" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a>
 <% end %>
