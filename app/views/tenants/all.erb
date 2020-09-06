@@ -1,10 +1,7 @@
-<h1>Tenants</h1>
-<a href = "/tenants/new" class = "btn btn-light btn-sm" role = "button">Create New Tenant</a>
-<br><br>
-<table>
-    <% current_user(session).tenants.each do |tenant| %>
-        <tr>
-            <td><a href = "/tenants/<%= tenant.id %>"><%= tenant.org_name %></a></td>
-        </tr>
+<h3>Tenants</h3>
+<% current_user(session).tenants.each do |tenant| %>
+    <h4><a href = "/tenants/<%= tenant.id %>"><%= tenant.org_name %></a></h4>
+    <p><%= tenant.org_address %><br>
+        <%= tenant.org_city %>, <%= tenant.org_state %> <%= tenant.org_zip %><br></p>
     <% end %>
-</table>
+<a href = "/tenants/new" class = "btn btn-light btn-block med-block" role = "button">Create Tenant</a>
