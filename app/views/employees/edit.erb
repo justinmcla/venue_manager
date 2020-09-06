@@ -1,35 +1,39 @@
-<h1>Edit Employee</h1>
+<h3>Edit Employee</h3>
 <form method = "POST" action = "/employees/<%= @employee.id %>">
-<input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
-<table>
-    <tr>
-        <td><label for = "first_name">First Name:</label></td>
-        <td><input type = "text" id = "first_name" name = "first_name" value = "<%= @employee.first_name %>"></td>
-    </tr>
-    <tr>
-        <td><label for = "last_name">Last Name:</label></td>
-        <td><input type = "text" id = "last_name" name = "last_name" value = "<%= @employee.last_name %>"></td>
-    </tr>
-    <tr>
-        <td><label for = "email">Email:</label></td>
-        <td><input type = "text" id = "email" name = "email" value = "<%= @employee.email %>" pattern = ".+@.+\..+" placeholder = "e.g. mail@mail.com"></td>
-    </tr>
-    <tr>
-        <td><label for = "phone">Phone:</label></td>
-        <td><input type = "text" id = "phone" name = "phone" value = "<%= @employee.phone %>" pattern = "\(?\d\d\d\)?(\s?|-?)\d\d\d-?\d\d\d\d" placeholder = "e.g. 555-555-5555"></td>
-    </tr>
-    <tr>
-        <td><label for = "start_date">Start Date:</label></td>
-        <td><input type = "date" id = "start_date" name = "start_date" value = "<%= @employee.start_date %>" pattern = "\d\d\d\d-\d\d-\d\d" placeholder = "YYYY-MM-DD"></td>
-    </tr>
-    <tr>
-        <td><label for = "end_date">End Date:</label></td>
-        <td><input type = "date" id = "end_date" name = "end_date" value = "<%= @employee.end_date %>" pattern = "\d\d\d\d-\d\d-\d\d" placeholder = "YYYY-MM-DD">
-    </tr>
-    <tr>
-        <td><label for = "rate">Rate of Pay:</label></td>
-        <td>$<input type = "text" id = "rate" name = "rate" value = "<%= @employee.rate %>" pattern = "\d+.\d\d" placeholder = "e.g. 15.00"></td>
-    </tr>
-</table>
-<button type = "submit" id = "submit" class = "btn btn-light btn-sm">Update</button>
+    <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
+    <div class = "form-row">
+        <div class = "form-group col-md-6">
+            <label for = "first_name">First Name</label>
+            <input type = "text" id = "first_name" name = "first_name" class ="form-control" value = "<%= @employee.first_name %>">
+        </div>
+        <div class = "form-group col-md-6">
+            <label for = "last_name">Last Name</label>
+            <input type = "text" id = "last_name" name = "last_name" class = "form-control" value = "<%= @employee.last_name %>">
+        </div>
+    </div>
+    <div class = "form-row">
+        <div class = "form-group col-md-6">
+            <label for = "email">Email</label>
+            <input type = "text" id = "email" name = "email" pattern = ".+@.+\..+" placeholder = "e.g. mail@mail.com" class ="form-control" value = "<%= @employee.email %>">
+        </div>
+        <div class = "form-group col-md-6">
+            <label for = "phone">Phone</label>
+            <input type = "text" id = "phone" name = "phone" pattern = "\(?\d\d\d\)?(\s?|-?)\d\d\d-?\d\d\d\d" placeholder = "e.g. 555-555-5555" class ="form-control" value = "<%= @employee.phone %>">
+        </div>
+    </div>
+    <div class = "form-row">
+        <div class = "form-group col-md-4">
+            <label for = "start_date">Start Date</label>
+            <input type = "date" id = "start_date" name = "start_date" pattern = "\d\d\d\d-\d\d-\d\d" placeholder = "YYYY-MM-DD" class ="form-control" value = "<%= @employee.start_date %>">
+        </div>
+        <div class = "form-group col-md-4">
+            <label for = "end_date">End Date</label>
+            <input type = "date" id = "end_date" name = "end_date" pattern = "\d\d\d\d-\d\d-\d\d" placeholder = "YYYY-MM-DD" class = "form-control" value = "<%= @employee.end_date %>">
+        </div>
+        <div class = "form-group col-md-4">
+            <label for = "rate">Rate of Pay</label>
+            <input type = "text" id = "rate" name = "rate" pattern = "\d+.\d\d" placeholder = "e.g. 15.00" class ="form-control" value = "<%= '%.2f' % @employee.rate %>">
+        </div>
+    </div>
+    <button type = "submit" id = "submit" class = "btn btn-light btn-sm">Update</button>
 </form>
