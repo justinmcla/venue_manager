@@ -130,11 +130,11 @@
     </div>
 
     <br>
-    <h5>Administration</h5>
+    <h4>Administration</h5>
 
     <div class = "row">
         <div class = "col">
-            <p>Status</p>
+            <h5>Status</h5>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="true" name = "contract" id="contract">
                 <label class="form-check-label" for="contract">Contract signed?</label>
@@ -150,7 +150,7 @@
         </div>
         <div class = "col">
             <% if !current_user(session).employees.empty? %>
-                <p>Shift Coverage</p>
+                <h5>Shift Coverage</h5>
                 <% current_user(session).employees.select {|e| e.active == true }.each do |employee| %>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="<%= employee.id %>" name = "employee_list[]" id="<%= employee.id %>">
