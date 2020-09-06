@@ -1,23 +1,19 @@
-<h1>Employees</h1>
-<% if current_user(session).employees.empty? %>
-    <p>You have no employees.</p>
-    <a href = "/employees/new" role="button" class = "btn btn-light btn-sm">Create New Employee</a>
-<% else %>
-    <a href = "/employees/new" role ="button" class = "btn btn-light btn-sm">Create New Employee</a><br><br>
-    <h3>Active Employees</h3>
-    <p>
-    <% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>
-        <% if employee.active == true %>
-                <a href = "/employees/<%= employee.id %>"><%= employee.last_name %>, <%= employee.first_name %></a><br>
-        <% end %>
+<h3>Active Employees</h3>
+<p>
+<%= 'No active employees.' if current_user(session).employees.select { |e| e.active == true }.empty? %>
+<% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>
+    <% if employee.active == true %>
+            <a href = "/employees/<%= employee.id %>"><%= employee.last_name %>, <%= employee.first_name %></a><br>
     <% end %>
-    </p>
-    <h3>Inactive Employees</h3>
-    <p>
-    <% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>
-        <% if employee.active == false %>
-                <a href = "/employees/<%= employee.id %>"><%= employee.last_name %>, <%= employee.first_name %></a><br>
-        <% end %>
-    <% end %>
-    </p>
 <% end %>
+</p>
+<h3>Inactive Employees</h3>
+<p>
+<%= 'No inactive employees.' if current_user(session).employees.select { |e| e.active == false }.empty? %>
+<% current_user(session).employees.sort_by{ |e| e.last_name }.each do |employee| %>
+    <% if employee.active == false %>
+            <a href = "/employees/<%= employee.id %>"><%= employee.last_name %>, <%= employee.first_name %></a><br>
+    <% end %>
+<% end %>
+</p>
+<a href = "/employees/new" role="button" class = "btn btn-light btn-block med-block">Create Employee</a>
