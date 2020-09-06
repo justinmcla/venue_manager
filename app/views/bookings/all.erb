@@ -1,14 +1,10 @@
-<h1>Bookings</h1>
-<a href ="/bookings/new" role ="button" class = "btn btn-light btn-sm">Create New Booking</a>
-<br><br>
+<h3>Bookings</h3>
 <% current_user(session).venues.each do |venue| %>
-<h2><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></h2>
+<h4><a href = "/venues/<%= venue.id %>"><%= venue.name %></a></h4>
     <p><%= 'No current bookings.' if venue.bookings.empty? %></p>
-    <table>
         <% venue.bookings.sort_by {|b| b.date }.each do |booking| %>
-            <tr>
-                <td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td>
-            </tr>
+            <a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a>
         <% end %>
-    </table>
 <% end %>
+<br><br>
+<a href ="/bookings/new" role ="button" class = "btn btn-light btn-block med-block">Create Booking</a>
