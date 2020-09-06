@@ -56,3 +56,7 @@ td .center {
 .form-group {
     text-align: left;
 }
+
+.med-block {
+    max-width: 50%;
+}
