@@ -62,22 +62,22 @@
         <div class = "col-md-4">
             <label for = "food">Catering</label>
             <select id = "food" class = "form-control" name = "food" size = "1">
-                <option value = "false" <%= 'checked' if @booking.food == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.food == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.food == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.food == true %>>Yes</option>
             </select>
         </div>
         <div class = "col-md-4">
             <label for = "alcohol">Alcohol</label>
             <select id = "alcohol" class = "form-control" name = "alcohol" size = "1">
-                <option value = "false" <%= 'checked' if @booking.alcohol == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.alcohol == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.alcohol == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.alcohol == true %>>Yes</option>
             </select>
         </div>
         <div class = "col-md-4">
             <label for = "lighting">Stage Lighting</label>
             <select id = "lighting" class = "form-control" name = "lighting" size = "1">
-                <option value = "false" <%= 'checked' if @booking.lighting == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.lighting == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.lighting == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.lighting == true %>>Yes</option>
             </select>
         </div>
     </div>
@@ -86,22 +86,22 @@
         <div class = "col-md-4">
             <label for = "spotlight">Spotlight</label>
             <select id = "spotlight" class = "form-control" name = "spotlight" size = "1">
-                <option value = "false" <%= 'checked' if @booking.spotlight == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.spotlight == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.spotlight == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.spotlight == true %>>Yes</option>
             </select>
         </div>
         <div class = "col-md-4">
             <label for = "sound">Amplified Sound</label>
             <select id = "sound" class = "form-control" name = "sound" size = "1">
-                <option value = "false" <%= 'checked' if @booking.sound == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.sound == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.sound == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.sound == true %>>Yes</option>
             </select>
         </div>
         <div class = "col-md-4">
             <label for = "microphones">Microphones</label>
             <select id = "microphones" class = "form-control" name = "microphones" size = "1">
-                <option value = "false" <%= 'checked' if @booking.microphones == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.microphones == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.microphones == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.microphones == true %>>Yes</option>
             </select>
         </div>
     </div>
@@ -110,32 +110,32 @@
         <div class = "col-md-4">
             <label for = "curtain">Curtain</label>
             <select id = "curtain" class = "form-control" name = "curtain" size = "1">
-                <option value = "false" <%= 'checked' if @booking.curtain == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.curtain == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.curtain == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.curtain == true %>>Yes</option>
             </select>
         </div>
         <div class = "col-md-4">
             <label for = "street_closure">Street Closure</label>
             <select id = "street_closure" class = "form-control" name = "street_closure" size = "1">
-                <option value = "false" <%= 'checked' if @booking.street_closure == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.street_closure == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.street_closure == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.street_closure == true %>>Yes</option>
             </select>
         </div>
         <div class = "col-md-4">
             <label for = "event_security">Event Security</label>
             <select id = "event_security" class = "form-control" name = "security" size = "1">
-                <option value = "false" <%= 'checked' if @booking.security == false %>>No</option>
-                <option value = "true" <%= 'checked' if @booking.security == true %>>Yes</option>
+                <option value = "false" <%= 'selected' if @booking.security == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.security == true %>>Yes</option>
             </select>
         </div>
     </div>
 
     <br>
-    <h5>Administration</h5>
+    <h4>Administration</h4>
 
     <div class = "row">
         <div class = "col">
-            <p>Status</p>
+            <h5>Status</h5>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="true" name = "contract" id="contract" <%= 'checked' if @booking.contract == true %>>
                 <label class="form-check-label" for="contract">Contract signed?</label>
@@ -151,7 +151,7 @@
         </div>
         <div class = "col">
             <% if !current_user(session).employees.empty? %>
-                <p>Shift Coverage</p>
+                <h5>Shift Coverage</h5>
                 <% current_user(session).employees.select {|e| e.active == true }.each do |employee| %>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="<%= employee.id %>" name = "employee_list[]" id="<%= employee.id %>" <%= 'checked' if @booking.employees.include?(employee) %>>
