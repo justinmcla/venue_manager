@@ -1,22 +1,20 @@
-<h3>Fill out the below fields to create an account with Venue Manager.</h3>
+<h3>Sign Up</h3>
 <form method = "POST" action = '/signup'>
-<table>
-    <tr>
-        <td><label for = "first_name">First Name:</label></td>
-        <td><input type = "text" id = "first_name" name = "first_name" required = "required"></td>
-    </tr>
-    <tr>
-        <td><label for = "last_name">Last Name:</label></td>
-        <td><input type = "text" id = "last_name" name = "last_name" required = "required"></td>
-    </tr>
-    <tr>
-        <td><label for = "username">Username:</label></td>
-        <td><input type = "text" id = "username" name = "username" required = "required"></td>
-    </tr>
-    <tr>
-        <td><label for = "password">Password:</label></td>
-        <td><input type = "password" id = "password" name = "password" required = "required"></td>
-    </tr>
-</table>
-<button type = "submit" id = "submit" class = "btn btn-light btn-sm">Sign Up</button>
+    <div class = "form-group">
+        <label for = "first_name">First Name</label>
+        <input type = "text" id = "first_name" name = "first_name" required = "required">
+    </div>
+    <div>
+        <label for = "last_name">Last Name</label>
+        <input type = "text" id = "last_name" name = "last_name" required = "required">
+    </div>
+    <div class = "form-group">
+        <label for = "username">Username</label>
+        <input type = "text" id = "username" name = "username" required = "required">
+    </div>
+    <div class = "form-group">
+        <label for = "password">Password</label>
+        <input type = "password" id = "password" name = "password" required = "required">
+    </div>
+    <button type = "submit" id = "submit" class = "btn btn-light btn-sm">Sign Up</button>
 </form>
