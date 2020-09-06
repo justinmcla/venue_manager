@@ -10,9 +10,16 @@
 <p><%= @venue.greenrooms > 1 ? 'Greenrooms' : 'Greenroom'%></p>
 <h4><%= @venue.dressing_rooms %></h4>
 <p><%= @venue.dressing_rooms > 1 ? 'Dressing Rooms' : 'Dressing Rooms'%></p>
-
-<a href = "/venues/<%= @venue.id %>/edit" class = "btn btn-light btn-block med-block" role = "button">Edit</a>
-<a href = "/venues/<%= @venue.id %>/delete" class = "btn btn-light btn-block med-block" role ="button">Delete</a>
+<div>
+    <div class ="row">
+        <div class = "col">
+            <a href = "/venues/<%= @venue.id %>/edit" class = "btn btn-light btn-block" role = "button">Edit</a>
+        </div>
+        <div class ="col">
+            <a href = "/venues/<%= @venue.id %>/delete" class = "btn btn-light btn-block" role ="button">Delete</a>
+        </div>
+    </div>
+</div>
 <br>
 <h3>Bookings</h3>
 <p>
