@@ -1,16 +1,11 @@
-<h3><a href = "/venues/<%= @inventory.venue.id %>"><%= @inventory.venue.name %></a></h2>
-<h1><%= @inventory.name %></h1>
+<h4><a href = "/venues/<%= @inventory.venue.id %>"><%= @inventory.venue.name %></a></h4>
+<h3><%= @inventory.name %></h3>
 <p><%= @inventory.description %></p>
-        <table>
-            <tr>
-                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit" role="button">Edit Settings</a></td>
-                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete" role="button">Delete Inventory</a></td>
-            </tr>
-        </table>
-        <br>
+<a class="btn btn-light btn-block med-block" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit" role="button">Edit Settings</a>
+<a class="btn btn-light btn-block med-block" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete" role="button">Delete Inventory</a>
+<br>
 <% if @inventory.items.empty? %>
     <p>No items in inventory. <br><br>
-    <a class="btn btn-light btn-sm" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a></p>
 <% else %>
     <table>
         <tr>
@@ -31,6 +26,5 @@
             </tr>
         <% end %>
         </table>
-        <br>
-            <a class="btn btn-light btn-sm" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a>
 <% end %>
+<a class="btn btn-light btn-block med-block" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a></p>
