@@ -61,3 +61,7 @@ td .center {
     display: block;
     margin: auto;
 }
+
+.form-group {
+    text-align: left;
+}
