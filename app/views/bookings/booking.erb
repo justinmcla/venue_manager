@@ -1,93 +1,53 @@
-<h1>Booking Information</h1>
-<table id = "booking_table">
-    <tr>
-        <td>Tenant:</td>
-        <td><a href = "/tenants/<%= @booking.tenant.id %>"><%= @booking.tenant.org_name %></a></td>
-    </tr>
-    <tr>
-        <td>Event Name:</td>
-        <td><%= @booking.name %></td>
-    </tr>
-    <tr>
-        <td>Venue:</td>
-        <td><a href = "/venues/<%= @booking.venue.id %>"><%= @booking.venue.name %></td>
-    </tr>
-    <tr>
-        <td>Type:</td>
-        <td><%= @booking.event_type %></td>
-    </tr>
-    <tr>
-        <td>Date:</td>
-        <td><%= @booking.date %></td>
-    </tr>
-    <tr>
-        <td>Time:</td>
-        <td><%= @booking.time %></td>
-    </tr>
-    <tr>
-        <td>Description:</td>
-        <td><%= @booking.description %></td>
-    </tr>
-    <tr>
-        <td>Employees:</td>
-        <td><% @booking.employees.each do |employee| %>
-                <a href = "/employees/<%= employee.id %>"><%= employee.first_name + ' ' + employee.last_name %></a><br>
-            <% end %></td>
-    </tr>
-    <tr>
-        <td>Attendance:</td>
-        <td><%= @booking.attendance %></td>
-    </tr>
-    <tr>
-        <td>Food:</td>
-        <td><%= @booking.food ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Alcohol:</td>
-        <td><%= @booking.alcohol ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Stage Lighting:</td>
-        <td><%= @booking.lighting ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Spotlight:</td>
-        <td><%= @booking.spotlight ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Amplified Sound:</td>
-        <td><%= @booking.sound ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Microphones:</td>
-        <td><%= @booking.microphones ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Curtain:</td>
-        <td><%= @booking.curtain ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Street Closure:</td>
-        <td><%= @booking.street_closure ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Event Security:</td>
-        <td><%= @booking.security ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Contract Signed:</td>
-        <td><%= @booking.contract ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Deposit Paid:</td>
-        <td><%= @booking.deposit ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td>Paid in Full:</td>
-        <td><%= @booking.paid ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-        <td class = "center"><a href = "/bookings/<%= @booking.id %>/edit" role = "button" class ="btn btn-light btn-sm">Edit</a></td>
-        <td class = "center"><a href = "/bookings/<%= @booking.id %>/delete" role = "button" class= "btn btn-light btn-sm">Delete</a></td>
-    </tr>
-</table>
+<h3>Booking Information</h3>
+<h4><%= @booking.name %></h4>
+<p><%= @booking.venue.name %><br>
+<%= @booking.date %>, <%= @booking.time %></p>
+
+<h4><a href = "/tenants/<%= @booking.tenant.id %>"><%= @booking.tenant.org_name %></a></h4>
+<p>Tenant</p>
+<h4><%= @booking.event_type %></h4>
+<p>Type</a>
+<h4><%= @booking.attendance %></h4>
+<p>Attendance</a>
+<h4>Notes</h4>
+<p><%=  @booking.description %></p>
+<h4>Tags</h4>
+<ul>
+    <%= '<li>Catering</li>' if @booking.food %>
+    <%= '<li>Alcohol</li>' if @booking.alcohol %>
+    <%= '<li>Stage Lighting</li>' if @booking.lighting %>
+    <%= '<li>Spotlight</li>' if @booking.spotlight %>
+    <%= '<li>Amplified Sound</li>' if @booking.sound %>
+    <%= '<li>Microphones</li>' if @booking.microphones %>
+    <%= '<li>Curtain</li>' if @booking.curtain %>
+    <%= '<li>Street Closure</li>' if @booking.street_closure %>
+    <%= '<li>Event Security</li>' if @booking.security %>
+</ul>
+<div>
+    <div class = "row">
+        <div class = "col">
+            <h4>Status</h4>
+            <ul>
+                <%= '<li>Contract signed</li>' if @booking.contract %>
+                <%= '<li>Deposit paid</li>' if @booking.deposit %>
+                <%= '<li>Paid in full</li>' if @booking.paid %>
+            </ul>
+        </div>
+        <div class = "col">
+            <h4>Shift Coverage</h4>
+            <ul>
+                <% @booking.employees.each do |e| %>
+                    <%= "<li>#{e.first_name + ' ' + e.last_name}</li>" %>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col">
+            <a href = "/bookings/<%= @booking.id %>/edit" role = "button" class ="btn btn-light btn-block">Edit</a>
+        </div>
+        <div class = "col">
+            <a href = "/bookings/<%= @booking.id %>/delete" role = "button" class= "btn btn-light btn-block">Delete</a>
+        </div>
+    </div>
+</div>
