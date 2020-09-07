@@ -5,11 +5,12 @@
                 <tr>
                     <td><%= task.name %> - <%= task.content %></td>
                     <td><a href = "/tasks/<%= task.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
-                    <td><a href = "/tasks/<%= task.id %>/delete" class = "btn btn-light btn-sm" role = "button">Delete</a></td>
+                    <td><a href = "/tasks/<%= task.id %>/delete" class = "btn btn-light btn-sm" role = "button">Complete</a></td>
                 </tr>
             <% end %>
         </table>
-        <a href = "/tasks/new" class = "btn btn-light btn-sm" role = "button">Create New Task</a>
+        <br>
+        <a href = "/tasks/new" class = "btn btn-light btn-block med-block" role = "button">Create Task</a>
         <br><br>
     <h3>Upcoming Bookings</h3>
         <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
@@ -21,7 +22,8 @@
             <% end %>
             </table>
         <% end %>
-            <a href = "/bookings/new" class = "btn btn-light btn-sm" role ="button">Create New Booking</a>
+            <br>
+            <a href = "/bookings/new" class = "btn btn-light btn-block med-block" role ="button">Create Booking</a>
             <br><br>
     <h3>Previous Bookings</h3>
         <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
