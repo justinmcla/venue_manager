@@ -19,10 +19,12 @@ Requires a SESSON_SECRET on your local env. Generate a secure key using sysrando
     $ require 'securerandom'
     $ SecureRandom.hex(64)
 
-Echo this key to your shell rc file
+Echo this key to your shell rc file.
 
     $ echo export SESSION_SECRET=0ca5... >> \.zshrc # or \.bashrc
 
+Restart your terminal and verify the key exists using `env`.
+ 
 To install, clone this repo locally, run
 
     $ rake db:migrate
