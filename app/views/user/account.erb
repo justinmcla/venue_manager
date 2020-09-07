@@ -1,24 +1,22 @@
-<h1>Account Settings</h1>
-<table>
-    <tr>
-        <td>Name:</td>
-        <td><%= current_user(session).first_name + ' ' + current_user(session).last_name %></td>
-    </tr>
-    <tr>
-        <td>Username:</td>
-        <td><%= current_user(session).username%></td>
-    </tr>
-</table>
-<br>
-<form method = "POST" action = "/account">
-<input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
-<p><label for = "change_username">Change Username:</label><input type = "text" id = "change_username" name = "username" required = "required"></p>
-<button type = "submit" id = "submit" class = "btn btn-light btn-sm">Update</button>
+<h3>Account Settings</h3>
+<h4><%= current_user(session).first_name + ' ' + current_user(session).last_name %></h4>
+<p>Name</p>
+<h4><%= current_user(session).username %></h4>
+<p>Username</p>
+<form class = "form-inline" method = "POST" action = "/account">
+    <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
+    <label class = "sr-only" for = "change_username">Change Username</label>
+    <input type = "text" id = "change_username" name = "username" class = "form-control mb-2 mr-sm-2" required = "required" placeholder = "Change Username">
+    <button type = "submit" id = "submit" class = "btn btn-light flex-blk mb-2">Update</button>
 </form>
 <br>
-<table>
-    <tr>
-        <td><a href = "/account/password_change" class = "btn btn-light btn-sm" role = "button">Change Password</a></td>
-        <td><a href = "/account/delete" class = "btn btn-light btn-sm" role = "button">Delete Account</a></td>
-    </tr>
-</table>
+<div>
+    <div class = "row">
+        <div class = "col">
+            <a href = "/account/password_change" class = "btn btn-light btn-block" role = "button">Change Password</a>
+        </div>
+        <div class = "col">
+            <a href = "/account/delete" class = "btn btn-light btn-block" role = "button">Delete Account</a>
+        </div>
+    </div>
+</div>
