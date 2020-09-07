@@ -60,3 +60,7 @@ td .center {
 .med-block {
     max-width: 50%;
 }
+
+.flex-blk {
+    margin: 0;
+}
