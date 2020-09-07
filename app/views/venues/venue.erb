@@ -7,9 +7,9 @@
 <h4><%= @venue.seats %></h4>
 <p>Seats</p>
 <h4><%= @venue.greenrooms %></h4>
-<p><%= @venue.greenrooms > 1 ? 'Greenrooms' : 'Greenroom'%></p>
+<p><%= @venue.greenrooms != 1 ? 'Greenrooms' : 'Greenroom'%></p>
 <h4><%= @venue.dressing_rooms %></h4>
-<p><%= @venue.dressing_rooms > 1 ? 'Dressing Rooms' : 'Dressing Rooms'%></p>
+<p><%= @venue.dressing_rooms != 1 ? 'Dressing Rooms' : 'Dressing Room'%></p>
 <div>
     <div class ="row">
         <div class = "col">
