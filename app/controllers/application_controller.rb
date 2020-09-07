@@ -4,7 +4,7 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
 
     enable :sessions
-    set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
+    set :session_secret, ENV.fetch('SESSION_SECRET')
     set (:cookie_options) do 
         { :expires => Time.now + 3600*24*30 } 
     end
