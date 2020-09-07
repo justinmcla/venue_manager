@@ -1,36 +1,44 @@
-<h3><a href = "/venues/<%= @inventory.venue.id %>"><%= @inventory.venue.name %></a></h2>
-<h1><%= @inventory.name %></h1>
+<h4><a href = "/venues/<%= @inventory.venue.id %>"><%= @inventory.venue.name %></a></h4>
+<h3><%= @inventory.name %></h3>
 <p><%= @inventory.description %></p>
-        <table>
-            <tr>
-                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit" role="button">Edit Settings</a></td>
-                <td><a class="btn btn-light btn-sm" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete" role="button">Delete Inventory</a></td>
-            </tr>
-        </table>
-        <br>
+<div>
+    <div class = "row">
+        <div class = "col">
+            <a class="btn btn-light btn-block" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit" role="button">Edit Settings</a>
+        </div>
+        <div class = "col">
+            <a class="btn btn-light btn-block" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete" role="button">Delete Inventory</a>
+        </div>
+    </div>
+</div>
+<br>
 <% if @inventory.items.empty? %>
     <p>No items in inventory. <br><br>
-    <a class="btn btn-light btn-sm" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a></p>
 <% else %>
-    <table>
-        <tr>
-            <th>Item Name</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Description</th>
-            <th></th>
-        </tr>
-        <% @inventory.items.each do |item| %>
-            <tr>
-                <td><%= item.name %></td>
-                <td><%= item.category %></td>
-                <td class = "center"><%= item.quantity %></td>
-                <td><%= item.description %></td>
-                <td><a class="btn btn-light btn-sm" role="button" href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Edit Item</a> 
-                    <a class="btn btn-light btn-sm" role="button" href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/delete">Delete Item</a></td>
-            </tr>
-        <% end %>
+    <div class = "table-responsive">
+        <table class = "table table-light table-striped">
+            <thead>
+                <tr>
+                    <th scope = "col">Item</th>
+                    <th scope = "col">Quantity</th>
+                    <th scope = "col">Category</th>
+                    <th scope = "col">Description</th>
+                    <th scope = "col">Update</th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @inventory.items.each do |item| %>
+                <tr>
+                    <td><%= item.name %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= item.category %></td>
+                    <td><%= item.description %></td>
+                    <td><a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Edit</a> | 
+                        <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Delete</a></td>
+                </tr>
+            <% end %>
+            </tbody>
         </table>
-        <br>
-            <a class="btn btn-light btn-sm" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a>
+    </div>
 <% end %>
+<a class="btn btn-light btn-block med-block" role = "button" href ="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/new">Add Item</a></p>

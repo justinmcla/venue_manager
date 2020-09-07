@@ -1,7 +1,7 @@
-<h1><a href = "/venues/<%= @venue.id %>"><%= @venue.name %></a></h1>
-<h2>Inventories</h2>
-<a href="/venues/<%= @venue.id %>/inventories/new" role = "button" class = "btn btn-light btn-sm">Create New Inventory</a>
+<h3><a href = "/venues/<%= @venue.id %>"><%= @venue.name %></a></h3>
+<h4>Inventories</h4>
 <% current_user(session).inventories.each do |inventory| %>
-    <h3><a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a></h3>
+    <h5><a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a></h5>
     <p><%= inventory.description %></p>
 <% end %>
+<a href="/venues/<%= @venue.id %>/inventories/new" role = "button" class = "btn btn-light btn-block med-block">Create New Inventory</a>

@@ -1,56 +1,70 @@
-<h1>Create a New Venue</h1>
+<h3>New Venue</h3>
 <form method = "POST" action = "/venues/new">
-<h3>Venue Name</h3>
-<table>
-    <tr>
-        <td><label for = "venue_name">Venue Name:</label></td>
-        <td><input type = "text" id = "venue_name" name = "name" required = "required"></td>
-    </tr>
-</table>
-<h3>Address</h3>
-<table>
-    <tr>
-        <td><label for = "address_line_1">Address Line 1:</label></td>
-        <td><input type = "text" id = "address_line_1" name = "address1"></td>
-    </tr>
-    <tr>
-        <td><label for = "address_line_2">Address Line 2:</label></td>
-        <td><input type = "text" id = "address_line_2" name = "address2"></td>
-    </tr>
-    <tr>
-        <td><label for = "city">City:</label></td>
-        <td><input type = "text" id = "city" name = "city"></td>
-    </tr>
-    <tr>
-        <td><label for = "state">State:</label></td>
-        <td><input type = "text" id = "state" name = "state" pattern = "\b[A-Z][A-Z]\b" placeholder = "e.g. DC, TX, NY"></td>
-    </tr>
-    <tr>
-        <td><label for = "zip_code">Zip Code:</label></td>
-        <td><input type = "text" id = "zip_code" name = "zip" pattern = "\d\d\d\d\d(-\d\d\d\d)?" placeholder = "e.g. 00000 or 00000-0000"></td>
-    </tr>
-</table>
-<h3>Stage Information</h3>
-<table>
-    <tr>
-        <td><label for = "configuration">Configuration:</label></td>
-        <td><input type = "text" id = "configuration" name = "stage_type" required = "required"></td>
-    </tr>
-    <tr>
-        <td><label for = "seat_count">Seat Count:</label></td>
-        <td><input type = "number" id = "seat_count" name = "seats" required = "required"></td>
-    </tr>
-</table>
-<h3>Room Count</h3>
-<table>
-    <tr>
-        <td><label for = "greenrooms">Greenrooms:</label></td>
-        <td><input type = "number" id = "greenrooms" name = "greenrooms"></td>
-    </tr>
-    <tr>
-        <td><label for = "dressing_rooms">Dressing Rooms:</label></td>
-        <td><input type = "number" id = "dressing_rooms" name = "dressing_rooms"></td>
-    </tr>
-</table>
-<button type = "submit" id = "submit" class = "btn btn-light btn-sm">Create</button>
+    <div class = "form-group">
+        <label for = "venue_name">Venue Name</label>
+        <input type = "text" class = "form-control" id = "venue_name" name = "name" required = "required">
+    </div>
+    <div class = "form-group">
+        <label for = "address_line_1">Address Line 1</label>
+        <input type = "text" class = "form-control" id = "address_line_1" name = "address1">
+    </div>
+    <div class = "form-group">
+        <label for = "address_line_2">Address Line 2</label>
+        <input type = "text" class = "form-control" id = "address_line_2" name = "address2">
+    </div>
+    <div class = "form-row">
+        <div class = "form-group col-md-6">
+            <label for = "city">City</label>
+            <input type = "text" class = "form-control" id = "city" name = "city">
+        </div>
+        <div class = "form-group col-md-4">
+            <label for = "state">State</label>
+            <select id="state" class = "form-control" name = "state">
+                <% @states = ['AL', 'AK', 'AR', 'AZ', 'CA', 'CO', 'CT', 
+                            'DC', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 
+                            'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD',
+                            'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC',
+                            'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'ND',
+                            'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD',
+                            'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WI',
+                            'WV', 'WY'] %>
+                <% @states.each do |st_iso| %>
+                    <option value="<%= st_iso %>"><%= st_iso %></option>
+                <% end %>
+            </select>
+        </div>
+        <div class = "form-group col-md-2">
+            <label for = "zip_code">Zip</label>
+            <input type = "text" class = "form-control" id = "zip_code" name = "zip" pattern = "\d\d\d\d\d(-\d\d\d\d)?">
+        </div>
+    </div>
+    <div class = "form-row">
+        <div class = "form-group col-md-6">
+            <label for = "configuration">Configuration</label>
+            <select class = "form-control" id = "configuration" name = "stage_type" required = "required">
+                <option value = "Proscenium">Proscenium</option>
+                <option value = "Arena">Arena</option>
+                <option value = "Thrust">Thrust</option>
+                <option value = "Studio">Studio</option>
+                <option value = "Blackbox">Blackbox</option>
+                <option value = "Flexible">Flexible</option>
+                <option value = "Outdoor">Outdoor</option>
+            </select>
+        </div>
+        <div class = "form-group col-md-6">
+            <label for = "seat_count">Seat Count</label>
+            <input type = "number" class = "form-control" id = "seat_count" name = "seats" required = "required">
+        </div>
+    </div>
+    <div class = "form-row">
+        <div class = "form-group col-md-6">
+            <label for = "greenrooms">Greenrooms</label>
+            <input type = "number" class = "form-control" id = "greenrooms" name = "greenrooms">
+        </div>
+        <div class = "form-group col-md-6">
+            <label for = "dressing_rooms">Dressing Rooms</label>
+            <input type = "number" class = "form-control" id = "dressing_rooms" name = "dressing_rooms">
+        </div>
+    </div>
+    <button type = "submit" id = "submit" class = "btn btn-light btn-sm">Create</button>
 </form>

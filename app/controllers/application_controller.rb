@@ -5,7 +5,10 @@ class ApplicationController < Sinatra::Base
 
     enable :sessions
     set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
-
+    set (:cookie_options) do 
+        { :expires => Time.now + 3600*24*30 } 
+    end
+    
     configure do
         set :views, 'app/views'
         set :public_dir, 'public'

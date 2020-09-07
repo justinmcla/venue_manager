@@ -1,38 +1,29 @@
-<h1>Employee Information</h1>
-<table id = "employee_table">
-    <tr>
-        <td>Name:</td>
-        <td><%= @employee.first_name %> <%= @employee.last_name %></td>
-    </tr>
-    <tr>
-        <td>Email:</td>
-        <td><%= @employee.email %></td>
-    </tr>
-    <tr>
-        <td>Phone:</td>
-        <td><%= @employee.phone %></td>
-    </tr>
-    <tr>
-        <td>Start Date:</td>
-        <td><%= @employee.start_date %></td>
-    </tr>
-    <% if @employee.active == false %>
-    <tr>
-        <td>End Date:</td>
-        <td><%= @employee.end_date %></td>
-    </tr>
-    <% end %>
-    <tr>
-        <td>Rate of Pay:</td>
-        <td>$<%= '%.2f' % @employee.rate %></td>
-    </tr>
-    </table>
-    <table>
-    <tr>
-        <td class = "center"><a href = "/employees/<%= @employee.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
-        <td class = "center"><a href = "/employees/<%= @employee.id %>/delete" class = "btn btn-light btn-sm" role = "button">Delete</a></td>
-    </tr>
-    </table>
+<h3>Employee Information</h3>
+<h4><%= @employee.first_name + ' ' + @employee.last_name %></h4>
+<p>Name</p>
+<h4><%= @employee.email %></h4>
+<p>Email</p>
+<h4><%= @employee.phone %></h4>
+<p>Phone</p>
+<h4><%= @employee.start_date %></h4>
+<p>Start Date</p>
+<% if @employee.active == false %>
+    <h4><%= @employee.end_date %></h4>
+    <p>End Date</p>
+<% end %>
+<h4>$<%= '%.2f' % @employee.rate %></h4>
+<p>Rate of Pay</p>
+<div>
+    <div class = "row">
+        <div class = "col">
+            <a href = "/employees/<%= @employee.id %>/edit" class = "btn btn-light btn-block" role = "button">Edit</a>
+        </div>
+        <div class = "col">
+            <a href = "/employees/<%= @employee.id %>/delete" class = "btn btn-light btn-block" role = "button">Delete</a>
+        </div>
+    </div>
+</div>
+<br>
 <h3>Shift History</h3>
 <p>
 <% @employee.bookings.each do |booking| %>

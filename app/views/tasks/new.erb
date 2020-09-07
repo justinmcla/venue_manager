@@ -1,14 +1,12 @@
-<h1>Create New Task</h1>
+<h3>New Task</h3>
 <form method = "POST" action = "/tasks/new">
-<table>
-    <tr>
-        <td><label for = "name">Name:</label></td>
-        <td><input type = "text" id = "name" name = "name"></td>
-    </tr>
-    <tr>
-        <td><label for = "content">Notes:</label></td>
-        <td><textarea id = "content" name = "content"></textarea></td>
-    </tr>
-</table>
-<button type = "submit" id = "submit" class = "btn btn-light btn-sm">Create</button>
+    <div class ="form-group">
+        <label for = "name">Name</label>
+        <input type = "text" id = "name" name = "name" class = "form-control">
+    </div>
+    <div class ="form-group">
+        <label for = "content">Notes</label>
+        <textarea id = "content" name = "content" class = "form-control"></textarea>
+    </div>
+    <button type = "submit" id = "submit" class = "btn btn-light btn-sm">Create</button>
 </form>

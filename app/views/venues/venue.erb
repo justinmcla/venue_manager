@@ -1,29 +1,40 @@
-<h1><%= @venue.name %></h1>
+<h3><%= @venue.name %></h3>
 <p><%= @venue.address1 %><br>
 <%= @venue.address2 %><br>
 <%= @venue.city %>, <%= @venue.state %> <%= @venue.zip %></p>
-<p>Configuration: <%= @venue.stage_type %><br>
-Seats: <%= @venue.seats %></p>
-<p>Greenrooms: <%= @venue.greenrooms %><br>
-Dressing Rooms: <%= @venue.dressing_rooms %></p>
-<table>
-    <tr>
-        <td><a href = "/venues/<%= @venue.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
-        <td><a href = "/venues/<%= @venue.id %>/delete" class = "btn btn-light btn-sm" role ="button">Delete</a></td>
-    </tr>
-</table>
+<h4><%= @venue.stage_type %></h4>
+<p>Configuration</p>
+<h4><%= @venue.seats %></h4>
+<p>Seats</p>
+<h4><%= @venue.greenrooms %></h4>
+<p><%= @venue.greenrooms > 1 ? 'Greenrooms' : 'Greenroom'%></p>
+<h4><%= @venue.dressing_rooms %></h4>
+<p><%= @venue.dressing_rooms > 1 ? 'Dressing Rooms' : 'Dressing Rooms'%></p>
+<div>
+    <div class ="row">
+        <div class = "col">
+            <a href = "/venues/<%= @venue.id %>/edit" class = "btn btn-light btn-block" role = "button">Edit</a>
+        </div>
+        <div class ="col">
+            <a href = "/venues/<%= @venue.id %>/delete" class = "btn btn-light btn-block" role ="button">Delete</a>
+        </div>
+    </div>
+</div>
 <br>
-<h2>Bookings</h2>
+<h3>Bookings</h3>
 <p>
+<%= 'No upcoming bookings.' if @venue.bookings.select{ |b| b.date > Date.today }.empty? %>
 <% @venue.bookings.sort_by { |b| b.date }.each do |booking| %>
     <a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a><br>
 <% end %>
 </p>
-<a href = "/bookings/new" class = "btn btn-light btn-sm" role = "button">Create New Booking</a><br>
-<h2>Inventories</h2>
+<a href = "/bookings/new" class = "btn btn-light btn-block med-block" role = "button">Create Booking</a>
+<br>
+<h3>Inventories</h3>
 <p>
+<%= 'No inventories.' if @venue.inventories.empty? %>
 <% @venue.inventories.each do |inventory| %>
     <a href = "/venues/<%= @venue.id %>/inventories/<%= inventory.id %>"><%= inventory.name %></a><br>
 <% end %>
 </p>
-<a href = "/venues/<%= @venue.id %>/inventories/new" class = "btn btn-light btn-sm" role ="button">Create New Inventory</a>
+<a href = "/venues/<%= @venue.id %>/inventories/new" class = "btn btn-light btn-block med-block" role ="button">Create Inventory</a>

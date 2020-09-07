@@ -1,121 +1,165 @@
-<h1>Edit Booking</h1>
+<h3>Edit Booking</h3>
 <form method = "POST" action = "/bookings/<%=@booking.id%>">
-<input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
-<table>
-    <tr>
-        <td><label for = "tenants">Tenant:</label></td>
-        <td><select id="tenants" name="tenant_id" size="1">
-            <% current_user(session).tenants.sort_by { |t| t.org_name }.each do |tenant| %>
-                <option value = "<%= tenant.id%>" <%= 'selected' if @booking.tenant == tenant %> ><%= tenant.org_name %></option>
-            <% end %>
-            <option value = "0">Create New</option>
-            </select></td>
-    </tr>
-    <tr>
-        <td><label for = "new_tenant">New Tenant Name:</label></td>
-        <td><input type = "text" id = "new_tenant" name = "new_tenant"></td>
-    </tr>
-    <tr>
-        <td><label for = "venue_id">Venue:</label></td>
-        <td><% current_user(session).venues.each do |venue|%>
-                <input type = "radio" id = "venue_id" name = "venue_id" value = "<%= venue.id%>"  <%= 'checked' if @booking.venue == venue %>> <%= venue.name %><br>
-            <% end %></td>
-    </tr>
-    <tr>
-        <td><label for = "name">Event Name:</label></td>
-        <td><input type = "text" id = "name" name = "name" value = "<%= @booking.name %>" required = "required"></td>
-    </tr>
-    <tr>
-        <td><label for = "event_type">Event Type:</label></td>
-        <td><input type = "radio" id = "event_type" name = "event_type" value = "Performance" <%= 'checked' if @booking.event_type == 'Performance'%>> Performance<br>
-            <input type = "radio" id = "event_type" name = "event_type" value = "Lecture/Workshop" <%= 'checked' if @booking.event_type == 'Lecture/Workshop'%>> Lecture/Workshop<br>
-            <input type = "radio" id = "event_type" name = "event_type" value = "Concert" <%= 'checked' if @booking.event_type == 'Concert'%>> Concert<br>
-            <input type = "radio" id = "event_type" name = "event_type" value = "Reception/Fundraiser" <%= 'checked' if @booking.event_type == 'Reception/Fundraiser'%>> Reception/Fundraiser<br>
-            <input type = "radio" id = "event_type" name = "event_type" value = "Other" <%= 'checked' if @booking.event_type == 'Other'%>> Other (describe below)<br></td>
-    </tr>
-    <tr>
-        <td><label for = "date">Date:</label></td>
-        <td><input type = "date" id = "date" name = "date" value = "<%= @booking.date %>" required = "required" placeholder = "YYYY-MM-DD" pattern = "\d\d\d\d-\d\d-\d\d"></td>
-    </tr>
-    <tr>
-        <td><label for = "time">Time:</label></td>
-        <td><input type = "time" id = "time" name = "time" value = "<%= @booking.time %>" required = "required" placeholder = "HH:MM:SS (24hr)" pattern = "\d\d:\d\d:\d\d"></td>
-    </tr>
-    <tr>
-        <td><label for = "description">Description:</label></td>
-        <td><textarea id = "description" name = "description"></textarea></td>
-    </tr>
-    <% if !current_user(session).employees.empty? %>
-    <tr>
-        <td<label for = "employee">Employees:</label></td>
-        <td><% current_user(session).employees.all.each do |employee| %>
-                <% if employee.active == true %>
-                    <input type = "checkbox" id = "employee" name = "employee_list[]" value = "<%= employee.id %>" <%= 'checked' if @booking.employees.include?(employee)%> > <%= employee.first_name + ' ' + employee.last_name %><br>
+    <input type = "hidden" id = "hidden" name = "_method" value = "PATCH">
+    <div class = "form-row">
+        <div class = "form-group col-md-6">
+            <label for = "tenants">Tenant</label>
+            <select id="tenants" name="tenant_id" class = "form-control" size="1">
+                <% current_user(session).tenants.sort_by { |t| t.org_name }.each do |tenant| %>
+                    <option value = "<%= tenant.id%>" <%= 'selected' if @booking.tenant == tenant %>><%= tenant.org_name %></option>
                 <% end %>
-            <% end %></td>
-    </tr>
-    <% end %>
-    <tr>
-        <td><label for = "attendance">Attendance:</label></td>
-        <td><input type = "number" id = "attendance" name = "attendance" value = "<%= @booking.attendance %>"></td>
-    </tr>
-    <tr>
-        <td><label for = "food">Catering:</label></td>
-        <td><input type = "radio" id = "food" name = "food" value = "true" <%= 'checked' if @booking.food == true %>>Yes<br>
-            <input type = "radio" id = "food" name = "food" value = "false" <%= 'checked' if @booking.food == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "alcohol">Alcohol:</label></td>
-        <td><input type = "radio" id = "alcohol" name = "alcohol" value = "true" <%= 'checked' if @booking.alcohol == true %>>Yes<br>
-            <input type = "radio" id = "alcohol" name = "alcohol" value = "false" <%= 'checked' if @booking.alcohol == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "lighting">Stage Lighting:</label></td>
-        <td><input type = "radio" id = "lighting" name = "lighting" value = "true" <%= 'checked' if @booking.lighting == true %>>Yes<br>
-            <input type = "radio" id = "lighting" name = "lighting" value = "false" <%= 'checked' if @booking.lighting == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "spotlight">Spotlight:</label></td>
-        <td><input type = "radio" id = "spotlight" name = "spotlight" value = "true" <%= 'checked' if @booking.spotlight == true %>>Yes<br>
-            <input type = "radio" id = "spotlight" name = "spotlight" value = "false" <%= 'checked' if @booking.spotlight == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "sound">Amplified Sound:</label></td>
-        <td><input type = "radio" id = "sound" name = "sound" value = "true" <%= 'checked' if @booking.sound == true %>>Yes<br>
-            <input type = "radio" id = "sound" name = "sound" value = "false" <%= 'checked' if @booking.sound == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "microphones">Microphones:</label></td>
-        <td><input type = "radio" id = "microphones" name = "microphones" value = "true" <%= 'checked' if @booking.microphones == true %>>Yes<br>
-            <input type = "radio" id = "microphones" name = "microphones" value = "false" <%= 'checked' if @booking.microphones == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "curtain">Curtain:</label></td>
-        <td><input type = "radio" id = "curtain" name = "curtain" value = "true" <%= 'checked' if @booking.curtain == true %>>Yes<br>
-            <input type = "radio" id = "curtain" name = "curtain" value = "false" <%= 'checked' if @booking.curtain == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "street_closure">Street Closure:</label></td>
-        <td><input type = "radio" id = "street_closure" name = "street_closure" value = "true" <%= 'checked' if @booking.street_closure == true %>>Yes<br>
-            <input type = "radio" id = "street_closure" name = "street_closure" value = "false" <%= 'checked' if @booking.street_closure == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "security">Event Security:</label></td>
-        <td><input type = "radio" id = "security" name = "security" value = "true" <%= 'checked' if @booking.security == true %>>Yes<br>
-            <input type = "radio" id = "security" name = "security" value = "false" <%= 'checked' if @booking.security == false %>>No<br></td>
-    </tr>
-    <tr>
-        <td><label for = "contract">Contract Signed?</label></td>
-        <td><input type = "checkbox" id = "contract" name = "contract" value = "true" <%= 'checked' if @booking.contract == true %>></td>
-    </tr>
-    <tr>
-        <td><label for = "deposit">Deposit Paid?</label></td>
-        <td><input type = "checkbox" id = "deposit" name = "deposit" value = "true" <%= 'checked' if @booking.deposit == true %>></td>
-    </tr>
-    <tr>
-        <td><label for = "paid">Paid in Full?</label></td>
-        <td><input type = "checkbox" id = "paid" name = "paid" value = "true" <%= 'checked' if @booking.paid == true %>></td>
-    </tr>
-</table>
-<button type = "submit"  class = "btn btn-light btn-sm" id = "submit">Update</button>
+            <option value = "0">Create New</option>
+            </select>
+        </div>
+        <div class = "form-group col-md-6">
+            <label for = "new_tenant">New Tenant</label>
+            <input type = "text" id = "new_tenant" class = "form-control" name = "new_tenant">
+        </div>
+    </div>
+    <div class = "form-group">
+        <label for = "name">Event Name</label>
+        <input type = "text" id = "name" class = "form-control" name = "name" required = "required" value = "<%= @booking.name %>">
+    </div>
+    <div class = "form-row">
+        <div class = "form-group col-md-4">
+            <label for = "venue_id">Venue</label>
+            <select id = "venue_id" class = "form-control" name = "venue_id" size = "1">
+                <% current_user(session).venues.each do |venue|%>
+                    <option value = "<%= venue.id%>" <%= 'selected' if @booking.venue == venue %>><%= venue.name %></option>
+                <% end %>
+            </select>
+        </div>
+        <div class = "form-group col-md-4">
+            <label for = "event_type">Event Type</label>
+            <select id = "event_type" class = "form-control" name = "event_type" size = "1">
+                <option value = "Performance" <%= 'selected' if @booking.event_type == 'Performance' %>>Performance</option>
+                <option value = "Lecture/Workshop" <%= 'selected' if @booking.event_type == 'Lecture/Workshop' %>>Lecture/Workshop</option>
+                <option value = "Concert" <%= 'selected' if @booking.event_type == 'Concert' %>>Concert</option>
+                <option value = "Reception/Fundraiser" <%= 'selected' if @booking.event_type == 'Reception/Fundraiser' %>>Reception/Fundraiser</option>
+                <option value = "Other" <%= 'selected' if @booking.event_type == 'Other' %>>Other (describe below)</option>
+            </select>
+        </div>
+        <div class = "form-group col-md-4">
+            <label for = "attendance">Attendance</label>
+            <input type = "number" id = "attendance" class = "form-control" name = "attendance" value = "<%= @booking.attendance %>">
+        </div>
+    </div>
+    <div class = "form-row">
+        <div class = "form-group col-md-6">
+            <label for = "date">Date</label>
+            <input type = "date" id = "date" class = "form-control" name = "date" required = "required" placeholder = "YYYY-MM-DD" pattern = "\d\d\d\d-\d\d-\d\d" value = "<%= @booking.date %>">
+        </div>
+        <div class = "form-group col-md-6">
+            <label for = "time">Time</label>
+            <input type = "time" id = "time" class = "form-control" name = "time" required = "required" placeholder = "HH:MM:SS (24 hr)" pattern = "\d\d:\d\d:\d\d" value = "<%= @booking.time %>">
+        </div>
+    </div>
+    <div class = "form-group">
+        <label for = "description">Description</label>
+        <textarea id = "description" class = "form-control" name = "description"><%= @booking.description %></textarea>
+    </div>
+    <div class = "form-row">
+        <div class = "col-md-4">
+            <label for = "food">Catering</label>
+            <select id = "food" class = "form-control" name = "food" size = "1">
+                <option value = "false" <%= 'selected' if @booking.food == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.food == true %>>Yes</option>
+            </select>
+        </div>
+        <div class = "col-md-4">
+            <label for = "alcohol">Alcohol</label>
+            <select id = "alcohol" class = "form-control" name = "alcohol" size = "1">
+                <option value = "false" <%= 'selected' if @booking.alcohol == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.alcohol == true %>>Yes</option>
+            </select>
+        </div>
+        <div class = "col-md-4">
+            <label for = "lighting">Stage Lighting</label>
+            <select id = "lighting" class = "form-control" name = "lighting" size = "1">
+                <option value = "false" <%= 'selected' if @booking.lighting == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.lighting == true %>>Yes</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class = "form-row">
+        <div class = "col-md-4">
+            <label for = "spotlight">Spotlight</label>
+            <select id = "spotlight" class = "form-control" name = "spotlight" size = "1">
+                <option value = "false" <%= 'selected' if @booking.spotlight == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.spotlight == true %>>Yes</option>
+            </select>
+        </div>
+        <div class = "col-md-4">
+            <label for = "sound">Amplified Sound</label>
+            <select id = "sound" class = "form-control" name = "sound" size = "1">
+                <option value = "false" <%= 'selected' if @booking.sound == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.sound == true %>>Yes</option>
+            </select>
+        </div>
+        <div class = "col-md-4">
+            <label for = "microphones">Microphones</label>
+            <select id = "microphones" class = "form-control" name = "microphones" size = "1">
+                <option value = "false" <%= 'selected' if @booking.microphones == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.microphones == true %>>Yes</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class = "form-row">
+        <div class = "col-md-4">
+            <label for = "curtain">Curtain</label>
+            <select id = "curtain" class = "form-control" name = "curtain" size = "1">
+                <option value = "false" <%= 'selected' if @booking.curtain == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.curtain == true %>>Yes</option>
+            </select>
+        </div>
+        <div class = "col-md-4">
+            <label for = "street_closure">Street Closure</label>
+            <select id = "street_closure" class = "form-control" name = "street_closure" size = "1">
+                <option value = "false" <%= 'selected' if @booking.street_closure == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.street_closure == true %>>Yes</option>
+            </select>
+        </div>
+        <div class = "col-md-4">
+            <label for = "event_security">Event Security</label>
+            <select id = "event_security" class = "form-control" name = "security" size = "1">
+                <option value = "false" <%= 'selected' if @booking.security == false %>>No</option>
+                <option value = "true" <%= 'selected' if @booking.security == true %>>Yes</option>
+            </select>
+        </div>
+    </div>
+
+    <br>
+    <h4>Administration</h4>
+
+    <div class = "row">
+        <div class = "col">
+            <h5>Status</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" name = "contract" id="contract" <%= 'checked' if @booking.contract == true %>>
+                <label class="form-check-label" for="contract">Contract signed?</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" name = "deposit" id="deposit" <%= 'checked' if @booking.deposit == true %>>
+                <label class="form-check-label" for="deposit">Deposit paid?</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="true" name = "paid" id="paid" <%= 'checked' if @booking.paid == true %>>
+                <label class="form-check-label" for="paid">Paid in full?</label>
+            </div>
+        </div>
+        <div class = "col">
+            <% if !current_user(session).employees.empty? %>
+                <h5>Shift Coverage</h5>
+                <% current_user(session).employees.select {|e| e.active == true }.each do |employee| %>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="<%= employee.id %>" name = "employee_list[]" id="<%= employee.id %>" <%= 'checked' if @booking.employees.include?(employee) %>>
+                        <label class="form-check-label" for="<%= employee.id %>"><%= employee.first_name + ' ' + employee.last_name %></label>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+    <button type = "submit" id = "submit"  class = "btn btn-light btn-sm">Update</button>
 </form>

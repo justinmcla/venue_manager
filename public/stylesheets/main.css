@@ -3,10 +3,6 @@ body {
     font-family: Roboto, sans-serif;
 }
 
-nav {
-    text-align: center;
-}
-
 nav, h1, h2, h3 {
     font-family: Raleway, sans-serif;
 }
@@ -29,11 +25,6 @@ nav a:link, a:visited, a:hover, a:active {
 
 .navbar-light .navbar-nav .nav-link {
     color: #b2c4d4;
-}
-
-.wrapper {
-    text-align: center;
-    justify-content: center;
 }
 
 .container {
@@ -60,4 +51,16 @@ td .center {
 .btn-light {
     display: block;
     margin: auto;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.med-block {
+    max-width: 50%;
+}
+
+.flex-blk {
+    margin: 0;
 }

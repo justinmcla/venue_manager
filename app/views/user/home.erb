@@ -1,41 +1,42 @@
-<h1>Welcome, <%= current_user(session).first_name %>!</h1>
-    <% if !current_user(session).venues.empty? %>
-        <h3>Tasks</h3>
+<% if !current_user(session).venues.empty? %>
+    <h3>Tasks</h3>
+        <table>
+            <% current_user(session).tasks.each do |task| %>
+                <tr>
+                    <td><%= task.name %> - <%= task.content %></td>
+                    <td><a href = "/tasks/<%= task.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
+                    <td><a href = "/tasks/<%= task.id %>/delete" class = "btn btn-light btn-sm" role = "button">Complete</a></td>
+                </tr>
+            <% end %>
+        </table>
+        <br>
+        <a href = "/tasks/new" class = "btn btn-light btn-block med-block" role = "button">Create Task</a>
+        <br><br>
+    <h3>Upcoming Bookings</h3>
+        <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
+            <p>No upcoming bookings.</p>
+        <% else %>
             <table>
-                <% current_user(session).tasks.each do |task| %>
-                    <tr>
-                        <td><%= task.name %> - <%= task.content %></td>
-                        <td><a href = "/tasks/<%= task.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
-                        <td><a href = "/tasks/<%= task.id %>/delete" class = "btn btn-light btn-sm" role = "button">Delete</a></td>
-                    </tr>
-                <% end %>
+            <% current_user(session).bookings.select { |b| b.date > Date.today}.sort_by { |b| b.date }.each do |booking| %>
+                    <tr><td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td></tr>
+            <% end %>
             </table>
-            <a href = "/tasks/new" class = "btn btn-light btn-sm" role = "button">Create New Task</a>
+        <% end %>
+            <br>
+            <a href = "/bookings/new" class = "btn btn-light btn-block med-block" role ="button">Create Booking</a>
             <br><br>
-        <h3>Upcoming Bookings</h3>
-            <% if current_user(session).bookings.select { |b| b.date > Date.today}.empty? %>
-                <p>No upcoming bookings.</p>
-            <% else %>
-                <table>
-                <% current_user(session).bookings.select { |b| b.date > Date.today}.sort_by { |b| b.date }.each do |booking| %>
-                        <tr><td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td></tr>
-                <% end %>
-                </table>
+    <h3>Previous Bookings</h3>
+        <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
+            <p>No previous bookings.</p>
+        <% else %>
+            <table>
+            <% current_user(session).bookings.select { |b| b.date < Date.today}.sort_by { |b| b.date }.each do |booking| %>
+                    <tr><td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td></tr>
             <% end %>
-                <a href = "/bookings/new" class = "btn btn-light btn-sm" role ="button">Create New Booking</a>
-                <br><br>
-        <h3>Previous Bookings</h3>
-            <% if current_user(session).bookings.select { |b| b.date < Date.today }.empty? %>
-                <p>No previous bookings.</p>
-            <% else %>
-                <table>
-                <% current_user(session).bookings.select { |b| b.date < Date.today}.sort_by { |b| b.date }.each do |booking| %>
-                        <tr><td><a href = "/bookings/<%= booking.id %>"><%= booking.date %> - <%= booking.tenant.org_name %></a></td></tr>
-                <% end %>
-                </table>
-            <% end %>
-    <% else %>
-        <h3>Get Started!</h3>
-        <p>Create your first venue by clicking below.</p>
-        <a href = "/venues/new" class = "btn btn-light btn-sm" role = "button">Create New Venue</a>
-    <% end %>
+            </table>
+        <% end %>
+<% else %>
+    <h3>Get Started!</h3>
+    <p>Create your first venue by clicking below.</p>
+    <a href = "/venues/new" class = "btn btn-light btn-sm" role = "button">Create New Venue</a>
+<% end %>

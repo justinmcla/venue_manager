@@ -1,29 +1,25 @@
-<h1>Tenant Information</h1>
 <h3><%= @tenant.org_name %></h3>
 <p><%= @tenant.org_address %><br>
-<%= @tenant.org_city %>, <%= @tenant.org_state %> <%= @tenant.org_zip %><br><br>
-Type: <%= @tenant.org_type %></p>
-<table>
-    <tr>
-        <td>POC:</td>
-        <td><%= @tenant.poc_name %></td>
-    </tr>
-    <tr>
-        <td>Phone:</td>
-        <td><%= @tenant.poc_phone %></td>
-    </tr>
-    <tr>
-        <td>Email:</td>
-        <td><%= @tenant.poc_email %></td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td><a href = "/tenants/<%= @tenant.id %>/edit" class = "btn btn-light btn-sm" role = "button"></td>
-        <td><a href = "/tenants/<%= @tenant.id %>/delete" class ="btn btn-light btn-sm" role = "button"></td>
-    </tr>
-</table>
-
+<%= @tenant.org_city %>, <%= @tenant.org_state %> <%= @tenant.org_zip %></p>
+<h4><%= @tenant.org_type.capitalize %></h4>
+<p>Type</p>
+<h4><%= @tenant.poc_name %></h4>
+<p>Point of Contact</p>
+<h4><%= @tenant.poc_email %></h4>
+<p>Email</p>
+<h4><%= @tenant.poc_phone %></h4>
+<p>Phone</p>
+<div>
+    <div class ="row">
+        <div class = "col">
+            <a href = "/tenants/<%= @tenant.id %>/edit" class = "btn btn-light btn-block" role = "button">Edit</a>
+        </div>
+        <div class ="col">
+            <a href = "/tenants/<%= @tenant.id %>/delete" class = "btn btn-light btn-block" role ="button">Delete</a>
+        </div>
+    </div>
+</div>
+<br>
 <h3>Upcoming Bookings</h3>
     <% if @tenant.bookings.select { |b| b.date > Date.today }.empty? %>
         <p>No upcoming bookings.</p>
@@ -34,6 +30,7 @@ Type: <%= @tenant.org_type %></p>
         <% end %>
         </table>
     <% end %>
+<br>
 <h3>Previous Bookings</h3>
     <% if @tenant.bookings.select { |b| b.date < Date.today }.empty? %>
         <p>No previous bookings.</p>
@@ -45,4 +42,4 @@ Type: <%= @tenant.org_type %></p>
         </table>
     <% end%>
 
-<a href = "/bookings/new" class = "btn btn-light btn-sm" role = "button">Create New Booking</a>
+<a href = "/bookings/new" class = "btn btn-light btn-block med-block" role = "button">Create Booking</a>
