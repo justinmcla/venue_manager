@@ -4,6 +4,10 @@ development:
   database: db/venue.sqlite3
   pool: 5
 
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+
 production:
   adapter: postgresql
   encoding: unicode
