@@ -5,7 +5,10 @@
                 <tr>
                     <td><%= task.name %> - <%= task.content %></td>
                     <td><a href = "/tasks/<%= task.id %>/edit" class = "btn btn-light btn-sm" role = "button">Edit</a></td>
-                    <td><a href = "/tasks/<%= task.id %>/delete" class = "btn btn-light btn-sm" role = "button">Complete</a></td>
+                    <td><form method = "POST" action = "/tasks/<%= task.id %>">
+                        <input type = "hidden" id = "hidden" name = "_method" value = "DELETE">
+                        <input type = "submit" class = "btn btn-light btn-sm" value = "Complete">
+                        </form></td>
                 </tr>
             <% end %>
         </table>

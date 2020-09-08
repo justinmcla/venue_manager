@@ -64,3 +64,14 @@ td .center {
 .flex-blk {
     margin: 0;
 }
+
+.link-button {
+    background: none;
+    border: none;
+    color: #31526e;
+    cursor: pointer;
+}
+
+.link-button:hover {
+   color: #244b9e;
+}

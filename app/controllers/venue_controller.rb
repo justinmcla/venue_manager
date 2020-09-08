@@ -26,7 +26,7 @@ class VenueController < ApplicationController
         redirect to "/venues/#{@venue.id}"
     end
 
-    get '/venues/:id/delete' do
+    delete '/venues/:id' do
         @venue.destroy
         redirect to "/venues"
     end

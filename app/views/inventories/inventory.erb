@@ -7,7 +7,10 @@
             <a class="btn btn-light btn-block" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/edit" role="button">Edit Settings</a>
         </div>
         <div class = "col">
-            <a class="btn btn-light btn-block" href="/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/delete" role="button">Delete Inventory</a>
+            <form method = "POST" action = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>">
+                <input type = "hidden" id = "hidden" name = "_method" value = "DELETE">
+                <input type = "submit" class = "btn btn-light btn-block" value = "Delete Inventory">
+            </form>
         </div>
     </div>
 </div>
@@ -34,7 +37,10 @@
                     <td><%= item.category %></td>
                     <td><%= item.description %></td>
                     <td><a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Edit</a> | 
-                        <a href = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>/edit">Delete</a></td>
+                        <form method = "POST" action = "/venues/<%= @venue.id %>/inventories/<%= @inventory.id %>/items/<%= item.id %>">
+                            <input type = "hidden" id = "hidden" name = "_method" value = "DELETE">
+                            <input type = "submit" class = "link-button" value = "Delete">
+                        </form></td>
                 </tr>
             <% end %>
             </tbody>

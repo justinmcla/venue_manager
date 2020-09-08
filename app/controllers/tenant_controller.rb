@@ -26,7 +26,7 @@ class TenantController < ApplicationController
         redirect to "/tenants/#{@tenant.id}"
     end
 
-    get '/tenants/:id/delete' do
+    delete '/tenants/:id' do
         @tenant.destroy
         redirect to '/tenants'
     end
