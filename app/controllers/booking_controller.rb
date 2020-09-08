@@ -35,7 +35,7 @@ class BookingController < ApplicationController
         erb :'bookings/all'
     end
 
-    get '/bookings/:id/delete' do
+    delete '/bookings/:id' do
         @booking.destroy
         redirect to "/bookings"
     end

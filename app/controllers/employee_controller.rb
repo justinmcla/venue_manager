@@ -27,7 +27,7 @@ class EmployeeController < ApplicationController
         redirect to "/employees/#{@employee.id}"
     end
 
-    get '/employees/:id/delete' do
+    delete '/employees/:id' do
         @employee.destroy
         redirect to '/employees'
     end

@@ -47,7 +47,10 @@
             <a href = "/bookings/<%= @booking.id %>/edit" role = "button" class ="btn btn-light btn-block">Edit</a>
         </div>
         <div class = "col">
-            <a href = "/bookings/<%= @booking.id %>/delete" role = "button" class= "btn btn-light btn-block">Delete</a>
+            <form method = "POST" action = "/bookings/<%= @booking.id %>">
+                <input type = "hidden" id = "hidden" name = "_method" value = "DELETE">
+                <input type = "submit" class = "btn btn-light btn-block" value = "Delete">
+            </form>
         </div>
     </div>
 </div>

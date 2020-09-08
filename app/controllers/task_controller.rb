@@ -18,7 +18,7 @@ class TaskController < ApplicationController
         redirect to '/home'
     end
 
-    get '/tasks/:id/delete' do
+    delete '/tasks/:id' do
         @task.destroy
         redirect to '/home'
     end

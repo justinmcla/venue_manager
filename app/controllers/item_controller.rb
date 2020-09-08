@@ -27,7 +27,7 @@ class ItemController < ApplicationController
         redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}"
     end
 
-    get '/venues/:venue_id/inventories/:inventory_id/items/:item_id/delete' do
+    delete '/venues/:venue_id/inventories/:inventory_id/items/:item_id' do
         @item.destroy
         redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}"
     end

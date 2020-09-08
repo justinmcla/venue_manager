@@ -74,7 +74,7 @@ class UserController < ApplicationController
         erb :'user/delete'
     end
 
-    post '/account/delete' do
+    delete '/account' do
         if params[:password_1] == params[:password_2]
             if current_user(session) && current_user(session).authenticate(params[:password_1])
                 current_user(session).destroy
@@ -82,11 +82,11 @@ class UserController < ApplicationController
                 redirect to '/'
             else
                 flash[:error] = "Invalid password."
-                redirect to 'account/delete'
+                redirect to '/account/delete'
             end
         else
             flash[:error] = "Passwords do not match."
-            redirect to 'account/delete'
+            redirect to '/account/delete'
         end
     end
 

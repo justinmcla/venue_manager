@@ -32,7 +32,7 @@ class InventoryController < ApplicationController
         redirect to "/venues/#{@venue.id}/inventories/#{@inventory.id}"
     end
 
-    get '/venues/:venue_id/inventories/:inventory_id/delete' do
+    delete '/venues/:venue_id/inventories/:inventory_id' do
         @inventory.destroy
         redirect to "/venues/#{@venue.id}"
     end

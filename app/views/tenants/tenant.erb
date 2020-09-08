@@ -15,7 +15,10 @@
             <a href = "/tenants/<%= @tenant.id %>/edit" class = "btn btn-light btn-block" role = "button">Edit</a>
         </div>
         <div class ="col">
-            <a href = "/tenants/<%= @tenant.id %>/delete" class = "btn btn-light btn-block" role ="button">Delete</a>
+            <form method = "POST" action = "/tenants/<%= @tenant.id %>">
+                <input type = "hidden" id = "hidden" name = "_method" value = "DELETE">
+                <input type = "submit" class = "btn btn-light btn-block" value = "Delete">
+            </form>
         </div>
     </div>
 </div>
