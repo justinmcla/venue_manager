@@ -4,7 +4,15 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
 
     enable :sessions
-    set :session_secret, ENV.fetch('SESSION_SECRET')
+    begin
+        set :session_secret, ENV.fetch('SESSION_SECRET')
+    rescue
+        puts <<-ERROR
+        Unable to fetch SESSION_SECRET.
+        Session will not be encrypted. 
+        Refer to README.md for help.
+        ERROR
+    end
     set (:cookie_options) do 
         { :expires => Time.now + 3600*24*30 } 
     end
