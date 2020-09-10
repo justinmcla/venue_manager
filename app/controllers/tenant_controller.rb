@@ -6,13 +6,7 @@ class TenantController < ApplicationController
     
     post '/tenants/new' do
         new_tenant = Tenant.new(params)
-        if new_tenant.save
-            current_user(session).tenants << new_tenant
-            redirect to "/tenants/#{new_tenant.id}"
-        else
-            flash[:error] = new_tenant.errors.full_messages.join(', ')
-            redirect to '/tenants/new'
-        end
+        validate_form(new_tenant, 'tenants', "/tenants/#{Tenant.last.id}")
     end
 
     get '/tenants/:id' do

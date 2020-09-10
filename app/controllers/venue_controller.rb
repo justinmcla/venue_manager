@@ -6,13 +6,7 @@ class VenueController < ApplicationController
 
     post '/venues/new' do
         new_venue = Venue.new(params)
-        if new_venue.save
-            current_user(session).venues << new_venue
-            redirect "/venues/#{new_venue.id}"
-        else
-            flash[:error] = new_venue.errors.full_messages.join(', ')
-            redirect to '/venues/new'
-        end
+        validate_form(venue, 'venues', "/venues/#{Venue.last.id}")
     end
 
     get '/venues' do

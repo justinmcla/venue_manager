@@ -6,12 +6,7 @@ class EmployeeController < ApplicationController
 
     post '/employees/new' do
         new_emp = Employee.new(params)
-        if new_emp.save
-            current_user(session).employees << new_emp
-            redirect to "/employees/#{Employee.last.id}"
-        else
-            flash[:error] = new_emp.errors.full_messages.join(', ')
-        end
+        validate_form(new_emp, 'employees', "/employees/#{Employee.last.id}")
     end
 
     get '/employees' do
