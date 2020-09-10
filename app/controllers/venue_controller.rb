@@ -5,8 +5,8 @@ class VenueController < ApplicationController
     end
 
     post '/venues/new' do
-        current_user(session).venues << Venue.create(params)
-        redirect "/venues/#{Venue.last.id}"
+        new_venue = Venue.new(params)
+        validate_form(venue, 'venues', "/venues/#{Venue.last.id}")
     end
 
     get '/venues' do

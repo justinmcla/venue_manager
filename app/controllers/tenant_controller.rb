@@ -5,8 +5,8 @@ class TenantController < ApplicationController
     end
     
     post '/tenants/new' do
-        current_user(session).tenants << Tenant.create(params)
-        redirect to "/tenants/#{Tenant.last.id}"
+        new_tenant = Tenant.new(params)
+        validate_form(new_tenant, 'tenants', "/tenants/#{Tenant.last.id}")
     end
 
     get '/tenants/:id' do

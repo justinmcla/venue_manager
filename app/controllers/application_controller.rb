@@ -46,6 +46,15 @@ class ApplicationController < Sinatra::Base
             params.each { |key, val| var.send("#{key}=", val) if var.respond_to?("#{key}=") }
             var.save
         end
+        def validate_form(var, att, path)
+            if var.save
+                current_user(session).send(att) << var
+                redirect to path
+            else
+                flash[:error] = var.errors.full_messages.join(', ')
+                redirect to request.path_info
+            end
+        end
     end
 
     before '/:route*' do

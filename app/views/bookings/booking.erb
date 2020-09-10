@@ -3,7 +3,7 @@
 <p><%= @booking.venue.name %><br>
 <%= @booking.date %>, <%= @booking.time %></p>
 
-<h4><a href = "/tenants/<%= @booking.tenant.id %>"><%= @booking.tenant.org_name %></a></h4>
+<%= "<h4><a href = \"/tenants/#{@booking.tenant.id}\">#{@booking.tenant.org_name}</a></h4>" if @booking.tenant %>
 <p>Tenant</p>
 <h4><%= @booking.event_type %></h4>
 <p>Type</a>

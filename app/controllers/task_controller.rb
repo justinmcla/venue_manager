@@ -5,8 +5,8 @@ class TaskController < ApplicationController
     end
 
     post '/tasks/new' do
-        current_user(session).tasks << Task.create(params)
-        redirect to '/home'
+        new_item = Task.new(params)
+        validate_form(new_item, 'tasks', '/home')
     end
 
     get '/tasks/:id/edit' do

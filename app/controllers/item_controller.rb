@@ -14,8 +14,14 @@ class ItemController < ApplicationController
 
     post '/venues/:venue_id/inventories/:inventory_id/items' do
         params.delete(:venue_id)
-        Inventory.find(params[:inventory_id]).items << Item.create(params)
-        redirect to "/venues/#{@venue.id}/inventories/#{Inventory.find(params[:inventory_id]).id}"
+        new_item = Item.new(params)
+        if new_item.save
+            Inventory.find(params[:inventory_id]).items << new_item
+            redirect to "/venues/#{@venue.id}/inventories/#{Inventory.find(params[:inventory_id]).id}"
+        else
+            flash[:error] = new_item.errors.full_messages.join(', ')
+            redirect to '/venues/:venue_id/inventories/:inventory_id/items/new'
+        end
     end
 
     get '/venues/:venue_id/inventories/:inventory_id/items/:id/edit' do

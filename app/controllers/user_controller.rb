@@ -5,12 +5,14 @@ class UserController < ApplicationController
       end
     
     post "/signup" do
-        if User.all.any? { |u| u.username == params[:username] }
-            flash[:error] = "Username already in use."
-            redirect '/signup'
+        user = User.new(params)
+        if user.save
+            session[:user_id] = user.id
+            redirect to '/home'
+        else
+            flash[:error] = user.errors.full_messages.join(', ')
+            redirect to '/'
         end
-        session[:user_id] = User.create(params).id
-        redirect '/home'
     end
 
     get '/home' do

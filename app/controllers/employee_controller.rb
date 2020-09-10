@@ -5,8 +5,8 @@ class EmployeeController < ApplicationController
     end
 
     post '/employees/new' do
-        current_user(session).employees << Employee.create(params)
-        redirect to "/employees/#{Employee.last.id}"
+        new_emp = Employee.new(params)
+        validate_form(new_emp, 'employees', "/employees/#{Employee.last.id}")
     end
 
     get '/employees' do
