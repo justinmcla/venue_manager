@@ -5,15 +5,20 @@ class BookingController < ApplicationController
     end
 
     post '/bookings' do
-        new_booking = Booking.create(name: params[:name])
-        params[:employee_list].each { |employee| new_booking.employees << Employee.find(employee) } if params.has_key? :employee_list
-        update_safe(new_booking)
-        if params[:tenant_id] == '0' && !params[:new_tenant].empty?
-            current_user(session).tenants << Tenant.create(org_name: params[:new_tenant])
-            new_booking.update(tenant_id: Tenant.last.id)
-            redirect to "/tenants/#{Tenant.last.id}/edit"
+        new_booking = Booking.new(name: params[:name], date: params[:date], time: params[:time])
+        if new_booking.save
+            params[:employee_list].each { |employee| new_booking.employees << Employee.find(employee) } if params.has_key? :employee_list
+            update_safe(new_booking)
+            if params[:tenant_id] == '0' && !params[:new_tenant].empty?
+                current_user(session).tenants << Tenant.create(org_name: params[:new_tenant])
+                new_booking.update(tenant_id: Tenant.last.id)
+                redirect to "/tenants/#{Tenant.last.id}/edit"
+            else
+                redirect to "/bookings/#{new_booking.id}"
+            end
         else
-            redirect to "/bookings/#{new_booking.id}"
+            flash[:error] = new_booking.errors.full_messages.join(', ')
+            redirect to '/bookings/new'
         end
     end
 
