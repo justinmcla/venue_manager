@@ -5,8 +5,14 @@ class TaskController < ApplicationController
     end
 
     post '/tasks/new' do
-        current_user(session).tasks << Task.create(params)
-        redirect to '/home'
+        new_item = Task.new(params)
+        if new_item.save
+            current_user(session).tasks << new_item
+            redirect to '/home'
+        else
+            flash[:error] = new_item.errors.full_messages.join(', ')
+            redirect to "/tasks/new"
+        end
     end
 
     get '/tasks/:id/edit' do

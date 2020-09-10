@@ -5,8 +5,14 @@ class TenantController < ApplicationController
     end
     
     post '/tenants/new' do
-        current_user(session).tenants << Tenant.create(params)
-        redirect to "/tenants/#{Tenant.last.id}"
+        new_tenant = Tenant.new(params)
+        if new_tenant.save
+            current_user(session).tenants << new_tenant
+            redirect to "/tenants/#{new_tenant.id}"
+        else
+            flash[:error] = new_tenant.errors.full_messages.join(', ')
+            redirect to '/tenants/new'
+        end
     end
 
     get '/tenants/:id' do

@@ -5,8 +5,14 @@ class VenueController < ApplicationController
     end
 
     post '/venues/new' do
-        current_user(session).venues << Venue.create(params)
-        redirect "/venues/#{Venue.last.id}"
+        new_venue = Venue.new(params)
+        if new_venue.save
+            current_user(session).venues << new_venue
+            redirect "/venues/#{new_venue.id}"
+        else
+            flash[:error] = new_venue.errors.full_messages.join(', ')
+            redirect to '/venues/new'
+        end
     end
 
     get '/venues' do
