@@ -4,4 +4,5 @@ class Booking < ActiveRecord::Base
     belongs_to :tenant
     has_many :shift_hours
     has_many :employees, through: :shift_hours
+    validates :name, :date, :time, presence: true
 end

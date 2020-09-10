@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
     has_many :tasks, dependent: :destroy
     has_many :bookings, through: :venues
     has_many :inventories, through: :venues
+    validates :first_name, :last_name, :username, presence: true
+    validates :username, uniqueness: true
 end
