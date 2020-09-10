@@ -11,8 +11,13 @@ class InventoryController < ApplicationController
     end
 
     post '/venues/:venue_id/inventories' do
-        Inventory.create(params)
-        redirect to "/venues/#{@venue.id}/inventories/#{Inventory.last.id}"
+        new_inv = Inventory.new(params)
+        if new_inv.save
+            redirect to "/venues/#{@venue.id}/inventories/#{Inventory.last.id}"
+        else
+            flash[:error] = new_inv.errors.full_messages.join(', ')
+            redirect to "/venues/#{@venue.id}/inventories/new"
+        end
     end
 
     get '/venues/:venue_id/inventories' do
